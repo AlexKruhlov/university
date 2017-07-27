@@ -3,12 +3,12 @@ package ua.rafael.model;
 import java.time.LocalDate;
 
 public class Mark {
-	
+
 	private LocalDate date;
-	
+
 	private Subject subject;
-	
-	private int mark;
+
+	private int value;
 
 	public Mark() {
 	}
@@ -16,7 +16,7 @@ public class Mark {
 	public Mark(LocalDate date, Subject subject, int mark) {
 		this.date = date;
 		this.subject = subject;
-		this.mark = mark;
+		this.value = mark;
 	}
 
 	public LocalDate getDate() {
@@ -35,11 +35,17 @@ public class Mark {
 		this.subject = subject;
 	}
 
-	public int getMark() {
-		return mark;
+	public int getValue() {
+		return value;
 	}
 
-	public void setMark(int mark) {
-		this.mark = mark;
+	public void setValue(int mark) {
+		this.value = mark;
 	}
+
+	@Override
+	public String toString() {
+		return "date: " + date + " - subject: " + subject.getName() + " - mark: " + value;
+	}
+
 }

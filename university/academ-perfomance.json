@@ -9,7 +9,7 @@
       "subject": {
         "name": "Mathematics"
       },
-      "mark": 4
+      "value": 4
     },
     {
       "date": {
@@ -20,7 +20,7 @@
       "subject": {
         "name": "History"
       },
-      "mark": 4
+      "value": 4
     },
     {
       "date": {
@@ -31,7 +31,7 @@
       "subject": {
         "name": "Chemistry"
       },
-      "mark": 4
+      "value": 4
     },
     {
       "date": {
@@ -42,7 +42,7 @@
       "subject": {
         "name": "Mathematics"
       },
-      "mark": 4
+      "value": 4
     },
     {
       "date": {
@@ -53,7 +53,7 @@
       "subject": {
         "name": "English"
       },
-      "mark": 4
+      "value": 4
     },
     {
       "date": {
@@ -64,7 +64,7 @@
       "subject": {
         "name": "Mathematics"
       },
-      "mark": 4
+      "value": 4
     }
   ]
 }

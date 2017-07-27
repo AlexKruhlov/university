@@ -30,4 +30,11 @@ public class AcademPerfomance {
 	public void removeMark(Mark mark) {
 		marks.remove(mark);
 	}
+
+	@Override
+	public String toString() {
+		return marks.toString();
+	}
+	
+	
 }
