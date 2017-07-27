@@ -10,14 +10,12 @@ import com.google.gson.GsonBuilder;
 
 import ua.rafael.model.AcademPerfomance;
 
-public class GsonConverter {
+public class JsonConverter {
 
 	public static void toJson(final String jsonFilePath,
 			AcademPerfomance academPerfomance) {
-		final String jsonString
-				= new GsonBuilder().create().toJson(academPerfomance);
 		try (OutputStreamWriter file = new FileWriter(new File(jsonFilePath))) {
-			file.write(jsonString);
+			file.write(jsonToString(academPerfomance));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -33,4 +31,9 @@ public class GsonConverter {
 		}
 		return academPerfomance;
 	}
+
+	public static String jsonToString(final AcademPerfomance academPerfomance) {
+		return new GsonBuilder().setPrettyPrinting().create().toJson(academPerfomance);
+	}
+
 }
