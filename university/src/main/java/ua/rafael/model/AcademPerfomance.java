@@ -1,11 +1,14 @@
 package ua.rafael.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AcademPerfomance {
+
 	private List<Mark> marks;
 
 	public AcademPerfomance() {
+		marks = new ArrayList<Mark>();
 	}
 
 	public AcademPerfomance(List<Mark> marks) {
@@ -13,7 +16,7 @@ public class AcademPerfomance {
 	}
 
 	public List<Mark> getMarks() {
-		return marks;
+		return new ArrayList<Mark>(marks);
 	}
 
 	public void setMarks(List<Mark> marks) {

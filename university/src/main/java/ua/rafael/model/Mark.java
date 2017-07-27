@@ -3,15 +3,17 @@ package ua.rafael.model;
 import java.time.LocalDate;
 
 public class Mark {
+	
 	private LocalDate date;
+	
 	private Subject subject;
+	
 	private int mark;
 
 	public Mark() {
 	}
 
 	public Mark(LocalDate date, Subject subject, int mark) {
-		super();
 		this.date = date;
 		this.subject = subject;
 		this.mark = mark;
