@@ -46,7 +46,7 @@ public class SubjectTest {
 	}
 
 	@Test
-	public void testCompareToSubjectsAreEquals() {
+	public void testCompareToSubjectsAreEqual() {
 		assertTrue("Result must be == 0",
 				new Subject("Biology").compareTo(new Subject("Biology")) == 0);
 	}

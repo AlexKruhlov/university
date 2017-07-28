@@ -41,4 +41,39 @@ public class MarkTest {
 		final Mark mark = new Mark(LocalDate.now(), new Subject("Mathematics"), 2);
 		assertFalse("Subjects must not be equal", mark.equals(null));
 	}
+
+	@Test
+	public void testCompareToFirstMarkGreaterThanSecondWithTheSameDate() {
+		final Mark mark1 = new Mark(LocalDate.now(), new Subject("Mathematics"), 2);
+		final Mark mark2 = new Mark(LocalDate.now(), new Subject("Biology"), 2);
+		assertTrue("Result must be > 0", mark1.compareTo(mark2) > 0);
+	}
+
+	@Test
+	public void testCompareToFirstMarkLesserThanSecondWithTheSameDate() {
+		final Mark mark1 = new Mark(LocalDate.now(), new Subject("Chemistry"), 2);
+		final Mark mark2 = new Mark(LocalDate.now(), new Subject("Physics"), 2);
+		assertTrue("Result must be < 0", mark1.compareTo(mark2) < 0);
+	}
+
+	@Test
+	public void testCompareToFirstMarkGreaterThanSecondWithTheSameSubject() {
+		final Mark mark1 = new Mark(LocalDate.now().plusDays(1), new Subject("Chemistry"), 2);
+		final Mark mark2 = new Mark(LocalDate.now(), new Subject("Chemistry"), 2);
+		assertTrue("Result must be > 0", mark1.compareTo(mark2) > 0);
+	}
+
+	@Test
+	public void testCompareToFirstMarkLesserThanSecondWithTheSameSubject() {
+		final Mark mark1 = new Mark(LocalDate.now(), new Subject("Chemistry"), 2);
+		final Mark mark2 = new Mark(LocalDate.now().plusDays(1), new Subject("Chemistry"), 2);
+		assertTrue("Result must be < 0", mark1.compareTo(mark2) < 0);
+	}
+
+	@Test
+	public void testCompareToMarkAreEqual() {
+		final Mark mark1 = new Mark(LocalDate.now(), new Subject("Chemistry"), 2);
+		final Mark mark2 = new Mark(LocalDate.now(), new Subject("Chemistry"), 2);
+		assertTrue("Result must be == 0", mark1.compareTo(mark2) == 0);
+	}
 }
