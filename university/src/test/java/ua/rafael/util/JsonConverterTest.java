@@ -24,12 +24,18 @@ public class JsonConverterTest {
 	@Before
 	public final void startUp() {
 		academPerfomance = new AcademPerfomance();
-		academPerfomance.addMark(new Mark(LocalDate.now(), new Subject("Mathematics"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.now(), new Subject("History"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.now(), new Subject("Chemistry"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.now(), new Subject("Mathematics"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.now(), new Subject("English"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.now(), new Subject("Mathematics"), 4));
+		academPerfomance.addMark(
+				new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		academPerfomance.addMark(new Mark(LocalDate.of(2017, 07, 27),
+										  new Subject("History"), 4));
+		academPerfomance.addMark(new Mark(LocalDate.of(2017, 07, 27),
+										  new Subject("Chemistry"), 4));
+		academPerfomance.addMark(
+				new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		academPerfomance.addMark(new Mark(LocalDate.of(2017, 07, 27),
+										  new Subject("English"), 4));
+		academPerfomance.addMark(
+				new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
 	}
 
 	@Test
