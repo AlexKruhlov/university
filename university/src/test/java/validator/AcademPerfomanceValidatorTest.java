@@ -29,15 +29,11 @@ public class AcademPerfomanceValidatorTest {
 		}
 	}
 
-	@Test
+	@Test(expected = RuntimeException.class)
 	public final void testValidateWithDublicateOfMarks() throws FileNotFoundException, IOException {
 		final AcademPerfomance academPerfomance
 				= JsonConverter.fromJson(
 						"test/resources/ua/rafael/validator/dublicate-of-marks.json");
-		try {
-			validator.validate(academPerfomance);
-		} catch (Exception e) {
-			fail("Validator must not generate exception");
-		}
+		validator.validate(academPerfomance);
 	}
 }

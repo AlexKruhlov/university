@@ -15,7 +15,7 @@ public class SubjectTest {
 	}
 
 	@Test
-	public void testEqualsTheEqualSubjects() {
+	public void testEqualsWithTheEqualSubjects() {
 		assertTrue("Subjects must be equal",
 				new Subject("Mathematics").equals(new Subject("Mathematics")));
 	}
