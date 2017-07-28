@@ -42,8 +42,24 @@ public class Mark {
 	}
 
 	@Override
+	public int hashCode() {
+		return date.hashCode() + subject.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		final Mark mark = (Mark) obj;
+		return (date.equals(mark.getDate()) && subject.equals(mark.getSubject()));
+	}
+
+	@Override
 	public String toString() {
 		return "date: " + date + " - subject: " + subject.getName() + " - mark: " + value;
 	}
-
 }
