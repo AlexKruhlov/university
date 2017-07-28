@@ -8,6 +8,8 @@ import static ua.rafael.util.JsonConverter.toJson;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,19 +25,14 @@ public class JsonConverterTest {
 
 	@Before
 	public final void startUp() {
-		academPerfomance = new AcademPerfomance();
-		academPerfomance.addMark(
-				new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.of(2017, 07, 27),
-										  new Subject("History"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.of(2017, 07, 27),
-										  new Subject("Chemistry"), 4));
-		academPerfomance.addMark(
-				new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
-		academPerfomance.addMark(new Mark(LocalDate.of(2017, 07, 27),
-										  new Subject("English"), 4));
-		academPerfomance.addMark(
-				new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		final List<Mark> markList = new ArrayList<>();
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("History"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Chemistry"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("English"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		academPerfomance = new AcademPerfomance(markList);
 	}
 
 	@Test
