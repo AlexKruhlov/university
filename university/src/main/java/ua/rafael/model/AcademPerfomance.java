@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AcademPerfomance {
-
 	private List<Mark> marks;
 
 	public AcademPerfomance() {
@@ -35,6 +34,4 @@ public class AcademPerfomance {
 	public String toString() {
 		return marks.toString();
 	}
-	
-	
 }

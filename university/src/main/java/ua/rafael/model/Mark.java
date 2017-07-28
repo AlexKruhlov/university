@@ -3,9 +3,7 @@ package ua.rafael.model;
 import java.time.LocalDate;
 
 public class Mark {
-
 	private LocalDate date;
-
 	private Subject subject;
 
 	private int value;
