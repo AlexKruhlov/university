@@ -18,4 +18,21 @@ public class Subject {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (this == obj) {
+			return true;
+		}
+		final Subject subject = (Subject) obj;
+		return (subject.equals(subject.getName()));
+	}
 }
