@@ -2,7 +2,7 @@ package ua.rafael.model;
 
 import java.time.LocalDate;
 
-public class Mark {
+public class Mark implements Comparable<Mark> {
 	private LocalDate date;
 	private Subject subject;
 
@@ -55,11 +55,19 @@ public class Mark {
 			return true;
 		}
 		final Mark mark = (Mark) obj;
-		return (date.equals(mark.getDate()) && subject.equals(mark.getSubject()));
+		return (date.equals(mark.date) && subject.equals(mark.subject));
 	}
 
 	@Override
 	public String toString() {
 		return "date: " + date + " - subject: " + subject.getName() + " - mark: " + value;
+	}
+
+	@Override
+	public int compareTo(Mark mark) {
+		if(date.equals(mark.date)){
+			return subject.compareTo(mark.subject); 
+		}
+		return date.compareTo(mark.date);
 	}
 }

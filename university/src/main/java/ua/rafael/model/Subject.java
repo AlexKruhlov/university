@@ -1,6 +1,6 @@
 package ua.rafael.model;
 
-public class Subject {
+public class Subject implements Comparable<Subject> {
 	private String name;
 
 	public Subject() {
@@ -33,6 +33,11 @@ public class Subject {
 			return true;
 		}
 		final Subject subject = (Subject) obj;
-		return (name.equals(subject.getName()));
+		return (name.equals(subject.name));
+	}
+
+	@Override
+	public int compareTo(Subject subject) {
+		return name.compareTo(subject.name);
 	}
 }

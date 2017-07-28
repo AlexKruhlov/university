@@ -4,14 +4,10 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.List;
 
 import org.junit.Test;
 
 import ua.rafael.model.AcademPerfomance;
-import ua.rafael.model.Mark;
-import ua.rafael.model.Subject;
 import ua.rafael.util.JsonConverter;
 
 public class AcademPerfomanceValidatorTest {

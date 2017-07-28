@@ -21,17 +21,12 @@ public class AcademPerfomance {
 	public void setMarks(List<Mark> marks) {
 		this.marks = marks;
 	}
-//
-//	public void addMark(Mark mark) {
-//		marks.add(mark);
-//	}
-//
-//	public void removeMark(Mark mark) {
-//		marks.remove(mark);
-//	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return marks.toString();
 	}
+
 }
