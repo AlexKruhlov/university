@@ -18,7 +18,7 @@ public class SubjectValidatorTest {
 			fail("Validator must not generate exception");
 		}
 	}
-
+	
 	@Test
 	public final void testValidateSubjectNameHasUnderscore() {
 		final Validator<Subject> validator = new SubjectValidator();
