@@ -21,7 +21,7 @@ public class Subject {
 
 	@Override
 	public int hashCode() {
-		return super.hashCode();
+		return name.hashCode();
 	}
 
 	@Override
@@ -33,6 +33,6 @@ public class Subject {
 			return true;
 		}
 		final Subject subject = (Subject) obj;
-		return (subject.equals(subject.getName()));
+		return (name.equals(subject.getName()));
 	}
 }
