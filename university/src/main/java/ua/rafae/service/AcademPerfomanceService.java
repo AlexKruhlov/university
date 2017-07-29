@@ -2,6 +2,7 @@ package ua.rafae.service;
 
 import static java.util.Collections.sort;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,4 +49,10 @@ public class AcademPerfomanceService {
 		        .collect(Collectors.toCollection(ArrayList::new));
 	}
 	
+	public List<Mark> findMarksByDate(final LocalDate date) {
+		return academPerfomance.getMarks().stream()
+				.filter(mark -> date.equals(mark.getDate()))
+				.sorted()
+		        .collect(Collectors.toCollection(ArrayList::new));
+	}
 }

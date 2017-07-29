@@ -81,6 +81,22 @@ public class AcademPerfomanceServiceTest {
 		final List<Mark> actual = service.findMarksBySubject(new Subject("Biology"));
 		assertEquals("Strings must be equal", expected.toString(), actual.toString());
 	}
-	
-	
+
+	@Test
+	public final void testfindMarksByDate() {
+		final List<Mark> expected = new ArrayList<>();
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Chemistry"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("English"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("History"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 3));
+		final List<Mark> actual = service.findMarksByDate(LocalDate.of(2017, 07, 27));
+		assertEquals("Strigns must be equal", expected.toString(), actual.toString());
+	}
+
+	@Test
+	public final void testFindMarksBySubjectWithNonExistentDate() {
+		final List<Mark> expected = new ArrayList<>();
+		final List<Mark> actual = service.findMarksByDate(LocalDate.of(2018, 07, 27));
+		assertEquals("Strings must be equal", expected.toString(), actual.toString());
+	}
 }

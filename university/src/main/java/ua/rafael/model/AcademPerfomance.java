@@ -22,11 +22,8 @@ public class AcademPerfomance {
 		this.marks = marks;
 	}
 	
-	
-	
 	@Override
 	public String toString() {
 		return marks.toString();
 	}
-
 }
