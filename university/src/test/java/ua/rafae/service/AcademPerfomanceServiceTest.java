@@ -1,10 +1,14 @@
 package ua.rafae.service;
 
+import static org.junit.Assert.assertEquals;
+import static ua.rafael.util.JsonConverter.fromJson;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,14 +38,14 @@ public class AcademPerfomanceServiceTest {
 	public final void testSolveAvarageMarkByMathematics() {
 		final double expected = 4.0;
 		final double actual = service.solveAvarageMarkBySubject(new Subject("Mathematics"));
-		Assert.assertEquals("Nubers must be equal", expected, actual, 0.1);
+		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
 
 	@Test
 	public final void testSolveAvarageMarkByNotExsistentSubject() {
 		final double expected = 0.0;
 		final double actual = service.solveAvarageMarkBySubject(new Subject("Geometry"));
-		Assert.assertEquals("Nubers must be equal", expected, actual, 0.1);
+		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
 
 	@Test
@@ -49,15 +53,15 @@ public class AcademPerfomanceServiceTest {
 		service = new AcademPerfomanceService(new AcademPerfomance());
 		final double expected = 0.0;
 		final double actual = service.solveAvarageMarkBySubject(new Subject("Geometry"));
-		Assert.assertEquals("Nubers must be equal", expected, actual, 0.1);
+		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
 	
 	@Test
-	public final void testSolveAvarageMarkByEmpty() {
-		service = new AcademPerfomanceService(new AcademPerfomance());
-		final double expected = 0.0;
-		final double actual = service.solveAvarageMarkBySubject(new Subject("Geometry"));
-		Assert.assertEquals("Nubers must be equal", expected, actual, 0.1);
+	public final void testSortMarksByDate() throws FileNotFoundException, IOException {
+		final String expected = fromJson("test/resources/ua/rafael/service/sorted-marks.json").toString();
+		service.sortMarksByDate();
+		final String actual = academPerfomance.toString();
+		assertEquals("Strigns must be equal", expected, actual);
 	}
 	
 }

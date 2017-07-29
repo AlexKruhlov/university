@@ -15,7 +15,7 @@ public class AcademPerfomance {
 	}
 
 	public List<Mark> getMarks() {
-		return new ArrayList<Mark>(marks);
+		return marks;
 	}
 
 	public void setMarks(List<Mark> marks) {

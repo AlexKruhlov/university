@@ -1,5 +1,7 @@
 package ua.rafae.service;
 
+import static java.util.Collections.sort;
+
 import java.util.List;
 
 import ua.rafael.model.AcademPerfomance;
@@ -30,5 +32,10 @@ public class AcademPerfomanceService {
 			}
 		}
 		return (markValueCount > 0) ? sumOfMarkValue / markValueCount : markValueCount;
+	}
+	
+	public void sortMarksByDate() {
+		List<Mark> marks = academPerfomance.getMarks();
+		sort(marks);
 	}
 }
