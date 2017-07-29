@@ -60,13 +60,13 @@ public class Mark implements Comparable<Mark> {
 
 	@Override
 	public String toString() {
-		return "date: " + date + " - subject: " + subject.getName() + " - mark: " + value;
+		return "date: " + date + " - subject: " + subject.getName() + " - mark: " + value + "\n";
 	}
 
 	@Override
 	public int compareTo(Mark mark) {
-		if(date.equals(mark.date)){
-			return subject.compareTo(mark.subject); 
+		if (date.equals(mark.date)) {
+			return subject.compareTo(mark.subject);
 		}
 		return date.compareTo(mark.date);
 	}
