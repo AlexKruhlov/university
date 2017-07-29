@@ -55,13 +55,32 @@ public class AcademPerfomanceServiceTest {
 		final double actual = service.solveAvarageMarkBySubject(new Subject("Geometry"));
 		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
-	
+
 	@Test
 	public final void testSortMarksByDate() throws FileNotFoundException, IOException {
-		final String expected = fromJson("test/resources/ua/rafael/service/sorted-marks.json").toString();
+		final String expected = fromJson("test/resources/ua/rafael/service/sorted-marks.json")
+				.toString();
 		service.sortMarksByDate();
 		final String actual = academPerfomance.toString();
 		assertEquals("Strigns must be equal", expected, actual);
 	}
+
+	@Test
+	public final void testFindMarksBySubject() {
+		final List<Mark> expected = new ArrayList<>();
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 3));
+		expected.add(new Mark(LocalDate.of(2017, 07, 28), new Subject("Mathematics"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 29), new Subject("Mathematics"), 5));
+		final List<Mark> actual = service.findMarksBySubject(new Subject("Mathematics"));
+		assertEquals("Strigns must be equal", expected.toString(), actual.toString());
+	}
+
+	@Test
+	public final void testFindMarksBySubjectWithNonExistentSubject() {
+		final List<Mark> expected = new ArrayList<>();
+		final List<Mark> actual = service.findMarksBySubject(new Subject("Biology"));
+		assertEquals("Strings must be equal", expected.toString(), actual.toString());
+	}
+	
 	
 }

@@ -2,7 +2,9 @@ package ua.rafae.service;
 
 import static java.util.Collections.sort;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ua.rafael.model.AcademPerfomance;
 import ua.rafael.model.Mark;
@@ -33,9 +35,17 @@ public class AcademPerfomanceService {
 		}
 		return (markValueCount > 0) ? sumOfMarkValue / markValueCount : markValueCount;
 	}
-	
+
 	public void sortMarksByDate() {
 		List<Mark> marks = academPerfomance.getMarks();
 		sort(marks);
 	}
+
+	public List<Mark> findMarksBySubject(final Subject subject) {
+		return academPerfomance.getMarks().stream()
+				.filter(mark -> subject.equals(mark.getSubject()))
+				.sorted()
+		        .collect(Collectors.toCollection(ArrayList::new));
+	}
+	
 }
