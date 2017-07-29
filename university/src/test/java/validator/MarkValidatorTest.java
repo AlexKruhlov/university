@@ -15,7 +15,7 @@ public class MarkValidatorTest {
 	private Validator<Mark> validator = new MarkValidator();
 
 	@Test
-	public void testValidateWithCorrectMark() {
+	public void testValidateWithCorrectMarkValue() {
 		final Mark mark = new Mark(LocalDate.now(), new Subject("History"), 3);
 		try {
 			validator.validate(mark);
@@ -24,28 +24,34 @@ public class MarkValidatorTest {
 		}
 	}
 
+	@Test(expected = RuntimeException.class)
+	public void testValidateWithNegativeMarkValue() {
+		final Mark mark = new Mark(LocalDate.now(), new Subject("History"), -1);
+		validator.validate(mark);
+	}
+
 	@Test(expected = DateTimeException.class)
 	public void testValidateWithWrongYearRange() {
 		final Mark mark = new Mark(LocalDate.now().plusYears(1), new Subject("History"), 3);
 		validator.validate(mark);
 		LocalDate.now().plusDays(1);
 	}
-	
+
 	@Test(expected = DateTimeException.class)
 	public void testValidateWithWrongMonthRange() {
 		final Mark mark = new Mark(LocalDate.now().plusMonths(1), new Subject("History"), 3);
 		validator.validate(mark);
 	}
-	
+
 	@Test(expected = DateTimeException.class)
 	public void testValidateWithWrongDayRange() {
 		final Mark mark = new Mark(LocalDate.now().plusDays(1), new Subject("History"), 3);
 		validator.validate(mark);
 	}
-	
+
 	@Test(expected = RuntimeException.class)
-	public void testValidateWithWrongSubject(){
+	public void testValidateWithWrongSubject() {
 		final Mark mark = new Mark(LocalDate.now().plusDays(1), new Subject("History1"), 3);
-		validator.validate(mark);	
+		validator.validate(mark);
 	}
 }
