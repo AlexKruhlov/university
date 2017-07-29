@@ -1,0 +1,70 @@
+{
+  "marks": [
+    {
+      "date": {
+        "year": 2017,
+        "month": 7,
+        "day": 27
+      },
+      "subject": {
+        "name": "Mathematics"
+      },
+      "value": 4
+    },
+    {
+      "date": {
+        "year": 2017,
+        "month": 7,
+        "day": 27
+      },
+      "subject": {
+        "name": "History"
+      },
+      "value": 4
+    },
+    {
+      "date": {
+        "year": 2017,
+        "month": 7,
+        "day": 27
+      },
+      "subject": {
+        "name": "Chemistry"
+      },
+      "value": 4
+    },
+    {
+      "date": {
+        "year": 2017,
+        "month": 7,
+        "day": 27
+      },
+      "subject": {
+        "name": "Mathematics"
+      },
+      "value": 4
+    },
+    {
+      "date": {
+        "year": 2017,
+        "month": 7,
+        "day": 27
+      },
+      "subject": {
+        "name": "English"
+      },
+      "value": 4
+    },
+    {
+      "date": {
+        "year": 2017,
+        "month": 7,
+        "day": 27
+      },
+      "subject": {
+        "name": "Mathematics"
+      },
+      "value": 4
+    }
+  ]
+}
