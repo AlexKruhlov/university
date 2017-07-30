@@ -17,4 +17,15 @@
 	<select id="selectAll" resultMap="result">
 		SELECT * FROM public.subjects;
 	</select>
+
+	<update id="dropTable">
+		DROP TABLE public.subjects;
+	</update>
+
+	<update id="createTable">
+		CREATE TABLE public.subjects(
+		id serial not null primary key,
+		name varchar(40)
+		);
+	</update>
 </mapper>

@@ -26,12 +26,12 @@ public class JsonConverterTest {
 	@Before
 	public final void startUp() {
 		final List<Mark> markList = new ArrayList<>();
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("History"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Chemistry"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("English"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(1,"Mathematics"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(2,"History"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(3,"Chemistry"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(4,"Mathematics"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(5,"English"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(6,"Mathematics"), 4));
 		academPerfomance = new AcademPerfomance(markList);
 	}
 

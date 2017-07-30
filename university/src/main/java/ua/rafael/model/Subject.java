@@ -15,8 +15,8 @@ public class Subject implements Comparable<Subject> {
 	public Subject() {
 	}
 
-	public Subject(String name) {
-		super();
+	public Subject(int id,String name) {
+		this.id = id;
 		this.name = name;
 	}
 

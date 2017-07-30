@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.postgresql.util.LruCache.CreateAction;
 
 import ua.rafael.model.Subject;
 
@@ -15,14 +14,24 @@ public class SubjectDao {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 	
-	public void createTable() {
+	public void createTable(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.selectList("Subject.selectAll");
+			session.update("Subject.createTable");
 		} finally {
+			session.commit();
 			session.close();
 		}
-		return list;
+	}
+	
+	public void insert(final Subject subject){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.insert("Subject.insert",subject);
+		} finally {
+			session.commit();
+			session.close();
+		}
 	}
 	
 	public List<Subject> selectAll() {
@@ -34,5 +43,15 @@ public class SubjectDao {
 			session.close();
 		}
 		return list;
+	}
+	
+	public void dropTable(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.update("Subject.dropTable");
+		} finally {
+			session.commit();
+			session.close();
+		}
 	}
 }

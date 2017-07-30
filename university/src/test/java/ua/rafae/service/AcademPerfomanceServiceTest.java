@@ -24,12 +24,12 @@ public class AcademPerfomanceServiceTest {
 	@Before
 	public final void startUp() {
 		final List<Mark> markList = new ArrayList<>();
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 3));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("History"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Chemistry"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 28), new Subject("Mathematics"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("English"), 4));
-		markList.add(new Mark(LocalDate.of(2017, 07, 29), new Subject("Mathematics"), 5));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(1,"Mathematics"), 3));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(2,"History"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(3,"Chemistry"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 28), new Subject(4,"Mathematics"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(5,"English"), 4));
+		markList.add(new Mark(LocalDate.of(2017, 07, 29), new Subject(6,"Mathematics"), 5));
 		academPerfomance = new AcademPerfomance(markList);
 		service = new AcademPerfomanceService(academPerfomance);
 	}
@@ -37,14 +37,14 @@ public class AcademPerfomanceServiceTest {
 	@Test
 	public final void testSolveAvarageMarkByMathematics() {
 		final double expected = 4.0;
-		final double actual = service.solveAvarageMarkBySubject(new Subject("Mathematics"));
+		final double actual = service.solveAvarageMarkBySubject(new Subject(1,"Mathematics"));
 		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
 
 	@Test
 	public final void testSolveAvarageMarkByNotExsistentSubject() {
 		final double expected = 0.0;
-		final double actual = service.solveAvarageMarkBySubject(new Subject("Geometry"));
+		final double actual = service.solveAvarageMarkBySubject(new Subject(1,"Geometry"));
 		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
 
@@ -52,7 +52,7 @@ public class AcademPerfomanceServiceTest {
 	public final void testSolveAvarageMarkByEmptyAcademicPerfomance() {
 		service = new AcademPerfomanceService(new AcademPerfomance());
 		final double expected = 0.0;
-		final double actual = service.solveAvarageMarkBySubject(new Subject("Geometry"));
+		final double actual = service.solveAvarageMarkBySubject(new Subject(1,"Geometry"));
 		assertEquals("Nubers must be equal", expected, actual, 0.1);
 	}
 
@@ -68,27 +68,27 @@ public class AcademPerfomanceServiceTest {
 	@Test
 	public final void testFindMarksBySubject() {
 		final List<Mark> expected = new ArrayList<>();
-		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 3));
-		expected.add(new Mark(LocalDate.of(2017, 07, 28), new Subject("Mathematics"), 4));
-		expected.add(new Mark(LocalDate.of(2017, 07, 29), new Subject("Mathematics"), 5));
-		final List<Mark> actual = service.findMarksBySubject(new Subject("Mathematics"));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(1,"Mathematics"), 3));
+		expected.add(new Mark(LocalDate.of(2017, 07, 28), new Subject(2,"Mathematics"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 29), new Subject(3,"Mathematics"), 5));
+		final List<Mark> actual = service.findMarksBySubject(new Subject(1,"Mathematics"));
 		assertEquals("Strigns must be equal", expected.toString(), actual.toString());
 	}
 
 	@Test
 	public final void testFindMarksBySubjectWithNonExistentSubject() {
 		final List<Mark> expected = new ArrayList<>();
-		final List<Mark> actual = service.findMarksBySubject(new Subject("Biology"));
+		final List<Mark> actual = service.findMarksBySubject(new Subject(1,"Biology"));
 		assertEquals("Strings must be equal", expected.toString(), actual.toString());
 	}
 
 	@Test
 	public final void testfindMarksByDate() {
 		final List<Mark> expected = new ArrayList<>();
-		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Chemistry"), 4));
-		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("English"), 4));
-		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("History"), 4));
-		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject("Mathematics"), 3));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(1,"Chemistry"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(2,"English"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(3,"History"), 4));
+		expected.add(new Mark(LocalDate.of(2017, 07, 27), new Subject(4,"Mathematics"), 3));
 		final List<Mark> actual = service.findMarksByDate(LocalDate.of(2017, 07, 27));
 		assertEquals("Strigns must be equal", expected.toString(), actual.toString());
 	}
