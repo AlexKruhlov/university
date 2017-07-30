@@ -5,9 +5,16 @@
 
 <mapper namespace="Subject">
 	<resultMap id="result" type="Subject">
+		<result property="id" column="id" />
 		<result property="name" column="name" />
 	</resultMap>
+
+	<insert id="insert" parameterType="Subject" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO public.subjects(name) VALUES(#{name});
+	</insert>
+
 	<select id="selectAll" resultMap="result">
-		SELECT name FROM public.subjects;
+		SELECT * FROM public.subjects;
 	</select>
 </mapper>

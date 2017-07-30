@@ -52,6 +52,6 @@ public class Subject implements Comparable<Subject> {
 
 	@Override
 	public String toString() {
-		return name;
+		return id + "-" + name;
 	}
 }
