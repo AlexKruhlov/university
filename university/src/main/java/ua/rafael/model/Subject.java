@@ -40,4 +40,11 @@ public class Subject implements Comparable<Subject> {
 	public int compareTo(Subject subject) {
 		return name.compareTo(subject.name);
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	
 }

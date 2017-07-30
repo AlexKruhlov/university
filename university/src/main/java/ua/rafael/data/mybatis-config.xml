@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<typeAliases>
+		<typeAlias alias="Subject" type="ua.rafael.model.Subject" />
+	</typeAliases>
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -10,13 +14,11 @@
 				<property name="driver" value="org.postgresql.Driver" />
 				<property name="url" value="jdbc:postgresql://localhost/university" />
 				<property name="username" value="postgres" />
-				<property name="password" value="admin" />
+				<property name="password" value="postgres" />
 			</dataSource>
 		</environment>
 	</environments>
-	<ok>
-	
 	<mappers>
-		<mapper resource="org/mybatis/example/BlogMapper.xml"/>
+		<mapper resource="ua/rafael/data/Subject.xml" />
 	</mappers>
 </configuration>
