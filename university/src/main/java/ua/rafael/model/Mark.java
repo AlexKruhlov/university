@@ -3,8 +3,17 @@ package ua.rafael.model;
 import java.time.LocalDate;
 
 public class Mark implements Comparable<Mark> {
+	private int id;
 	private LocalDate date;
 	private Subject subject;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	private int value;
 
