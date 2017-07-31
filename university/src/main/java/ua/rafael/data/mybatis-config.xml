@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Subject" type="ua.rafael.model.Subject" />
+		<typeAlias alias="Mark" type="ua.rafael.model.Mark" />
+		<typeAlias alias="Student" type="ua.rafael.model.Student"/>
 	</typeAliases>
-	
+
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
@@ -20,5 +22,7 @@
 	</environments>
 	<mappers>
 		<mapper resource="ua/rafael/data/Subject.xml" />
+		<mapper resource="ua/rafael/data/Mark.xml"/>
+		<mapper resource="ua/rafael/data/Student.xml"/>
 	</mappers>
 </configuration>

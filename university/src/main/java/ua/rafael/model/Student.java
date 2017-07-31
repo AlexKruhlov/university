@@ -6,7 +6,6 @@ public class Student {
 	private int id;
 	private String firstName;
 	private String lastName;
-	private List<Mark> marks;
 
 	public Student() {
 	}
@@ -16,7 +15,6 @@ public class Student {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.marks = marks;
 	}
 
 	public int getId() {
@@ -43,17 +41,8 @@ public class Student {
 		this.lastName = lastName;
 	}
 
-	public List<Mark> getMarks() {
-		return marks;
-	}
-
-	public void setMarks(List<Mark> marks) {
-		this.marks = marks;
-	}
-
 	@Override
 	public String toString() {
-		return id + "-" + firstName + "-" + lastName + "-" + marks+"\n";
+		return id + "-" + firstName + "-" + lastName + "\n";
 	}
-
 }

@@ -11,7 +11,7 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS public.subjects(
-		id serial
+		id serial ,
 		not null primary key,
 		name varchar(40)
 		);
