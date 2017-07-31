@@ -8,6 +8,13 @@
 		<result property="id" column="id" />
 		<result property="name" column="name" />
 	</resultMap>
+	
+	<update id="createTable">
+		CREATE TABLE IF NOT EXISTS public.subjects(
+		id serial not null primary key,
+		name varchar(40)
+		);
+	</update>
 
 	<insert id="insert" parameterType="Subject" useGeneratedKeys="true"
 		keyProperty="id">
@@ -20,12 +27,5 @@
 
 	<update id="dropTable">
 		DROP TABLE public.subjects;
-	</update>
-
-	<update id="createTable">
-		CREATE TABLE public.subjects(
-		id serial not null primary key,
-		name varchar(40)
-		);
 	</update>
 </mapper>
