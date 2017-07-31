@@ -3,7 +3,6 @@ package ua.rafael.model;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class SubjectTest {

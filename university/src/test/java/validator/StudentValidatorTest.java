@@ -7,19 +7,19 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import ua.rafael.model.AcademPerfomance;
+import ua.rafael.model.Student;
 import ua.rafael.util.JsonConverter;
 
-public class AcademPerfomanceValidatorTest {
+public class StudentValidatorTest {
 
-	private Validator<AcademPerfomance> validator = new AcademPerfomanceValidator();
+	private Validator<Student> validator = new StudentValidator();
 
 	@Test
 	public final void testValidateWithUniqueMarks() throws FileNotFoundException, IOException {
-		final AcademPerfomance academPerfomance
+		final Student student
 				= JsonConverter.fromJson("test/resources/ua/rafael/validator/unique-marks.json");
 		try {
-			validator.validate(academPerfomance);
+			validator.validate(student);
 		} catch (Exception e) {
 			fail("Validator must not generate exception");
 		}
@@ -27,9 +27,9 @@ public class AcademPerfomanceValidatorTest {
 
 	@Test(expected = RuntimeException.class)
 	public final void testValidateWithDublicateOfMarks() throws FileNotFoundException, IOException {
-		final AcademPerfomance academPerfomance
+		final Student student
 				= JsonConverter.fromJson(
 						"test/resources/ua/rafael/validator/dublicate-of-marks.json");
-		validator.validate(academPerfomance);
+		validator.validate(student);
 	}
 }

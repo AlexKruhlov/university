@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ua.rafael.model.AcademPerfomance;
 import ua.rafael.model.Mark;
+import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
 
-public class AcademPerfomanceService {
-	private AcademPerfomance academPerfomance;
+public class StudentService {
+	private Student student;
 
-	public AcademPerfomanceService() {
+	public StudentService() {
 	}
 
-	public AcademPerfomanceService(AcademPerfomance academPerfomance) {
-		this.academPerfomance = academPerfomance;
+	public StudentService(final Student academPerfomance) {
+		this.student = academPerfomance;
 	}
 
 	public double solveAvarageMarkBySubject(final Subject subject) {
-		List<Mark> marks = academPerfomance.getMarks();
+		List<Mark> marks = student.getMarks();
 		if (marks.size() == 0) {
 			return 0.0;
 		}
@@ -38,19 +38,19 @@ public class AcademPerfomanceService {
 	}
 
 	public void sortMarksByDate() {
-		List<Mark> marks = academPerfomance.getMarks();
+		List<Mark> marks = student.getMarks();
 		sort(marks);
 	}
 
 	public List<Mark> findMarksBySubject(final Subject subject) {
-		return academPerfomance.getMarks().stream()
+		return student.getMarks().stream()
 				.filter(mark -> subject.equals(mark.getSubject()))
 				.sorted()
 		        .collect(Collectors.toCollection(ArrayList::new));
 	}
 	
 	public List<Mark> findMarksByDate(final LocalDate date) {
-		return academPerfomance.getMarks().stream()
+		return student.getMarks().stream()
 				.filter(mark -> date.equals(mark.getDate()))
 				.sorted()
 		        .collect(Collectors.toCollection(ArrayList::new));

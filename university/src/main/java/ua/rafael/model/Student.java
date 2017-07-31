@@ -4,16 +4,18 @@ import java.util.List;
 
 public class Student {
 	private int id;
-	private String name;
+	private String firstName;
+	private String lastName;
 	private List<Mark> marks;
-	
+
 	public Student() {
 	}
 
-	public Student(int id, String name, List<Mark> marks) {
+	public Student(int id, String firstName, String lastName, List<Mark> marks) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.marks = marks;
 	}
 
@@ -25,12 +27,20 @@ public class Student {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public List<Mark> getMarks() {
@@ -40,4 +50,10 @@ public class Student {
 	public void setMarks(List<Mark> marks) {
 		this.marks = marks;
 	}
+
+	@Override
+	public String toString() {
+		return id + "-" + firstName + "-" + lastName + "-" + marks+"\n";
+	}
+
 }

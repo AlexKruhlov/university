@@ -3,14 +3,14 @@ package validator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import ua.rafael.model.AcademPerfomance;
 import ua.rafael.model.Mark;
+import ua.rafael.model.Student;
 
-public class AcademPerfomanceValidator implements Validator<AcademPerfomance> {
+public class StudentValidator implements Validator<Student> {
 
 	@Override
-	public void validate(AcademPerfomance academPerfomance) {
-		checkListForTheSameMark(academPerfomance.getMarks());
+	public void validate(final Student student) {
+		checkListForTheSameMark(student.getMarks());
 	}
 
 	private void checkListForTheSameMark(final List<Mark> marks) {
