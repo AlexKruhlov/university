@@ -8,12 +8,22 @@
 		<result property="id" column="id" />
 		<result property="name" column="name" />
 	</resultMap>
-	
+
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS public.subjects(
-		id serial not null primary key,
+		id serial
+		not null primary key,
 		name varchar(40)
 		);
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM public.subjects
+		WHERE id=#{id};
+	</delete>
+
+	<update id="update" parameterType="Subject">
+		UPDATE public.subjects SET name=#{name} WHERE id=#{id};
 	</update>
 
 	<insert id="insert" parameterType="Subject" useGeneratedKeys="true"

@@ -2,6 +2,7 @@ package ua.rafael.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -13,8 +14,9 @@ public class SubjectDao {
 	public SubjectDao(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
-	
-	public void createTable(){
+
+	public int createTable() {
+		int rowsCount = 0;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			session.update("Subject.createTable");
@@ -22,18 +24,19 @@ public class SubjectDao {
 			session.commit();
 			session.close();
 		}
+		return rowsCount;
 	}
-	
-	public void insert(final Subject subject){
+
+	public void insert(final Subject subject) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Subject.insert",subject);
+			session.insert("Subject.insert", subject);
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
-	
+
 	public List<Subject> selectAll() {
 		List<Subject> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
@@ -44,8 +47,28 @@ public class SubjectDao {
 		}
 		return list;
 	}
-	
-	public void dropTable(){
+
+	public void update(final Subject subject) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.delete("Subject.update", subject);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+
+	public void delete(int id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.delete("Subject.delete", id);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+
+	public void dropTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			session.update("Subject.dropTable");

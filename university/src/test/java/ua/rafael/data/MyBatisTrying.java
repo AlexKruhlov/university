@@ -33,7 +33,7 @@ public class MyBatisTrying {
 	@Test
 	public final void testCreateTable() {
 		SubjectDao subjectDao = new SubjectDao(MyBatisConnectionFactory.getSqlSessionFactory());
-		subjectDao.createTable();
+		System.out.println(subjectDao.createTable());
 	}
 
 	@Test
