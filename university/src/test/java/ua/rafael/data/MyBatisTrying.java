@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 import org.junit.Test;
 
-import ua.rafael.dao.SubjectDao;
+import ua.rafael.dao.SubjectSession;
 import ua.rafael.model.Subject;
 
 public class MyBatisTrying {
@@ -32,13 +32,13 @@ public class MyBatisTrying {
 
 	@Test
 	public final void testCreateTable() {
-		SubjectDao subjectDao = new SubjectDao(MyBatisConnectionFactory.getSqlSessionFactory());
+		SubjectSession subjectDao = new SubjectSession(MyBatisConnectionFactory.getSqlSessionFactory());
 		System.out.println(subjectDao.createTable());
 	}
 
 	@Test
 	public final void testInsert() {
-		SubjectDao subjectDao = new SubjectDao(MyBatisConnectionFactory.getSqlSessionFactory());
+		SubjectSession subjectDao = new SubjectSession(MyBatisConnectionFactory.getSqlSessionFactory());
 		subjectDao.insert(new Subject(1, "Mathematics"));
 	}
 

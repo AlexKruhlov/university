@@ -19,6 +19,7 @@
 		NOT NULL
 		);
 	</update>
+
 	<insert id="insert" parameterType="Student" useGeneratedKeys="true"
 		keyProperty="id">
 		INSERT INTO public.students(first_name,last_name)
@@ -35,5 +36,9 @@
 		UPDATE public.students SET
 		first_name=#{first_name}, last_name=#{last_name} WHERE id = #{id};
 	</update>
+
+	<select id="selectAll">
+		SELECT * FROM public students;
+	</select>
 
 </mapper>

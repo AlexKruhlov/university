@@ -7,24 +7,24 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import ua.rafael.model.Subject;
 
-public class SubjectDao {
+public class SubjectSession {
 	private SqlSessionFactory sqlSessionFactory = null;
 
-	public SubjectDao(SqlSessionFactory sqlSessionFactory) {
+	public SubjectSession(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 
-	public int createTable() {
-		int rowsCount = 0;
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			session.update("Subject.createTable");
-		} finally {
-			session.commit();
-			session.close();
-		}
-		return rowsCount;
-	}
+//	public int createTable() {
+//		int rowsCount = 0;
+//		SqlSession session = sqlSessionFactory.openSession();
+//		try {
+//			session.update("Subject.createTable");
+//		} finally {
+//			session.commit();
+//			session.close();
+//		}
+//		return rowsCount;
+//	}
 
 	public void insert(final Subject subject) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -67,13 +67,13 @@ public class SubjectDao {
 		}
 	}
 
-	public void dropTable() {
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			session.update("Subject.dropTable");
-		} finally {
-			session.commit();
-			session.close();
-		}
-	}
+//	public void dropTable() {
+//		SqlSession session = sqlSessionFactory.openSession();
+//		try {
+//			session.update("Subject.dropTable");
+//		} finally {
+//			session.commit();
+//			session.close();
+//		}
+//	}
 }

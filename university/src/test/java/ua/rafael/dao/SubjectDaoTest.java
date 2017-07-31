@@ -14,11 +14,11 @@ import org.junit.Test;
 import ua.rafael.model.Subject;
 
 public class SubjectDaoTest {
-	private SubjectDao subjectDao;
+	private SubjectSession subjectDao;
 
 	@Before
 	public final void startUp() {
-		subjectDao = new SubjectDao(getSqlSessionFactory());
+		subjectDao = new SubjectSession(getSqlSessionFactory());
 		subjectDao.createTable();
 	}
 

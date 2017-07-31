@@ -15,6 +15,7 @@
 		value INTEGER NOT NULL
 		);
 	</update>
+
 	<insert id="insert" parameterType="Mark" useGeneratedKeys="true"
 		keyProperty="id">
 		INSERT INTO public.marks() VALUES(#{value});
@@ -26,6 +27,12 @@
 	</delete>
 
 	<update id="update" parameterType="Mark">
-		UPDATE public.marks SET #{name} WHERE id = #{id};
+		UPDATE public.marks SET
+		name=#{name} WHERE id = #{id};
 	</update>
+
+	<select id="selectAll">
+		SELECT * FROM public.marks;
+	</select>
+
 </mapper>

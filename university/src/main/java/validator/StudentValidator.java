@@ -10,7 +10,7 @@ public class StudentValidator implements Validator<Student> {
 
 	@Override
 	public void validate(final Student student) {
-		checkListForTheSameMark(student.getMarks());
+		//checkListForTheSameMark(student);
 	}
 
 	private void checkListForTheSameMark(final List<Mark> marks) {

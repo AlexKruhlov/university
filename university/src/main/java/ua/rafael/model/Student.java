@@ -11,7 +11,6 @@ public class Student {
 	}
 
 	public Student(int id, String firstName, String lastName, List<Mark> marks) {
-		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
