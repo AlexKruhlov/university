@@ -6,10 +6,22 @@
 <mapper namespace="AcademPerfomance">
 	<resultMap id="result" type="ua.rafael.model.AcademPerfomance">
 		<result property="id" column="id" />
-		<result property="studentId" column="student_id" />
-		<result property="subjectId" column="subject_id" />
 		<result property="date" column="date" />
-		<result property="markId" column="mark_id" />
+		<association property="mark" column="mark_id" javaType="ua.rafael.model.Mark">
+			<result property="id" column="id" />
+			<result property="value" column="value" />
+		</association>
+		<association property="subject" column="subject_id"
+			javaType="ua.rafael.model.Subject">
+			<result property="id" column="id" />
+			<result property="name" column="name" />
+		</association>
+		<association property="student" column="student_id"
+			javaType="Student">
+			<result property="id" column="id" />
+			<result property="firstName" column="first_name" />
+			<result property="lastName" column="last_name" />
+		</association>
 	</resultMap>
 
 	<update id="createTable">
@@ -38,11 +50,12 @@
 		);
 	</update>
 
-	<insert id="insert" parameterType="AcademPerfomance"
+	<insert id="insert" parameterType="AcademPerfomance" 
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
 		public.academ_perfom_items(student_id,subject_id,date,mark_id)
-		VALUES(#{studentId},#{subjectId},#{date},#{markId});
+		VALUES 
+		(#{student.id},#{subject.id},#{date},#{mark.id});
 	</insert>
 
 	<delete id="delete" parameterType="int">

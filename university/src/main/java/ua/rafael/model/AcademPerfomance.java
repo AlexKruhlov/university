@@ -4,20 +4,21 @@ import java.time.LocalDate;
 
 public class AcademPerfomance {
 	private int id;
-	private int studentId;
-	private int subjectId;
+	private Student student;
+	private Subject subject;
 	private LocalDate date;
-	private int markId;
+	private Mark mark;
 
 	public AcademPerfomance() {
 	}
 
-	public AcademPerfomance(int id, int studentId, int subjectId, LocalDate date, int markId) {
+	public AcademPerfomance(int id, Student student, Subject subject, LocalDate date, Mark mark) {
+		super();
 		this.id = id;
-		this.studentId = studentId;
-		this.subjectId = subjectId;
+		this.student = student;
+		this.subject = subject;
 		this.date = date;
-		this.markId = markId;
+		this.mark = mark;
 	}
 
 	public int getId() {
@@ -28,20 +29,20 @@ public class AcademPerfomance {
 		this.id = id;
 	}
 
-	public int getStudentId() {
-		return studentId;
+	public Student getStudent() {
+		return student;
 	}
 
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
-	public int getSubjectId() {
-		return subjectId;
+	public Subject getSubject() {
+		return subject;
 	}
 
-	public void setSubjectId(int subjectId) {
-		this.subjectId = subjectId;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 	public LocalDate getDate() {
@@ -52,16 +53,16 @@ public class AcademPerfomance {
 		this.date = date;
 	}
 
-	public int getMarkId() {
-		return markId;
+	public Mark getMark() {
+		return mark;
 	}
 
-	public void setMarkId(int markId) {
-		this.markId = markId;
+	public void setMark(Mark mark) {
+		this.mark = mark;
 	}
 
 	@Override
 	public String toString() {
-		return id + "-" + studentId + "-" + subjectId + "-" + date + "-" + markId;
+		return id + "-" + student + "-" + subject + "-" + date + "-" + mark;
 	}
 }
