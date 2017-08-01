@@ -11,14 +11,14 @@
 
 	<update id="createTable">
 		CREATE TABLE marks(
-		id SERIAL NOT NULL FOREIGN KEY,
+		id SERIAL NOT NULL PRIMARY KEY,
 		value INTEGER NOT NULL
 		);
 	</update>
 
 	<insert id="insert" parameterType="Mark" useGeneratedKeys="true"
 		keyProperty="id">
-		INSERT INTO public.marks() VALUES(#{value});
+		INSERT INTO public.marks(value) VALUES(#{value});
 	</insert>
 
 	<delete id="delete" parameterType="int">
@@ -28,10 +28,16 @@
 
 	<update id="update" parameterType="Mark">
 		UPDATE public.marks SET
-		name=#{name} WHERE id = #{id};
+		value=#{value} WHERE id = #{id};
 	</update>
 
-	<select id="selectAll">
-		SELECT * FROM public.marks;
+	<select id="selectAll" resultMap="result">
+		SELECT * FROM public.marks
+		ORDER BY id;
 	</select>
+
+	<update id="dropTable">
+		DROP TABLE public.marks;
+	</update>
+
 </mapper>

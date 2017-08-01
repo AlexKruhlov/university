@@ -1,5 +1,8 @@
 package ua.rafael.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -35,7 +38,7 @@ public class MarkSession {
 	public void delete(final int id) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.delete", id);
+			session.delete("Mark.delete", id);
 		} finally {
 			session.commit();
 			session.close();
@@ -45,18 +48,30 @@ public class MarkSession {
 	public void update(final Mark mark) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.delete", mark);
+			session.update("Mark.update", mark);
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
 
-	public void selectAll() {
+	public List<Mark> selectAll() {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Mark> resultList = null;
+		try {
+			resultList = session.selectList("Mark.selectAll");
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
+
+	public void dropTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.selectAll");
+			session.update("Mark.dropTable");
 		} finally {
+			session.commit();
 			session.close();
 		}
 	}

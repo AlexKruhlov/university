@@ -10,10 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ua.rafael.dao.StudentSession;
-import ua.rafael.dao.SubjectSession;
 import ua.rafael.data.MyBatisConnectionFactory;
 import ua.rafael.model.Student;
-import ua.rafael.model.Subject;
 
 public class StudentServiceTest {
 

@@ -1,6 +1,6 @@
 package ua.rafael.model;
 
-public class Mark implements Comparable<Mark> {
+public class Mark {
 	private int id;
 	private int value;
 
@@ -30,7 +30,7 @@ public class Mark implements Comparable<Mark> {
 	}
 
 	@Override
-	public int compareTo(Mark mark) {
-		return value - mark.value;
+	public String toString() {
+		return id + "-" + value;
 	}
 }
