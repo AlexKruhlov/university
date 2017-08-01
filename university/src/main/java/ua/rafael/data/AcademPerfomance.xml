@@ -64,8 +64,6 @@
 		ORDER BY id;
 	</select>
 
-	<select id="selectByDate"></select>
-
 	<update id="dropTable">
 		DROP TABLE public.academ_perfom_items;
 	</update>
