@@ -7,17 +7,17 @@ public class AcademPerfomance {
 	private int studentId;
 	private int subjectId;
 	private LocalDate date;
-	private Mark mark;
-	
+	private int markId;
+
 	public AcademPerfomance() {
 	}
 
-	public AcademPerfomance(int id, int studentId, int subjectId, LocalDate date, Mark mark) {
+	public AcademPerfomance(int id, int studentId, int subjectId, LocalDate date, int markId) {
 		this.id = id;
 		this.studentId = studentId;
 		this.subjectId = subjectId;
 		this.date = date;
-		this.mark = mark;
+		this.markId = markId;
 	}
 
 	public int getId() {
@@ -28,19 +28,19 @@ public class AcademPerfomance {
 		this.id = id;
 	}
 
-	public int getStudent_id() {
+	public int getStudentId() {
 		return studentId;
 	}
 
-	public void setStudent_id(int studentId) {
+	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
 
-	public int getSubject_id() {
+	public int getSubjectId() {
 		return subjectId;
 	}
 
-	public void setSubject_id(int subjectId) {
+	public void setSubjectId(int subjectId) {
 		this.subjectId = subjectId;
 	}
 
@@ -52,11 +52,16 @@ public class AcademPerfomance {
 		this.date = date;
 	}
 
-	public Mark getMark() {
-		return mark;
+	public int getMarkId() {
+		return markId;
 	}
 
-	public void setMark(Mark mark) {
-		this.mark = mark;
+	public void setMarkId(int markId) {
+		this.markId = markId;
+	}
+
+	@Override
+	public String toString() {
+		return id + "-" + studentId + "-" + subjectId + "-" + date + "-" + markId;
 	}
 }

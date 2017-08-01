@@ -1,4 +1,4 @@
-package ua.rafae.service;
+package ua.rafael.service;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,7 @@ import org.junit.Test;
 import ua.rafael.dao.SubjectSession;
 import ua.rafael.data.MyBatisConnectionFactory;
 import ua.rafael.model.Subject;
+import ua.rafael.service.SubjectService;
 
 public class SubjectServiceTest {
 	private SubjectService subjectService;

@@ -4,12 +4,12 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="AcademPerfomance">
-	<resultMap id="result" type="AcademPerfomance">
+	<resultMap id="result" type="ua.rafael.model.AcademPerfomance">
 		<result property="id" column="id" />
 		<result property="studentId" column="student_id" />
 		<result property="subjectId" column="subject_id" />
 		<result property="date" column="date" />
-		<result property="mark" column="mark" />
+		<result property="markId" column="mark_id" />
 	</resultMap>
 
 	<update id="createTable">
@@ -19,25 +19,30 @@
 		student_id
 		INTEGER NOT NULL,
 		subject_id INTEGER NOT NULL,
-		date DATETIME NOT NULL,
-		mark INTGER NOT NULL,
+		date DATE NOT NULL,
+		mark_id INTEGER NOT NULL,
 		CONSTRAINT student_id_students_id
 		FOREIGN KEY
 		(student_id)
 		REFERENCES public.students(id),
 		CONSTRAINT
 		subject_id_subjects_id
-		FOREIGN KEY (subjects_id)
+		FOREIGN KEY (subject_id)
 		REFERENCES
-		public.subjects(id);
+		public.subjects(id),
+		CONSTRAINT
+		mark_id_marks_id
+		FOREIGN KEY (mark_id)
+		REFERENCES
+		public.marks(id)
 		);
 	</update>
 
 	<insert id="insert" parameterType="AcademPerfomance"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
-		public.academ_perfom_items(student_id,subject_id,date,mark)
-		VALUES(#{studentId},#{subjectId},#{date},#{mark});
+		public.academ_perfom_items(student_id,subject_id,date,mark_id)
+		VALUES(#{studentId},#{subjectId},#{date},#{markId});
 	</insert>
 
 	<delete id="delete" parameterType="int">
@@ -46,17 +51,19 @@
 		WHERE id=#{id};
 	</delete>
 
-	<update id="update" parameterType="AcademPerformance">
+	<update id="update" parameterType="AcademPerfomance">
 		UPDATE
 		public.academ_perfom_items SET
-		student_id=#{studentId},subject_id=#{subjectId},date=#{date},mark=#{mark};
+		student_id=#{studentId},subject_id=#{subjectId},date=#{date},mark_id=#{markId}
+		WHERE id=#{id};
 	</update>
 
-	<select  id="selectAll" resultMap="result">
+	<select id="selectAll" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items;
+		public.academ_perfom_items
+		ORDER BY id;
 	</select>
-	
+
 	<select id="selectByDate"></select>
 
 	<update id="dropTable">

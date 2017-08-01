@@ -10,7 +10,7 @@
 	</resultMap>
 
 	<update id="createTable">
-		CREATE TABLE marks(
+		CREATE TABLE IF NOT EXISTS marks(
 		id SERIAL NOT NULL PRIMARY KEY,
 		value INTEGER NOT NULL
 		);

@@ -23,7 +23,7 @@
 		<junit-version>4.12</junit-version>
 		<jdk.version>1.8</jdk.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -35,6 +35,11 @@
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
 			<version>3.4.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-typehandlers-jsr310</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

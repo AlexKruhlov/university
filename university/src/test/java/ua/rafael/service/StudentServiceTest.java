@@ -1,4 +1,4 @@
-package ua.rafae.service;
+package ua.rafael.service;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,6 +12,7 @@ import org.junit.Test;
 import ua.rafael.dao.StudentSession;
 import ua.rafael.data.MyBatisConnectionFactory;
 import ua.rafael.model.Student;
+import ua.rafael.service.StudentService;
 
 public class StudentServiceTest {
 

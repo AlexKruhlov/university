@@ -1,4 +1,4 @@
-package ua.rafae.service;
+package ua.rafael.service;
 
 import java.util.List;
 
