@@ -13,17 +13,18 @@
 	<update id="createTable">
 		CREATE TABLE public.students(
 		id SERIAL NOT NULL
-		FOREIGN KEY,
-		first_name VARACHAR(50) NOT NULL,
-		last_name VARACHAR(50)
-		NOT NULL
+		PRIMARY KEY,
+		first_name VARCHAR(50) NOT NULL,
+		last_name VARCHAR(50)
+		NOT
+		NULL
 		);
 	</update>
 
 	<insert id="insert" parameterType="Student" useGeneratedKeys="true"
 		keyProperty="id">
 		INSERT INTO public.students(first_name,last_name)
-		VALUES(#{first_name},#{last_name});
+		VALUES(#{firstName},#{lastName});
 	</insert>
 
 	<delete id="delete" parameterType="int">
@@ -34,11 +35,16 @@
 
 	<update id="update" parameterType="Student">
 		UPDATE public.students SET
-		first_name=#{first_name}, last_name=#{last_name} WHERE id = #{id};
+		first_name=#{firstName}, last_name=#{lastName} WHERE id = #{id};
 	</update>
 
-	<select id="selectAll">
-		SELECT * FROM public students;
+	<select id="selectAll" resultMap="result">
+		SELECT * FROM public.students
+		ORDER BY id;
 	</select>
+
+	<update id="dropTable">
+		DROP TABLE public.students;
+	</update>
 
 </mapper>

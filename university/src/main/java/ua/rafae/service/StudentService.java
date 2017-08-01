@@ -1,5 +1,7 @@
 package ua.rafae.service;
 
+import java.util.List;
+
 import ua.rafael.dao.StudentSession;
 import ua.rafael.model.Student;
 import validator.StudentValidator;
@@ -29,7 +31,11 @@ public class StudentService {
 		studentSession.update(student);
 	}
 	
-	public void selectAll(){
-		studentSession.selectAll();
+	public List<Student> selectAll(){
+		return studentSession.selectAll();
+	}
+	
+	public void dropTable() {
+		studentSession.dropTable();
 	}
 }

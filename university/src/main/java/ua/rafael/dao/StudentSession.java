@@ -1,5 +1,8 @@
 package ua.rafael.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -11,7 +14,7 @@ public class StudentSession {
 	public StudentSession(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
-	
+
 	public void createTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
@@ -45,18 +48,30 @@ public class StudentSession {
 	public void update(final Student student) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Student.delete", student);
+			session.update("Student.update", student);
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
+
+	public List<Student> selectAll() {
+		SqlSession session = sqlSessionFactory.openSession();
+		List<Student> resultList = null;
+		try {
+			resultList = session.selectList("Student.selectAll");
+		} finally {
+			session.close();
+		}
+		return resultList;
+	}
 	
-	public void selectAll(){
+	public void dropTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Student.selectAll");
+			session.update("Student.dropTable");
 		} finally {
+			session.commit();
 			session.close();
 		}
 	}

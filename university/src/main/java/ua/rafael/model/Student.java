@@ -1,7 +1,5 @@
 package ua.rafael.model;
 
-import java.util.List;
-
 public class Student {
 	private int id;
 	private String firstName;
@@ -10,7 +8,7 @@ public class Student {
 	public Student() {
 	}
 
-	public Student(int id, String firstName, String lastName, List<Mark> marks) {
+	public Student(int id, String firstName, String lastName) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
