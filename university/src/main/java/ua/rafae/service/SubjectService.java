@@ -7,29 +7,35 @@ import ua.rafael.model.Subject;
 import validator.SubjectValidator;
 
 public class SubjectService {
-	SubjectSession subjectDao;
+	SubjectSession subjectSession;
 
-	public SubjectService(SubjectSession subjectDao) {
-		this.subjectDao = subjectDao;
+	public SubjectService(SubjectSession subjectSession) {
+		this.subjectSession = subjectSession;
+	}
+	
+	public void createTable() {
+		subjectSession.createTable();
 	}
 	
 	public void insert(final Subject subject){
 		new SubjectValidator().validate(subject);
-		subjectDao.insert(subject);
+		subjectSession.insert(subject);
 	}
 	
 	public void delete(final int id){
-		subjectDao.delete(id);
+		subjectSession.delete(id);
 	}
 	
 	public void update(final Subject subject){
 		new SubjectValidator().validate(subject);
-		subjectDao.update(subject);
+		subjectSession.update(subject);
 	}
 	
 	public List<Subject> selectAll(){
-		return subjectDao.selectAll();
+		return subjectSession.selectAll();
 	}
 	
-	
+	public void dropTable() {
+		subjectSession.dropTable();
+	}
 }

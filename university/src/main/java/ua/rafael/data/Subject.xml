@@ -11,9 +11,8 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS public.subjects(
-		id serial ,
-		not null primary key,
-		name varchar(40)
+		id SERIAL NOT NULL PRIMARY KEY, 
+		name VARCHAR(50)
 		);
 	</update>
 
@@ -32,7 +31,8 @@
 	</insert>
 
 	<select id="selectAll" resultMap="result">
-		SELECT * FROM public.subjects;
+		SELECT * FROM public.subjects
+		ORDER BY id;
 	</select>
 
 	<update id="dropTable">

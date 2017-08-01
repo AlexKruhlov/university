@@ -11,6 +11,10 @@ public class MarkService {
 		this.markSession = markSession;
 	}
 	
+	public void createTable() {
+		markSession.createTable();
+	}
+	
 	public void insert(final Mark mark){
 		new MarkValidator().validate(mark);
 		markSession.insert(mark);

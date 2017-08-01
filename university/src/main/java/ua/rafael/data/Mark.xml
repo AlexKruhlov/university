@@ -34,5 +34,4 @@
 	<select id="selectAll">
 		SELECT * FROM public.marks;
 	</select>
-
 </mapper>

@@ -4,18 +4,18 @@ import java.time.LocalDate;
 
 public class AcademPerfomance {
 	private int id;
-	private int student_id;
-	private int subject_id;
+	private int studentId;
+	private int subjectId;
 	private LocalDate date;
 	private Mark mark;
 	
 	public AcademPerfomance() {
 	}
 
-	public AcademPerfomance(int id, int student_id, int subject_id, LocalDate date, Mark mark) {
+	public AcademPerfomance(int id, int studentId, int subjectId, LocalDate date, Mark mark) {
 		this.id = id;
-		this.student_id = student_id;
-		this.subject_id = subject_id;
+		this.studentId = studentId;
+		this.subjectId = subjectId;
 		this.date = date;
 		this.mark = mark;
 	}
@@ -29,19 +29,19 @@ public class AcademPerfomance {
 	}
 
 	public int getStudent_id() {
-		return student_id;
+		return studentId;
 	}
 
-	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
+	public void setStudent_id(int studentId) {
+		this.studentId = studentId;
 	}
 
 	public int getSubject_id() {
-		return subject_id;
+		return subjectId;
 	}
 
-	public void setSubject_id(int subject_id) {
-		this.subject_id = subject_id;
+	public void setSubject_id(int subjectId) {
+		this.subjectId = subjectId;
 	}
 
 	public LocalDate getDate() {

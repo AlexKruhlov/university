@@ -3,29 +3,29 @@ package ua.rafael.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import ua.rafael.model.Mark;
+import ua.rafael.model.AcademPerfomance;
 
-public class MarkSession {
+public class AcademPerfomanceSession {
 	private SqlSessionFactory sqlSessionFactory = null;
 
-	public MarkSession(SqlSessionFactory sqlSessionFactory) {
+	public AcademPerfomanceSession(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
-
+	
 	public void createTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.createTable");
+			session.insert("AcademPerfomance.createTable");
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
 
-	public void insert(final Mark mark) {
+	public void insert(final AcademPerfomance academPerfomance) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.insert", mark);
+			session.insert("AcademPerfomance.insert", academPerfomance);
 		} finally {
 			session.commit();
 			session.close();
@@ -35,17 +35,17 @@ public class MarkSession {
 	public void delete(final int id) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.delete", id);
+			session.insert("AcademPerfomance.delete", id);
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
 
-	public void update(final Mark mark) {
+	public void update(final AcademPerfomance academPerfomance) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.delete", mark);
+			session.insert("AcademPerfomance.delete", academPerfomance);
 		} finally {
 			session.commit();
 			session.close();
@@ -55,9 +55,10 @@ public class MarkSession {
 	public void selectAll() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("Mark.selectAll");
+			session.insert("AcademPerfomance.selectAll");
 		} finally {
 			session.close();
 		}
 	}
 }
+	

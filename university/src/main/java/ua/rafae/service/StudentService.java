@@ -11,6 +11,10 @@ public class StudentService {
 		this.studentSession = studentSession;
 	}
 	
+	public void createTable() {
+		studentSession.createTable();
+	}
+	
 	public void insert(final Student student){
 		new StudentValidator().validate(student);
 		studentSession.insert(student);
