@@ -148,6 +148,7 @@ public class AcademPerfomanceServiceTest {
 				new Mark(2, 2)));
 		final double actual = academPerfomanceService.countAverageBy(new Student(1, "Dave", "Joro"),
 				new Subject(1, "Mathematics"));
+		assertEquals(expected, actual, 0.01);
 	}
 
 	@Test
