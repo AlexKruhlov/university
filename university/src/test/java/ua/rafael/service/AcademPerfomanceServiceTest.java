@@ -35,6 +35,9 @@ public class AcademPerfomanceServiceTest {
 	private StudentService studentService = new StudentService(new StudentSession(sessionFactory));
 	private SubjectService subjectService = new SubjectService(new SubjectSession(sessionFactory));
 	private MarkService markService = new MarkService(new MarkSession(sessionFactory));
+	private AcademPerfomance academPerfomance1;
+	private AcademPerfomance academPerfomance2;
+	private AcademPerfomance academPerfomance3;
 
 	@Before
 	public final void startUp() {
@@ -51,18 +54,22 @@ public class AcademPerfomanceServiceTest {
 		markService.insert(new Mark(2, 2));
 		markService.insert(new Mark(3, 3));
 		academPerfomanceService.createTable();
+		academPerfomance1 = new AcademPerfomance(1,
+				new Student(1, "Dave", "Joro"),
+				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
+				new Mark(1, 1));
+		academPerfomance2 = new AcademPerfomance(2,
+				new Student(2, "Mike", "Franch"),
+				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 29),
+				new Mark(2, 2));
+		academPerfomance3 = new AcademPerfomance(3,
+				new Student(3, "Sindey", "Grant"),
+				new Subject(3, "Biology"), LocalDate.of(2017, 07, 30),
+				new Mark(3, 3));
 	}
 
 	@Test
 	public void testInsert() {
-		final AcademPerfomance academPerfomance1 = new AcademPerfomance(1,
-				new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
-				new Mark(1, 1));
-		final AcademPerfomance academPerfomance2 = new AcademPerfomance(1,
-				new Student(2, "Mike", "Franch"),
-				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 30),
-				new Mark(2, 2));
 		final List<AcademPerfomance> expected = new ArrayList<>();
 		List<AcademPerfomance> actual = null;
 		expected.add(academPerfomance1);
@@ -77,18 +84,6 @@ public class AcademPerfomanceServiceTest {
 
 	@Test
 	public void testSelectAll() {
-		final AcademPerfomance academPerfomance1 = new AcademPerfomance(1,
-				new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
-				new Mark(1, 1));
-		final AcademPerfomance academPerfomance2 = new AcademPerfomance(2,
-				new Student(2, "Mike", "Franch"),
-				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 30),
-				new Mark(2, 2));
-		final AcademPerfomance academPerfomance3 = new AcademPerfomance(3,
-				new Student(3, "Sindey", "Grant"),
-				new Subject(3, "Biology"), LocalDate.of(2017, 07, 30),
-				new Mark(3, 3));
 		final List<AcademPerfomance> expected = new ArrayList<>();
 		expected.add(academPerfomance1);
 		expected.add(academPerfomance2);
@@ -102,15 +97,7 @@ public class AcademPerfomanceServiceTest {
 
 	@Test
 	public final void testSelectByStudentAndSubject() {
-		final AcademPerfomance academPerfomance1 = new AcademPerfomance(1,
-				new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
-				new Mark(1, 1));
-		final AcademPerfomance academPerfomance2 = new AcademPerfomance(2,
-				new Student(2, "Mike", "Franch"),
-				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 29),
-				new Mark(2, 2));
-		final AcademPerfomance academPerfomance3 = new AcademPerfomance(3,
+		academPerfomance3 = new AcademPerfomance(3,
 				new Student(1, "Dave", "Joro"),
 				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 31),
 				new Mark(3, 3));
@@ -127,15 +114,11 @@ public class AcademPerfomanceServiceTest {
 
 	@Test
 	public final void testSelectByStudentAndDate() {
-		final AcademPerfomance academPerfomance1 = new AcademPerfomance(1,
-				new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
-				new Mark(1, 1));
-		final AcademPerfomance academPerfomance2 = new AcademPerfomance(1,
+		academPerfomance2 = new AcademPerfomance(1,
 				new Student(1, "Dave", "Joro"),
 				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 29),
 				new Mark(1, 1));
-		final AcademPerfomance academPerfomance3 = new AcademPerfomance(3,
+		academPerfomance3 = new AcademPerfomance(3,
 				new Student(1, "Dave", "Joro"),
 				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 30),
 				new Mark(3, 3));
@@ -152,18 +135,6 @@ public class AcademPerfomanceServiceTest {
 
 	@Test
 	public void testDelete() {
-		final AcademPerfomance academPerfomance1 = new AcademPerfomance(1,
-				new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
-				new Mark(1, 1));
-		final AcademPerfomance academPerfomance2 = new AcademPerfomance(2,
-				new Student(2, "Mike", "Franch"),
-				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 30),
-				new Mark(2, 2));
-		final AcademPerfomance academPerfomance3 = new AcademPerfomance(3,
-				new Student(3, "Sindey", "Grant"),
-				new Subject(3, "Biology"), LocalDate.of(2017, 07, 30),
-				new Mark(3, 3));
 		final List<AcademPerfomance> expected = new ArrayList<>();
 		List<AcademPerfomance> actual = null;
 		expected.add(academPerfomance1);
@@ -186,14 +157,6 @@ public class AcademPerfomanceServiceTest {
 
 	@Test
 	public final void testUpdate() {
-		final AcademPerfomance academPerfomance1 = new AcademPerfomance(1,
-				new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 30),
-				new Mark(1, 1));
-		final AcademPerfomance academPerfomance2 = new AcademPerfomance(2,
-				new Student(2, "Mike", "Franch"),
-				new Subject(2, "Chemistry"), LocalDate.of(2017, 07, 30),
-				new Mark(2, 2));
 		final List<AcademPerfomance> expected = new ArrayList<>();
 		List<AcademPerfomance> actual = null;
 		expected.add(academPerfomance1);
