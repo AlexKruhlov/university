@@ -68,11 +68,11 @@ public class AcademPerfomanceServiceTest {
 		expected.add(academPerfomance1);
 		academPerfomanceService.insert(academPerfomance1);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 		expected.add(academPerfomance2);
 		academPerfomanceService.insert(academPerfomance2);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -97,7 +97,7 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance2);
 		academPerfomanceService.insert(academPerfomance3);
 		final List<AcademPerfomance> actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -122,7 +122,7 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance3);
 		final List<AcademPerfomance> actual = academPerfomanceService.selectByStudentAndSubject(
 				new Student(1, "Dave", "Joro"), new Subject(1, "Mathematics"));
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -147,7 +147,7 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance3);
 		final List<AcademPerfomance> actual = academPerfomanceService.selectByStudentAndDate(
 				new Student(1, "Dave", "Joro"), of(2017, 7, 30));
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -173,15 +173,15 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance2);
 		academPerfomanceService.insert(academPerfomance3);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 		expected.remove(0);
 		academPerfomanceService.delete(1);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 		expected.remove(0);
 		academPerfomanceService.delete(2);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -201,7 +201,7 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance1);
 		academPerfomanceService.insert(academPerfomance2);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 		final AcademPerfomance academPerfomanceToUpdate = new AcademPerfomance(1,
 				new Student(3, "Sindey", "Grant"),
 				new Subject(3, "Biology"), LocalDate.of(2017, 07, 30),
@@ -209,7 +209,7 @@ public class AcademPerfomanceServiceTest {
 		expected.set(0, academPerfomanceToUpdate);
 		academPerfomanceService.update(academPerfomanceToUpdate);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals(expected, actual);
 	}
 
 	@After
