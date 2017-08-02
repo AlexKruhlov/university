@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Mark">
-	<resultMap id="result" type="Mark">
+	<resultMap id="markResult" type="Mark">
 		<result property="id" column="id" />
 		<result property="value" column="value" />
 	</resultMap>
@@ -31,7 +31,7 @@
 		value=#{value} WHERE id = #{id};
 	</update>
 
-	<select id="selectAll" resultMap="result">
+	<select id="selectAll" resultMap="markResult">
 		SELECT * FROM public.marks
 		ORDER BY id;
 	</select>

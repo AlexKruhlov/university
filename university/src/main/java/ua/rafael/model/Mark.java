@@ -8,7 +8,6 @@ public class Mark {
 	}
 
 	public Mark(int id, int value) {
-		super();
 		this.id = id;
 		this.value = value;
 	}
