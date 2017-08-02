@@ -85,7 +85,7 @@ public class AcademPerfomanceSession {
 		}
 		return resultList;
 	}
-	
+
 	public List<AcademPerfomance> selectByStudentAndDate(final Student student,
 			final LocalDate date) {
 		SqlSession session = sqlSessionFactory.openSession();
@@ -102,6 +102,23 @@ public class AcademPerfomanceSession {
 		return resultList;
 	}
 
+	public double countAverageMarkByStudentAndSubject(final Student student,
+			final Subject subject) {
+		SqlSession session = sqlSessionFactory.openSession();
+		double result = 0.0;
+		final Map<String, Object> parameters = new HashMap<>();
+		parameters.put("inStudent", student);
+		parameters.put("inSubject", subject);
+		try {
+			result = session.selectOne(
+					"AcademPerfomance.countAverageMarkByStudentAndSubject",
+					parameters);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
 	public void dropTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
@@ -111,6 +128,5 @@ public class AcademPerfomanceSession {
 			session.close();
 		}
 	}
-	
-	
+
 }

@@ -66,6 +66,9 @@ public class AcademPerfomanceServiceTest {
 				new Student(3, "Sindey", "Grant"),
 				new Subject(3, "Biology"), LocalDate.of(2017, 07, 30),
 				new Mark(3, 3));
+		// academPerfomanceService.insert(academPerfomance1);
+		// academPerfomanceService.insert(academPerfomance2);
+		// academPerfomanceService.insert(academPerfomance3);
 	}
 
 	@Test
@@ -107,7 +110,7 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance1);
 		academPerfomanceService.insert(academPerfomance2);
 		academPerfomanceService.insert(academPerfomance3);
-		final List<AcademPerfomance> actual = academPerfomanceService.selectByStudentAndSubject(
+		final List<AcademPerfomance> actual = academPerfomanceService.selectBy(
 				new Student(1, "Dave", "Joro"), new Subject(1, "Mathematics"));
 		assertEquals(expected, actual);
 	}
@@ -128,9 +131,23 @@ public class AcademPerfomanceServiceTest {
 		academPerfomanceService.insert(academPerfomance1);
 		academPerfomanceService.insert(academPerfomance2);
 		academPerfomanceService.insert(academPerfomance3);
-		final List<AcademPerfomance> actual = academPerfomanceService.selectByStudentAndDate(
+		final List<AcademPerfomance> actual = academPerfomanceService.selectBy(
 				new Student(1, "Dave", "Joro"), of(2017, 7, 30));
 		assertEquals(expected, actual);
+	}
+
+	@Test
+	public final void testSelectAverageMarkByStudentAndSubject() {
+		final double expected = 1.5;
+		academPerfomanceService.insert(academPerfomance1);
+		academPerfomanceService.insert(academPerfomance2);
+		academPerfomanceService.insert(academPerfomance3);
+		academPerfomanceService.insert(new AcademPerfomance(1,
+				new Student(1, "Dave", "Joro"),
+				new Subject(1, "Mathematics"), LocalDate.of(2017, 07, 31),
+				new Mark(2, 2)));
+		final double actual = academPerfomanceService.countAverageBy(new Student(1, "Dave", "Joro"),
+				new Subject(1, "Mathematics"));
 	}
 
 	@Test
