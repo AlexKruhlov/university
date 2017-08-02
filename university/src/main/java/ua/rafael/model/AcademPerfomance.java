@@ -12,9 +12,7 @@ public class AcademPerfomance {
 	public AcademPerfomance() {
 	}
 
-	public AcademPerfomance(int id, Student student, Subject subject, LocalDate date, Mark mark) {
-		super();
-		this.id = id;
+	public AcademPerfomance(Student student, Subject subject, LocalDate date, Mark mark) {
 		this.student = student;
 		this.subject = subject;
 		this.date = date;
@@ -63,7 +61,7 @@ public class AcademPerfomance {
 
 	@Override
 	public String toString() {
-		return id + "-" + student + "-" + subject + "-" + date + "-" + mark;
+		return student + "-" + subject + "-" + date + "-" + mark;
 	}
 
 	@Override
