@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Subject">
+	<resultMap id="result" type="Subject">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<update id="createTable">
+		CREATE TABLE IF NOT EXISTS public.subjects(
+		id SERIAL NOT NULL PRIMARY KEY, 
+		name VARCHAR(50)
+		);
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM public.subjects
+		WHERE id=#{id};
+	</delete>
+
+	<update id="update" parameterType="Subject">
+		UPDATE public.subjects SET name=#{name} WHERE id=#{id};
+	</update>
+
+	<insert id="insert" parameterType="Subject" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO public.subjects(name) VALUES(#{name});
+	</insert>
+
+	<select id="selectAll" resultMap="result">
+		SELECT * FROM public.subjects
+		ORDER BY id;
+	</select>
+
+	<update id="dropTable">
+		DROP TABLE public.subjects;
+	</update>
+</mapper>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AcademPerfomance">
+	<resultMap id="result" type="ua.rafael.model.AcademPerfomance">
+		<result property="id" column="id" />
+		<result property="date" column="date" />
+		<association property="mark" javaType="Mark">
+			<id property="id" column="mark_id" />
+			<result property="value" column="value" />
+		</association>
+		<association property="subject" javaType="ua.rafael.model.Subject">
+			<id property="id" column="subject_id" />
+			<result property="name" column="name" />
+		</association>
+		<association property="student" javaType="Student">
+			<result property="id" column="student_id" />
+			<result property="firstName" column="first_name" />
+			<result property="lastName" column="last_name" />
+		</association>
+	</resultMap>
+
+	<update id="createTable">
+		CREATE TABLE IF NOT EXISTS
+		public.academ_perfom_items(
+		id SERIAL NOT NULL PRIMARY KEY,
+		student_id
+		INTEGER NOT NULL,
+		subject_id INTEGER NOT NULL,
+		date DATE NOT NULL,
+		mark_id INTEGER NOT NULL,
+		CONSTRAINT student_id_students_id
+		FOREIGN KEY
+		(student_id)
+		REFERENCES public.students(id),
+		CONSTRAINT
+		subject_id_subjects_id
+		FOREIGN KEY (subject_id)
+		REFERENCES
+		public.subjects(id),
+		CONSTRAINT
+		mark_id_marks_id
+		FOREIGN KEY (mark_id)
+		REFERENCES
+		public.marks(id)
+		);
+	</update>
+
+	<insert id="insert" parameterType="AcademPerfomance"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		public.academ_perfom_items(student_id,subject_id,date,mark_id)
+		VALUES
+		(#{student.id},#{subject.id},#{date},#{mark.id});
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM
+		public.academ_perfom_items
+		WHERE id=#{id};
+	</delete>
+
+	<update id="update" parameterType="AcademPerfomance">
+		UPDATE
+		public.academ_perfom_items SET
+		student_id=#{student.id},subject_id=#{subject.id},date=#{date},mark_id=#{mark.id}
+		WHERE id=#{id};
+	</update>
+
+	<select id="selectAll" resultMap="result">
+		SELECT * FROM
+		public.academ_perfom_items AS api JOIN marks AS m ON api.mark_id=m.id
+		JOIN students AS st ON api.student_id=st.id
+		JOIN subjects AS sb ON
+		api.subject_id=sb.id
+		ORDER BY api.id;
+	</select>
+
+	<select id="selectByStudentAndSubject" parameterType="map"
+		resultMap="result">
+		SELECT * FROM
+		public.academ_perfom_items AS api JOIN marks AS
+		m ON api.mark_id=m.id
+		JOIN students AS st ON api.student_id=st.id AND
+		api.student_id=#{inStudent.id}
+		JOIN subjects AS sb ON
+		api.subject_id=sb.id AND api.subject_id=#{inSubject.id}
+		ORDER BY
+		api.date;
+	</select>
+
+	<select id="selectByStudentAndDate" parameterType="map"
+		resultMap="result">
+		SELECT * FROM
+		public.academ_perfom_items AS api JOIN marks AS
+		m ON api.mark_id=m.id
+		JOIN students AS st ON
+		api.student_id=st.id AND
+		api.student_id=#{inStudent.id} AND api.date=#{inDate}
+		JOIN subjects AS
+		sb ON api.subject_id=sb.id
+		ORDER BY sb.name;
+	</select>
+
+	<select id="countAverageMarkByStudentAndSubject" parameterType="map"
+		resultType="double">
+		SELECT avg(m.value) FROM
+		public.academ_perfom_items AS api JOIN marks AS
+		m ON api.mark_id=m.id
+		JOIN students AS st ON api.student_id=st.id AND
+		api.student_id=#{inStudent.id}
+		JOIN subjects AS sb ON
+		api.subject_id=sb.id AND api.subject_id=#{inSubject.id};
+	</select>
+
+	<update id="dropTable">
+		DROP TABLE public.academ_perfom_items;
+	</update>
+</mapper>

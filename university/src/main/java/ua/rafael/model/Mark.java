@@ -1,73 +1,60 @@
 package ua.rafael.model;
 
-import java.time.LocalDate;
-
-public class Mark implements Comparable<Mark> {
-	private LocalDate date;
-	private Subject subject;
-
+public class Mark {
+	private int id;
 	private int value;
 
 	public Mark() {
 	}
 
-	public Mark(LocalDate date, Subject subject, int mark) {
-		this.date = date;
-		this.subject = subject;
-		this.value = mark;
+	public Mark(int id, int value) {
+		this.id = id;
+		this.value = value;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public int getId() {
+		return id;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
-
-	public Subject getSubject() {
-		return subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getValue() {
 		return value;
 	}
 
-	public void setValue(int mark) {
-		this.value = mark;
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	@Override
 	public int hashCode() {
-		return date.hashCode() + subject.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id;
+		result = prime * result + value;
+		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (this == obj) {
+		if (this == obj)
 			return true;
-		}
-		final Mark mark = (Mark) obj;
-		return (date.equals(mark.date) && subject.equals(mark.subject));
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mark other = (Mark) obj;
+		if (id != other.id)
+			return false;
+		if (value != other.value)
+			return false;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "date: " + date + " - subject: " + subject.getName() + " - mark: " + value + "\n";
-	}
-
-	@Override
-	public int compareTo(Mark mark) {
-		if (date.equals(mark.date)) {
-			return subject.compareTo(mark.subject);
-		}
-		return date.compareTo(mark.date);
+		return id + "-" + value;
 	}
 }

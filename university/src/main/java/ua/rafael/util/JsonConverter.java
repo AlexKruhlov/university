@@ -10,28 +10,28 @@ import java.io.OutputStreamWriter;
 
 import com.google.gson.GsonBuilder;
 
-import ua.rafael.model.AcademPerfomance;
+import ua.rafael.model.Student;
 
 public class JsonConverter {
 
 	public static void toJson(final String jsonFilePath,
-			AcademPerfomance academPerfomance) throws IOException {
+			Student student) throws IOException {
 		try (OutputStreamWriter file = new FileWriter(new File(jsonFilePath))) {
-			file.write(jsonToString(academPerfomance));
+			file.write(jsonToString(student));
 		}
 	}
 
-	public static AcademPerfomance fromJson(final String filePath)
+	public static Student fromJson(final String filePath)
 			throws FileNotFoundException, IOException {
-		AcademPerfomance academPerfomance = null;
+		Student student = null;
 		try (InputStreamReader fileReader = new FileReader(filePath)) {
-			academPerfomance = new GsonBuilder().create().fromJson(new FileReader(filePath),
-					AcademPerfomance.class);
+			student = new GsonBuilder().create().fromJson(new FileReader(filePath),
+					Student.class);
 		}
-		return academPerfomance;
+		return student;
 	}
 
-	public static String jsonToString(final AcademPerfomance academPerfomance) {
-		return new GsonBuilder().setPrettyPrinting().create().toJson(academPerfomance);
+	public static String jsonToString(final Student student) {
+		return new GsonBuilder().setPrettyPrinting().create().toJson(student);
 	}
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Mark">
+	<resultMap id="markResult" type="Mark">
+		<result property="id" column="id" />
+		<result property="value" column="value" />
+	</resultMap>
+
+	<update id="createTable">
+		CREATE TABLE IF NOT EXISTS marks(
+		id SERIAL NOT NULL PRIMARY KEY,
+		value INTEGER NOT NULL
+		);
+	</update>
+
+	<insert id="insert" parameterType="Mark" useGeneratedKeys="true"
+		keyProperty="id">
+		INSERT INTO public.marks(value) VALUES(#{value});
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM public.marks WHERE
+		id = #{id};
+	</delete>
+
+	<update id="update" parameterType="Mark">
+		UPDATE public.marks SET
+		value=#{value} WHERE id = #{id};
+	</update>
+
+	<select id="selectAll" resultMap="markResult">
+		SELECT * FROM public.marks
+		ORDER BY id;
+	</select>
+
+	<update id="dropTable">
+		DROP TABLE public.marks;
+	</update>
+
+</mapper>

@@ -1,13 +1,22 @@
 package ua.rafael.model;
 
 public class Subject implements Comparable<Subject> {
+	private int id;
 	private String name;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public Subject() {
 	}
 
-	public Subject(String name) {
-		super();
+	public Subject(int id,String name) {
+		this.id = id;
 		this.name = name;
 	}
 
@@ -39,5 +48,10 @@ public class Subject implements Comparable<Subject> {
 	@Override
 	public int compareTo(Subject subject) {
 		return name.compareTo(subject.name);
+	}
+
+	@Override
+	public String toString() {
+		return id + "-" + name;
 	}
 }
