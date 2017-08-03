@@ -1,22 +1,21 @@
 package ua.rafael.model;
 
 public class Mark {
-	private int id;
+	private long id;
 	private int value;
 
 	public Mark() {
 	}
 
-	public Mark(int id, int value) {
-		this.id = id;
+	public Mark(int value) {
 		this.value = value;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -32,7 +31,7 @@ public class Mark {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + value;
 		return result;
 	}
