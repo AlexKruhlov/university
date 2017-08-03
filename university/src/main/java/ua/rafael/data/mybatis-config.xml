@@ -31,7 +31,7 @@
 				<property name="driver" value="org.postgresql.Driver" />
 				<property name="url" value="jdbc:postgresql://localhost/university" />
 				<property name="username" value="postgres" />
-				<property name="password" value="postgres" />
+				<property name="password" value="admin" />
 			</dataSource>
 		</environment>
 	</environments>

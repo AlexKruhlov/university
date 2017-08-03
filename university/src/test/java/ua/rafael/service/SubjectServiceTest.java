@@ -16,44 +16,50 @@ import ua.rafael.service.SubjectService;
 
 public class SubjectServiceTest {
 	private SubjectService subjectService;
+	private List<Subject> expected;
+	private List<Subject> actual;
+	private Subject subjectWithNullId1;
+	private Subject subjectWithNotNullId1;
+	private Subject subjectWithNullId2;
+	private Subject subjectWithNotNullId2;
 
 	@Before
 	public final void startUp() {
-		SubjectSession session = new SubjectSession(
-				MyBatisConnectionFactory.getSqlSessionFactory());
+		SubjectSession session
+				= new SubjectSession(MyBatisConnectionFactory.getSqlSessionFactory());
 		subjectService = new SubjectService(session);
 		subjectService.createTable();
+		expected = new ArrayList<>();
+		subjectWithNotNullId1 = new Subject("Mathematics");
+		subjectWithNotNullId1.setId(1);
+		subjectWithNullId1 = new Subject("Mathematics");
+		subjectWithNotNullId2 = new Subject("Biology");
+		subjectWithNotNullId2.setId(2);
+		subjectWithNullId2 = new Subject("Biology");
 	}
 
 	@Test
 	public void testInsert() {
-		final List<Subject> expected = new ArrayList<>();
-		List<Subject> actual = null;
-		expected.add(createSubject(1, "Mathematics"));
-		subjectService.insert(new Subject("Mathematics"));
+		expected.add(subjectWithNotNullId1);
+		subjectService.insert(subjectWithNullId1);
 		actual = subjectService.selectAll();
-		assertEquals(expected, actual);
+		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
 
 	@Test
 	public void testSelectAll() {
-		final List<Subject> expected = new ArrayList<>();
-		expected.add(createSubject(1, "Mathematics"));
-		expected.add(createSubject(2, "Biology"));
-		expected.add(createSubject(3, "Chemistry"));
-		subjectService.insert(new Subject("Mathematics"));
-		subjectService.insert(new Subject("Biology"));
-		subjectService.insert(new Subject("Chemistry"));
-		final List<Subject> actual = subjectService.selectAll();
-		assertEquals(expected, actual);
+		expected.add(subjectWithNotNullId1);
+		expected.add(subjectWithNotNullId2);
+		subjectService.insert(subjectWithNullId1);
+		subjectService.insert(subjectWithNullId2);
+		actual = subjectService.selectAll();
+		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
 
 	@Test
 	public void testDelete() {
-		final List<Subject> expected = new ArrayList<>();
-		List<Subject> actual = null;
-		expected.add(createSubject(1, "Mathematics"));
-		expected.add(createSubject(2, "Biology"));
+		expected.add(subjectWithNotNullId1);
+		expected.add(subjectWithNotNullId2);
 		subjectService.insert(new Subject("Mathematics"));
 		subjectService.insert(new Subject("Biology"));
 		actual = subjectService.selectAll();
@@ -61,7 +67,7 @@ public class SubjectServiceTest {
 		expected.remove(0);
 		subjectService.delete(1);
 		actual = subjectService.selectAll();
-		assertEquals(expected, actual);
+		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
 
 	// @Test
@@ -86,11 +92,5 @@ public class SubjectServiceTest {
 	@After
 	public final void finish() {
 		subjectService.dropTable();
-	}
-
-	private Subject createSubject(final long id, final String name) {
-		final Subject subject = new Subject(name);
-		subject.setId(id);
-		return subject;
 	}
 }
