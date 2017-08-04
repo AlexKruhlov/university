@@ -42,7 +42,7 @@ public class SubjectServiceTest {
 	public void testInsert() {
 		expected.add(subjectWithNotNullId1);
 		subjectService.insert(subjectWithNullId1);
-		actual = subjectService.selectAll();
+		actual = subjectService.findAll();
 		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
 
@@ -52,8 +52,17 @@ public class SubjectServiceTest {
 		expected.add(subjectWithNotNullId2);
 		subjectService.insert(subjectWithNullId1);
 		subjectService.insert(subjectWithNullId2);
-		actual = subjectService.selectAll();
+		actual = subjectService.findAll();
 		assertEquals("Lists of subjects should be equal", expected, actual);
+	}
+	
+	@Test
+	public void testSelectById() {
+		final Subject expected = subjectWithNotNullId2;
+		subjectService.insert(subjectWithNullId1);
+		subjectService.insert(subjectWithNullId2);
+		final Subject actual = subjectService.findById(2);
+		assertEquals(expected, actual);
 	}
 
 	@Test
@@ -62,11 +71,11 @@ public class SubjectServiceTest {
 		expected.add(subjectWithNotNullId2);
 		subjectService.insert(new Subject("Mathematics"));
 		subjectService.insert(new Subject("Biology"));
-		actual = subjectService.selectAll();
+		actual = subjectService.findAll();
 		assertEquals(expected, actual);
 		expected.remove(0);
 		subjectService.delete(1);
-		actual = subjectService.selectAll();
+		actual = subjectService.findAll();
 		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
 

@@ -47,6 +47,17 @@ public class SubjectSession {
 		return list;
 	}
 
+	public Subject selectById(final long id) {
+		Subject result = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			result = session.selectOne("Subject.selectById", id);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
 	public void update(final Subject subject) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
@@ -57,7 +68,7 @@ public class SubjectSession {
 		}
 	}
 
-	public void delete(int id) {
+	public void delete(long id) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			session.delete("Subject.delete", id);

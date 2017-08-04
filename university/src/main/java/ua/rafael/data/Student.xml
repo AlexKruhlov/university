@@ -12,13 +12,11 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS public.students(
-		id SERIAL NOT NULL
-		PRIMARY KEY,
+		id SERIAL
+		NOT NULL PRIMARY KEY,
 		first_name VARCHAR(50) NOT NULL,
-		last_name VARCHAR(50)
-		NOT
-		NULL
-		);
+		last_name
+		VARCHAR(50) NOTNULL);
 	</update>
 
 	<insert id="insert" parameterType="Student" useGeneratedKeys="true"
