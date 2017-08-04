@@ -30,9 +30,12 @@ public class AcademPerfomanceService {
 		academPerfomanceSession.delete(id);
 	}
 
-	public void update(final AcademPerfomance academPerfomance) {
-		new AcademPerfomanceValidator().validate(academPerfomance);
-		academPerfomanceSession.update(academPerfomance);
+	public void update(final long id, final AcademPerfomance academPerfomance) {
+		final AcademPerfomance academPerfomanceFromDB = findById(id);
+		if (academPerfomanceFromDB != null) {
+			academPerfomance.setId(id);
+			academPerfomanceSession.update(academPerfomance);
+		}
 	}
 
 	public List<AcademPerfomance> findAll() {

@@ -149,25 +149,15 @@ public class AcademPerfomanceServiceTest {
 		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
 	}
 
-	// @Test
-	// public final void testUpdate() {
-	// final List<AcademPerfomance> expected = new ArrayList<>();
-	// List<AcademPerfomance> actual = null;
-	// expected.add(academPerfomance1);
-	// expected.add(academPerfomance2);
-	// academPerfomanceService.insert(academPerfomance1);
-	// academPerfomanceService.insert(academPerfomance2);
-	// actual = academPerfomanceService.selectAll();
-	// assertEquals(expected, actual);
-	// final AcademPerfomance academPerfomanceToUpdate
-	// = new AcademPerfomance(new Student(3, "Sindey", "Grant"), new Subject(3,
-	// "Biology"),
-	// LocalDate.of(2017, 07, 30), new Mark(3, 3));
-	// expected.set(0, academPerfomanceToUpdate);
-	// academPerfomanceService.update(academPerfomanceToUpdate);
-	// actual = academPerfomanceService.selectAll();
-	// assertEquals(expected, actual);
-	// }
+	@Test
+	public final void testUpdate() {	
+		academPerfomanceWithNotNullId2.setId(1);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.update(1, academPerfomanceWithNullId2);
+		actual = academPerfomanceService.findAll();
+		assertEquals(expected, actual);
+	}
 
 	@After
 	public final void finish() {

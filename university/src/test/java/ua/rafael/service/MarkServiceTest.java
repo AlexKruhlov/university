@@ -81,9 +81,10 @@ public class MarkServiceTest {
 
 	@Test
 	public final void testUpdate() {
+		markWithNotNullId2.setId(1);
 		expected.add(markWithNotNullId2);
 		markService.insert(markWithNullId1);
-		markService.update(1, markWithNotNullId2);
+		markService.update(1, markWithNullId2);
 		actual = markService.findAll();
 		assertEquals(expected, actual);
 	}
