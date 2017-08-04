@@ -25,8 +25,8 @@ public class SubjectServiceTest {
 
 	@Before
 	public final void startUp() {
-		SubjectSession session
-				= new SubjectSession(MyBatisConnectionFactory.getSqlSessionFactory());
+		SubjectSession session = new SubjectSession(
+				MyBatisConnectionFactory.getSqlSessionFactory());
 		subjectService = new SubjectService(session);
 		subjectService.createTable();
 		expected = new ArrayList<>();
@@ -55,7 +55,7 @@ public class SubjectServiceTest {
 		actual = subjectService.findAll();
 		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
-	
+
 	@Test
 	public void testSelectById() {
 		final Subject expected = subjectWithNotNullId2;
@@ -79,24 +79,14 @@ public class SubjectServiceTest {
 		assertEquals("Lists of subjects should be equal", expected, actual);
 	}
 
-	// @Test
-	// public final void testUpdate() {
-	// final Subject subject1 = new Subject("Mathematics");
-	// final Subject subject2 = new Subject("Biology");
-	// final List<Subject> expected = new ArrayList<>();
-	// List<Subject> actual = null;
-	// expected.add(subject1);
-	// expected.add(subject2);
-	// subjectService.insert(subject1);
-	// subjectService.insert(subject2);
-	// actual = subjectService.selectAll();
-	// assertEquals(expected.toString(), actual.toString());
-	// Subject subjectToUpdate = new Subject("Chemistry");
-	// expected.set(0, subjectToUpdate);
-	// subjectService.update(subjectToUpdate);
-	// actual = subjectService.selectAll();
-	// assertEquals(expected.toString(), actual.toString());
-	// }
+	@Test
+	public final void testUpdate() {
+		expected.add(subjectWithNotNullId2);
+		subjectService.insert(subjectWithNullId1);
+		subjectService.update(1, subjectWithNotNullId2);
+		actual = subjectService.findAll();
+		assertEquals(expected, actual);
+	}
 
 	@After
 	public final void finish() {

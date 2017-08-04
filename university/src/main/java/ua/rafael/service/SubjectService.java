@@ -2,6 +2,9 @@ package ua.rafael.service;
 
 import java.util.List;
 
+import javax.naming.ServiceUnavailableException;
+import javax.swing.text.html.FormSubmitEvent;
+
 import ua.rafael.dao.SubjectSession;
 import ua.rafael.model.Subject;
 import validator.SubjectValidator;
@@ -26,14 +29,18 @@ public class SubjectService {
 		subjectSession.delete(id);
 	}
 
-	public void update(final long id,final Subject subject){
-		subjectSession.update(subject);
+	public void update(final long id, final Subject subject) {
+		final Subject subjectFromDB = findById(id);
+		if (subjectFromDB != null) {
+			subject.setId(id);
+			subjectSession.update(subject);
+		}
 	}
 
 	public List<Subject> findAll() {
 		return subjectSession.selectAll();
 	}
-	
+
 	public Subject findById(final long id) {
 		return subjectSession.selectById(id);
 	}
