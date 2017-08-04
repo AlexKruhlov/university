@@ -11,28 +11,37 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS public.subjects(
-		id SERIAL NOT NULL PRIMARY KEY, 
-		name VARCHAR(50)
+		id
+		BIGSERIAL NOT NULL PRIMARY KEY,
+		name
+		VARCHAR(50)
 		);
 	</update>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="long">
 		DELETE FROM public.subjects
 		WHERE id=#{id};
 	</delete>
 
 	<update id="update" parameterType="Subject">
-		UPDATE public.subjects SET name=#{name} WHERE id=#{id};
+		UPDATE public.subjects SET
+		name=#{name} WHERE id=#{id};
 	</update>
 
-	<insert id="insert" parameterType="Subject" useGeneratedKeys="true"
-		keyProperty="id">
-		INSERT INTO public.subjects(name) VALUES(#{name});
+	<insert id="insert" parameterType="Subject" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		public.subjects(name) VALUES(#{name});
 	</insert>
 
 	<select id="selectAll" resultMap="result">
 		SELECT * FROM public.subjects
 		ORDER BY id;
+	</select>
+
+	<select id="selectById" parameterType="long" resultMap="result">
+		SELECT *
+		FROM public.subjects WHERE
+		id=#{id};
 	</select>
 
 	<update id="dropTable">

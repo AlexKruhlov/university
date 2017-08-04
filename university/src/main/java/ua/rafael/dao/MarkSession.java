@@ -34,7 +34,7 @@ public class MarkSession {
 		}
 	}
 
-	public void delete(final int id) {
+	public void delete(final long id) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			session.delete("Mark.delete", id);
@@ -63,6 +63,17 @@ public class MarkSession {
 			session.close();
 		}
 		return resultList;
+	}
+	
+	public Mark selectById(final long id) {
+		Mark result = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			result = session.selectOne("Mark.selectById", id);
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	public void dropTable() {

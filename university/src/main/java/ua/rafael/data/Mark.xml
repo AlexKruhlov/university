@@ -11,7 +11,7 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS marks(
-		id SERIAL NOT NULL PRIMARY KEY,
+		id BIGSERIAL NOT NULL PRIMARY KEY,
 		value INTEGER NOT NULL
 		);
 	</update>
@@ -21,7 +21,7 @@
 		INSERT INTO public.marks(value) VALUES(#{value});
 	</insert>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="long">
 		DELETE FROM public.marks WHERE
 		id = #{id};
 	</delete>
@@ -34,6 +34,12 @@
 	<select id="selectAll" resultMap="markResult">
 		SELECT * FROM public.marks
 		ORDER BY id;
+	</select>
+	
+	<select id="selectById" parameterType="long" resultMap="markResult">
+		SELECT *
+		FROM public.marks WHERE
+		id=#{id};
 	</select>
 
 	<update id="dropTable">

@@ -12,22 +12,20 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS public.students(
-		id SERIAL NOT NULL
-		PRIMARY KEY,
+		id BIGSERIAL
+		NOT NULL PRIMARY KEY,
 		first_name VARCHAR(50) NOT NULL,
-		last_name VARCHAR(50)
-		NOT
-		NULL
-		);
+		last_name
+		VARCHAR(50) NOT NULL);
 	</update>
 
-	<insert id="insert" parameterType="Student" useGeneratedKeys="true"
-		keyProperty="id">
-		INSERT INTO public.students(first_name,last_name)
+	<insert id="insert" parameterType="Student" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		public.students(first_name,last_name)
 		VALUES(#{firstName},#{lastName});
 	</insert>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="long">
 		DELETE FROM public.students
 		WHERE
 		id = #{id};
@@ -35,12 +33,19 @@
 
 	<update id="update" parameterType="Student">
 		UPDATE public.students SET
-		first_name=#{firstName}, last_name=#{lastName} WHERE id = #{id};
+		first_name=#{firstName},
+		last_name=#{lastName} WHERE id = #{id};
 	</update>
 
 	<select id="selectAll" resultMap="result">
 		SELECT * FROM public.students
 		ORDER BY id;
+	</select>
+
+	<select id="selectById" parameterType="long" resultMap="result">
+		SELECT *
+		FROM public.students WHERE
+		id=#{id};
 	</select>
 
 	<update id="dropTable">
