@@ -55,7 +55,7 @@ public class MarkServiceTest {
 		actual = markService.findAll();
 		assertEquals("Lists of marks should be equal", expected, actual);
 	}
-	
+
 	@Test
 	public void testSelectById() {
 		final Mark expected = markWithNotNullId2;
@@ -79,24 +79,14 @@ public class MarkServiceTest {
 		assertEquals("Lists of marks should be equal", expected, actual);
 	}
 
-	// @Test
-	// public final void testUpdate() {
-	// final Mark mark1 = new Mark(1);
-	// final Mark mark2 = new Mark(2);
-	// final List<Mark> expected = new ArrayList<>();
-	// List<Mark> actual = null;
-	// expected.add(mark1);
-	// expected.add(mark2);
-	// markService.insert(mark1);
-	// markService.insert(mark2);
-	// actual = markService.selectAll();
-	// assertEquals(expected.toString(), actual.toString());
-	// final Mark markToUpdate = new Mark(3);
-	// expected.set(0, markToUpdate);
-	// markService.update(markToUpdate);
-	// actual = markService.selectAll();
-	// assertEquals(expected.toString(), actual.toString());
-	// }
+	@Test
+	public final void testUpdate() {
+		expected.add(markWithNotNullId2);
+		markService.insert(markWithNullId1);
+		markService.update(1, markWithNotNullId2);
+		actual = markService.findAll();
+		assertEquals(expected, actual);
+	}
 
 	@After
 	public final void finish() {

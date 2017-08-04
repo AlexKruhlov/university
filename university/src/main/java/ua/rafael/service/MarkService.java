@@ -27,9 +27,12 @@ public class MarkService {
 		markSession.delete(id);
 	}
 
-	public void update(final Mark mark) {
-		new MarkValidator().validate(mark);
-		markSession.update(mark);
+	public void update(final long id, final Mark mark) {
+		final Mark markFromDB = findById(id);
+		if (markFromDB != null) {
+			mark.setId(id);
+			markSession.update(mark);
+		}
 	}
 
 	public List<Mark> findAll() {
