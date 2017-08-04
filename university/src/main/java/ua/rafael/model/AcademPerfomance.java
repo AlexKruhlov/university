@@ -3,7 +3,7 @@ package ua.rafael.model;
 import java.time.LocalDate;
 
 public class AcademPerfomance {
-	private int id;
+	private long id;
 	private Student student;
 	private Subject subject;
 	private LocalDate date;
@@ -19,11 +19,11 @@ public class AcademPerfomance {
 		this.mark = mark;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -69,6 +69,7 @@ public class AcademPerfomance {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((mark == null) ? 0 : mark.hashCode());
 		result = prime * result + ((student == null) ? 0 : student.hashCode());
 		result = prime * result + ((subject == null) ? 0 : subject.hashCode());
@@ -84,6 +85,8 @@ public class AcademPerfomance {
 		if (getClass() != obj.getClass())
 			return false;
 		AcademPerfomance other = (AcademPerfomance) obj;
+		if (id != other.id)
+			return false;
 		if (date == null) {
 			if (other.date != null)
 				return false;

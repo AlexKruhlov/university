@@ -15,8 +15,13 @@ import ua.rafael.model.Mark;
 import ua.rafael.service.MarkService;
 
 public class MarkServiceTest {
-
 	private MarkService markService;
+	private List<Mark> expected;
+	private List<Mark> actual;
+	private Mark markWithNullId1;
+	private Mark markWithNotNullId1;
+	private Mark markWithNullId2;
+	private Mark markWithNotNullId2;
 
 	@Before
 	public final void startUp() {
@@ -24,83 +29,65 @@ public class MarkServiceTest {
 				MyBatisConnectionFactory.getSqlSessionFactory());
 		markService = new MarkService(session);
 		markService.createTable();
+		expected = new ArrayList<>();
+		markWithNotNullId1 = new Mark(1);
+		markWithNotNullId1.setId(1);
+		markWithNullId1 = new Mark(1);
+		markWithNotNullId2 = new Mark(2);
+		markWithNotNullId2.setId(2);
+		markWithNullId2 = new Mark(2);
 	}
 
 	@Test
 	public void testInsert() {
-		final Mark mark1 = new Mark(1, 1);
-		final Mark mark2 = new Mark(2, 2);
-		final List<Mark> expected = new ArrayList<>();
-		List<Mark> actual = null;
-		expected.add(mark1);
-		markService.insert(mark1);
+		expected.add(markWithNotNullId1);
+		markService.insert(markWithNullId1);
 		actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
-		expected.add(mark2);
-		markService.insert(mark2);
-		actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals("Lists of marks should be equal",expected, actual);
 	}
 
 	@Test
 	public void testSelectAll() {
-		final Mark mark1 = new Mark(1, 1);
-		final Mark mark2 = new Mark(2, 1);
-		final Mark mark3 = new Mark(3, 1);
-		final List<Mark> expected = new ArrayList<>();
-		expected.add(mark1);
-		expected.add(mark2);
-		expected.add(mark3);
-		markService.insert(mark1);
-		markService.insert(mark2);
-		markService.insert(mark3);
-		final List<Mark> actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		expected.add(markWithNotNullId1);
+		expected.add(markWithNotNullId2);
+		markService.insert(markWithNullId1);
+		markService.insert(markWithNullId2);
+		actual = markService.selectAll();
+		assertEquals("Lists of marks should be equal",expected, actual);
 	}
 
 	@Test
 	public void testDelete() {
-		final Mark mark1 = new Mark(1, 1);
-		final Mark mark2 = new Mark(2, 1);
-		final Mark mark3 = new Mark(3, 1);
-		final List<Mark> expected = new ArrayList<>();
-		List<Mark> actual = null;
-		expected.add(mark1);
-		expected.add(mark2);
-		expected.add(mark3);
-		markService.insert(mark1);
-		markService.insert(mark2);
-		markService.insert(mark3);
+		expected.add(markWithNotNullId1);
+		expected.add(markWithNotNullId2);
+		markService.insert(markWithNullId1);
+		markService.insert(markWithNullId2);
 		actual = markService.selectAll();
 		assertEquals(expected.toString(), actual.toString());
 		expected.remove(0);
 		markService.delete(1);
 		actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
-		expected.remove(0);
-		markService.delete(2);
-		actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		assertEquals("Lists of marks should be equal",expected, actual);
 	}
 
-	@Test
-	public final void testUpdate() {
-		final Mark mark1 = new Mark(1, 1);
-		final Mark mark2 = new Mark(2, 2);
-		final List<Mark> expected = new ArrayList<>();
-		List<Mark> actual = null;
-		expected.add(mark1);
-		expected.add(mark2);
-		markService.insert(mark1);
-		markService.insert(mark2);
-		actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
-		final Mark markToUpdate = new Mark(1, 3);
-		expected.set(0, markToUpdate);
-		markService.update(markToUpdate);
-		actual = markService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
-	}
+//	@Test
+//	public final void testUpdate() {
+//		final Mark mark1 = new Mark(1);
+//		final Mark mark2 = new Mark(2);
+//		final List<Mark> expected = new ArrayList<>();
+//		List<Mark> actual = null;
+//		expected.add(mark1);
+//		expected.add(mark2);
+//		markService.insert(mark1);
+//		markService.insert(mark2);
+//		actual = markService.selectAll();
+//		assertEquals(expected.toString(), actual.toString());
+//		final Mark markToUpdate = new Mark(3);
+//		expected.set(0, markToUpdate);
+//		markService.update(markToUpdate);
+//		actual = markService.selectAll();
+//		assertEquals(expected.toString(), actual.toString());
+//	}
 
 	@After
 	public final void finish() {

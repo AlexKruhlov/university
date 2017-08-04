@@ -1,24 +1,23 @@
 package ua.rafael.model;
 
 public class Student {
-	private int id;
+	private long id;
 	private String firstName;
 	private String lastName;
 
 	public Student() {
 	}
 
-	public Student(int id, String firstName, String lastName) {
-		this.id = id;
+	public Student(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -43,6 +42,7 @@ public class Student {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		return result;
 	}
@@ -56,6 +56,8 @@ public class Student {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
+		if (id != other.id)
+			return false;
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;

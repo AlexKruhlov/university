@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.plugins.jpeg.JPEGImageWriteParam;
-
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.After;
 import org.junit.Before;
@@ -32,156 +30,135 @@ public class AcademPerfomanceServiceTest {
 	private SqlSessionFactory sessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
 	private AcademPerfomanceService academPerfomanceService
 			= new AcademPerfomanceService(new AcademPerfomanceSession(sessionFactory));
+	private List<AcademPerfomance> expected;
+	private List<AcademPerfomance> actual;
 	private StudentService studentService = new StudentService(new StudentSession(sessionFactory));
 	private SubjectService subjectService = new SubjectService(new SubjectSession(sessionFactory));
 	private MarkService markService = new MarkService(new MarkSession(sessionFactory));
-	private AcademPerfomance academPerfomance1;
-	private AcademPerfomance academPerfomance2;
-	private AcademPerfomance academPerfomance3;
+	private AcademPerfomance academPerfomanceWithNullId1;
+	private AcademPerfomance academPerfomanceWithNullId2;
+	private AcademPerfomance academPerfomanceWithNotNullId1;
+	private AcademPerfomance academPerfomanceWithNotNullId2;
 
 	@Before
 	public final void startUp() {
+		expected = new ArrayList<>();
 		subjectService.createTable();
-		subjectService.insert(new Subject(1, "Mathematics"));
-		subjectService.insert(new Subject(2, "Chemistry"));
-		subjectService.insert(new Subject(3, "Biology"));
+		subjectService.insert(new Subject("Mathematics"));
+		subjectService.insert(new Subject("Chemistry"));
+		subjectService.insert(new Subject("Biology"));
 		studentService.createTable();
-		studentService.insert(new Student(1, "Dave", "Joro"));
-		studentService.insert(new Student(2, "Mike", "Franch"));
-		studentService.insert(new Student(3, "Sindey", "Grant"));
+		studentService.insert(new Student("Dave", "Joro"));
+		studentService.insert(new Student("Mike", "Franch"));
+		studentService.insert(new Student("Sindey", "Grant"));
 		markService.createTable();
-		markService.insert(new Mark(1, 1));
-		markService.insert(new Mark(2, 2));
-		markService.insert(new Mark(3, 3));
+		markService.insert(new Mark(1));
+		markService.insert(new Mark(2));
+		markService.insert(new Mark(3));
 		academPerfomanceService.createTable();
-		academPerfomance1 = new AcademPerfomance(new Student(1, "Dave", "Joro"),
-												 new Subject(1, "Mathematics"),
-												 LocalDate.of(2017, 07, 30), new Mark(1, 1));
-		academPerfomance2 = new AcademPerfomance(new Student(2, "Mike", "Franch"),
-												 new Subject(2, "Chemistry"),
-												 LocalDate.of(2017, 07, 29), new Mark(2, 2));
-		academPerfomance3 = new AcademPerfomance(new Student(3, "Sindey", "Grant"),
-												 new Subject(3, "Biology"),
-												 LocalDate.of(2017, 07, 30), new Mark(3, 3));
+		academPerfomanceWithNullId1 = createAcadPerfomanceWithNullId(1, "Dave", "Joro", 1,
+				"Mathematics", LocalDate.of(2017, 07, 29), 1, 1);
+		academPerfomanceWithNullId2 = createAcadPerfomanceWithNullId(2, "Mike", "Franch", 2,
+				"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
+		academPerfomanceWithNotNullId1 = createAcadPerfomanceWithNotNullId(1, 1, "Dave", "Joro", 1,
+				"Mathematics", LocalDate.of(2017, 07, 29), 1, 1);
+		academPerfomanceWithNotNullId2
+				= createAcadPerfomanceWithNotNullId(2, 2, "Mike", "Franch", 2,
+						"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
 	}
 
 	@Test
 	public void testInsert() {
-		final List<AcademPerfomance> expected = new ArrayList<>();
-		List<AcademPerfomance> actual = null;
-		expected.add(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance1);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected, actual);
-		expected.add(academPerfomance2);
-		academPerfomanceService.insert(academPerfomance2);
-		actual = academPerfomanceService.selectAll();
-		assertEquals(expected, actual);
+		expected.add(academPerfomanceWithNotNullId1);
+		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
 	}
 
 	@Test
 	public void testSelectAll() {
-		final List<AcademPerfomance> expected = new ArrayList<>();
-		expected.add(academPerfomance1);
-		expected.add(academPerfomance2);
-		expected.add(academPerfomance3);
-		academPerfomanceService.insert(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance2);
-		academPerfomanceService.insert(academPerfomance3);
-		final List<AcademPerfomance> actual = academPerfomanceService.selectAll();
-		assertEquals(expected, actual);
+		expected.add(academPerfomanceWithNotNullId1);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		actual = academPerfomanceService.selectAll();
+		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
 	}
 
 	@Test
 	public final void testSelectByStudentAndSubject() {
-		academPerfomance3 = new AcademPerfomance(new Student(1, "Dave", "Joro"),
-												 new Subject(1, "Mathematics"),
-												 LocalDate.of(2017, 07, 31), new Mark(3, 3));
-		final List<AcademPerfomance> expected = new ArrayList<>();
-		expected.add(academPerfomance1);
-		expected.add(academPerfomance3);
-		academPerfomanceService.insert(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance2);
-		academPerfomanceService.insert(academPerfomance3);
-		final List<AcademPerfomance> actual = academPerfomanceService.selectBy(
-				new Student(1, "Dave", "Joro"), new Subject(1, "Mathematics"));
-		assertEquals(expected, actual);
+		expected.add(academPerfomanceWithNotNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		final Student student = new Student("Dave", "Joro");
+		student.setId(1);
+		final Subject subject = new Subject("Mathematics");
+		subject.setId(1);
+		actual = academPerfomanceService.selectBy(student, subject);
+		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
 	}
 
 	@Test
 	public final void testSelectByStudentAndDate() {
-		academPerfomance2 = new AcademPerfomance(new Student(1, "Dave", "Joro"),
-												 new Subject(1, "Mathematics"),
-												 LocalDate.of(2017, 07, 29), new Mark(1, 1));
-		academPerfomance3 = new AcademPerfomance(new Student(1, "Dave", "Joro"),
-												 new Subject(2, "Chemistry"),
-												 LocalDate.of(2017, 07, 30), new Mark(3, 3));
-		final List<AcademPerfomance> expected = new ArrayList<>();
-		expected.add(academPerfomance3);
-		expected.add(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance2);
-		academPerfomanceService.insert(academPerfomance3);
-		final List<AcademPerfomance> actual = academPerfomanceService.selectBy(
-				new Student(1, "Dave", "Joro"), of(2017, 7, 30));
-		assertEquals(expected, actual);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		final Student student = new Student("Mike", "Franch");
+		student.setId(2);
+		actual = academPerfomanceService.selectBy(student, of(2017, 7, 30));
+		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
 	}
 
 	@Test
 	public final void testSelectAverageMarkByStudentAndSubject() {
 		final double expected = 1.5;
-		academPerfomanceService.insert(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance2);
-		academPerfomanceService.insert(academPerfomance3);
-		academPerfomanceService.insert(new AcademPerfomance(new Student(1, "Dave", "Joro"),
-															new Subject(1, "Mathematics"),
-															LocalDate.of(2017, 07, 31),
-															new Mark(2, 2)));
-		final double actual = academPerfomanceService.countAverageBy(new Student(1, "Dave", "Joro"),
-				new Subject(1, "Mathematics"));
-		assertEquals(expected, actual, 0.01);
+		final AcademPerfomance academPerfomanceWithNullId3
+				= createAcadPerfomanceWithNullId(1, "Dave", "Joro", 1,
+						"Mathematics", LocalDate.of(2017, 07, 30), 2, 2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId3);
+		final Student student = new Student("Dave", "Joro");
+		student.setId(1);
+		final Subject subject = new Subject("Mathematics");
+		subject.setId(1);
+		final double actual = academPerfomanceService.countAverageBy(student, subject);
+		assertEquals("Nubers should have equal values",expected, actual, 0.01);
 	}
 
 	@Test
 	public void testDelete() {
-		final List<AcademPerfomance> expected = new ArrayList<>();
-		List<AcademPerfomance> actual = null;
-		expected.add(academPerfomance1);
-		expected.add(academPerfomance2);
-		expected.add(academPerfomance3);
-		academPerfomanceService.insert(academPerfomance1);
-		academPerfomanceService.insert(academPerfomance2);
-		academPerfomanceService.insert(academPerfomance3);
+		expected.add(academPerfomanceWithNotNullId1);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
 		actual = academPerfomanceService.selectAll();
 		assertEquals(expected, actual);
 		expected.remove(0);
 		academPerfomanceService.delete(1);
 		actual = academPerfomanceService.selectAll();
-		assertEquals(expected, actual);
-		expected.remove(0);
-		academPerfomanceService.delete(2);
-		actual = academPerfomanceService.selectAll();
-		assertEquals(expected, actual);
+		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
 	}
 
-//	@Test
-//	public final void testUpdate() {
-//		final List<AcademPerfomance> expected = new ArrayList<>();
-//		List<AcademPerfomance> actual = null;
-//		expected.add(academPerfomance1);
-//		expected.add(academPerfomance2);
-//		academPerfomanceService.insert(academPerfomance1);
-//		academPerfomanceService.insert(academPerfomance2);
-//		actual = academPerfomanceService.selectAll();
-//		assertEquals(expected, actual);
-//		final AcademPerfomance academPerfomanceToUpdate
-//				= new AcademPerfomance(new Student(3, "Sindey", "Grant"), new Subject(3, "Biology"),
-//									   LocalDate.of(2017, 07, 30), new Mark(3, 3));
-//		expected.set(0, academPerfomanceToUpdate);
-//		academPerfomanceService.update(academPerfomanceToUpdate);
-//		actual = academPerfomanceService.selectAll();
-//		assertEquals(expected, actual);
-//	}
+	// @Test
+	// public final void testUpdate() {
+	// final List<AcademPerfomance> expected = new ArrayList<>();
+	// List<AcademPerfomance> actual = null;
+	// expected.add(academPerfomance1);
+	// expected.add(academPerfomance2);
+	// academPerfomanceService.insert(academPerfomance1);
+	// academPerfomanceService.insert(academPerfomance2);
+	// actual = academPerfomanceService.selectAll();
+	// assertEquals(expected, actual);
+	// final AcademPerfomance academPerfomanceToUpdate
+	// = new AcademPerfomance(new Student(3, "Sindey", "Grant"), new Subject(3,
+	// "Biology"),
+	// LocalDate.of(2017, 07, 30), new Mark(3, 3));
+	// expected.set(0, academPerfomanceToUpdate);
+	// academPerfomanceService.update(academPerfomanceToUpdate);
+	// actual = academPerfomanceService.selectAll();
+	// assertEquals(expected, actual);
+	// }
 
 	@After
 	public final void finish() {
@@ -190,4 +167,28 @@ public class AcademPerfomanceServiceTest {
 		subjectService.dropTable();
 		markService.dropTable();
 	}
+
+	private AcademPerfomance createAcadPerfomanceWithNullId(final long studentId,
+			final String firstName, final String lastName, final long subjectId,
+			final String subjectName, final LocalDate date, final long markId,
+			final int markValue) {
+		final Student student = new Student(firstName, lastName);
+		student.setId(studentId);
+		final Subject subject = new Subject(subjectName);
+		subject.setId(subjectId);
+		final Mark mark = new Mark(markValue);
+		mark.setId(markId);
+		return new AcademPerfomance(student, subject, date, mark);
+	}
+
+	private AcademPerfomance createAcadPerfomanceWithNotNullId(final long id, final long studentId,
+			final String firstName, final String lastName, final long subjectId,
+			final String subjectName, final LocalDate date, final long markId,
+			final int markValue) {
+		AcademPerfomance academPerfomance = createAcadPerfomanceWithNullId(studentId, firstName,
+				lastName, subjectId, subjectName, date, markId, markValue);
+		academPerfomance.setId(id);
+		return academPerfomance;
+	}
+
 }
