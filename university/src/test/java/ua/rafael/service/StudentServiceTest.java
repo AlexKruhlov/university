@@ -42,7 +42,7 @@ public class StudentServiceTest {
 	public void testInsert() {
 		expected.add(studentWithNotNullId1);
 		studentService.insert(studentWithNullId1);
-		actual = studentService.selectAll();
+		actual = studentService.findAll();
 		assertEquals("Lists of students should be equal", expected, actual);
 	}
 
@@ -52,7 +52,7 @@ public class StudentServiceTest {
 		expected.add(studentWithNotNullId2);
 		studentService.insert(studentWithNullId1);
 		studentService.insert(studentWithNullId2);
-		actual = studentService.selectAll();
+		actual = studentService.findAll();
 		assertEquals("Lists of students should be equal", expected, actual);
 	}
 
@@ -62,32 +62,22 @@ public class StudentServiceTest {
 		expected.add(studentWithNotNullId2);
 		studentService.insert(studentWithNullId1);
 		studentService.insert(studentWithNullId2);
-		actual = studentService.selectAll();
-		assertEquals(expected.toString(), actual.toString());
+		actual = studentService.findAll();
+		assertEquals(expected, actual);
 		expected.remove(0);
 		studentService.delete(1);
-		actual = studentService.selectAll();
+		actual = studentService.findAll();
 		assertEquals("Lists of students should be equal", expected, actual);
 	}
 
-	// @Test
-	// public final void testUpdate() {
-	// final Student student1 = new Student("Dave", "Joro");
-	// final Student student2 = new Student("Mike", "Franch");
-	// final List<Student> expected = new ArrayList<>();
-	// List<Student> actual = null;
-	// expected.add(student1);
-	// expected.add(student2);
-	// studentService.insert(student1);
-	// studentService.insert(student2);
-	// actual = studentService.selectAll();
-	// assertEquals(expected.toString(), actual.toString());
-	// final Student studentToUpdate = new Student("Sindey", "Grant");
-	// expected.set(0, studentToUpdate);
-	// studentService.update(studentToUpdate);
-	// actual = studentService.selectAll();
-	// assertEquals(expected.toString(), actual.toString());
-	// }
+	@Test
+	public final void testUpdate() {
+		expected.add(studentWithNotNullId2);
+		studentService.insert(studentWithNullId1);
+		studentService.update(1, studentWithNotNullId2);
+		actual = studentService.findAll();
+		assertEquals(expected, actual);
+	}
 
 	@After
 	public final void finish() {

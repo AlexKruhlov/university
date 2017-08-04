@@ -4,6 +4,7 @@ import java.util.List;
 
 import ua.rafael.dao.StudentSession;
 import ua.rafael.model.Student;
+import ua.rafael.model.Student;
 import validator.StudentValidator;
 
 public class StudentService {
@@ -26,13 +27,20 @@ public class StudentService {
 		studentSession.delete(id);
 	}
 	
-	public void update(final Student student){
-		new StudentValidator().validate(student);
-		studentSession.update(student);
+	public void update(final long id, final Student student) {
+		final Student studentFromDB = findById(id);
+		if (studentFromDB != null) {
+			student.setId(id);
+			studentSession.update(student);
+		}
 	}
 	
-	public List<Student> selectAll(){
+	public List<Student> findAll(){
 		return studentSession.selectAll();
+	}
+	
+	public Student findById(final long id) {
+		return studentSession.selectById(id);
 	}
 	
 	public void dropTable() {
