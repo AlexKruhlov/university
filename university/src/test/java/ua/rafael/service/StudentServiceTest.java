@@ -47,7 +47,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testFindAll() {
 		expected.add(studentWithNotNullId1);
 		expected.add(studentWithNotNullId2);
 		studentService.insert(studentWithNullId1);
@@ -57,7 +57,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void testSelectById() {
+	public void testFindById() {
 		final Student expected = studentWithNotNullId2;
 		studentService.insert(studentWithNullId1);
 		studentService.insert(studentWithNullId2);

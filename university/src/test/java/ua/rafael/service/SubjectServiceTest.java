@@ -47,7 +47,7 @@ public class SubjectServiceTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testFindAll() {
 		expected.add(subjectWithNotNullId1);
 		expected.add(subjectWithNotNullId2);
 		subjectService.insert(subjectWithNullId1);
@@ -57,7 +57,7 @@ public class SubjectServiceTest {
 	}
 
 	@Test
-	public void testSelectById() {
+	public void testFindById() {
 		final Subject expected = subjectWithNotNullId2;
 		subjectService.insert(subjectWithNullId1);
 		subjectService.insert(subjectWithNullId2);

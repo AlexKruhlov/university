@@ -47,7 +47,7 @@ public class MarkServiceTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testFindAll() {
 		expected.add(markWithNotNullId1);
 		expected.add(markWithNotNullId2);
 		markService.insert(markWithNullId1);
@@ -57,7 +57,7 @@ public class MarkServiceTest {
 	}
 
 	@Test
-	public void testSelectById() {
+	public void testFindById() {
 		final Mark expected = markWithNotNullId2;
 		markService.insert(markWithNullId1);
 		markService.insert(markWithNullId2);

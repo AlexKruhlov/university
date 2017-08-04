@@ -25,16 +25,19 @@
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS
 		public.academ_perfom_items(
-		id SERIAL NOT NULL PRIMARY KEY,
+		id BIGSERIAL NOT NULL
+		PRIMARY KEY,
 		student_id
 		INTEGER NOT NULL,
 		subject_id INTEGER NOT NULL,
 		date DATE NOT NULL,
-		mark_id INTEGER NOT NULL,
+		mark_id
+		INTEGER NOT NULL,
 		CONSTRAINT student_id_students_id
 		FOREIGN KEY
 		(student_id)
-		REFERENCES public.students(id),
+		REFERENCES
+		public.students(id),
 		CONSTRAINT
 		subject_id_subjects_id
 		FOREIGN KEY (subject_id)
@@ -48,15 +51,14 @@
 		);
 	</update>
 
-	<insert id="insert" parameterType="AcademPerfomance"
-		useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="AcademPerfomance" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
 		public.academ_perfom_items(student_id,subject_id,date,mark_id)
 		VALUES
 		(#{student.id},#{subject.id},#{date},#{mark.id});
 	</insert>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="long">
 		DELETE FROM
 		public.academ_perfom_items
 		WHERE id=#{id};
@@ -71,28 +73,40 @@
 
 	<select id="selectAll" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api JOIN marks AS m ON api.mark_id=m.id
+		public.academ_perfom_items AS api JOIN marks
+		AS m ON api.mark_id=m.id
 		JOIN students AS st ON api.student_id=st.id
 		JOIN subjects AS sb ON
 		api.subject_id=sb.id
 		ORDER BY api.id;
 	</select>
 
-	<select id="selectByStudentAndSubject" parameterType="map"
-		resultMap="result">
+	<select id="selectById" parameterType="long" resultMap="result">
+		SELECT * FROM
+		public.academ_perfom_items AS api 
+		JOIN marks AS m ON api.mark_id=m.id AND api.id=#{id}
+		JOIN students AS st ON api.student_id=st.id
+		JOIN subjects AS sb ON api.subject_id=sb.id
+		WHERE api.id=#{id}
+		ORDER BY
+		api.id;
+	</select>
+
+	<select id="selectByStudentAndSubject" parameterType="map" resultMap="result">
 		SELECT * FROM
 		public.academ_perfom_items AS api JOIN marks AS
 		m ON api.mark_id=m.id
-		JOIN students AS st ON api.student_id=st.id AND
+		JOIN students AS st ON
+		api.student_id=st.id AND
 		api.student_id=#{inStudent.id}
 		JOIN subjects AS sb ON
-		api.subject_id=sb.id AND api.subject_id=#{inSubject.id}
+		api.subject_id=sb.id
+		AND api.subject_id=#{inSubject.id}
 		ORDER BY
 		api.date;
 	</select>
 
-	<select id="selectByStudentAndDate" parameterType="map"
-		resultMap="result">
+	<select id="selectByStudentAndDate" parameterType="map" resultMap="result">
 		SELECT * FROM
 		public.academ_perfom_items AS api JOIN marks AS
 		m ON api.mark_id=m.id
@@ -100,16 +114,18 @@
 		api.student_id=st.id AND
 		api.student_id=#{inStudent.id} AND api.date=#{inDate}
 		JOIN subjects AS
-		sb ON api.subject_id=sb.id
+		sb ON
+		api.subject_id=sb.id
 		ORDER BY sb.name;
 	</select>
 
-	<select id="countAverageMarkByStudentAndSubject" parameterType="map"
-		resultType="double">
-		SELECT avg(m.value) FROM
+	<select id="countAverageMarkByStudentAndSubject" parameterType="map" resultType="double">
+		SELECT
+		avg(m.value) FROM
 		public.academ_perfom_items AS api JOIN marks AS
 		m ON api.mark_id=m.id
-		JOIN students AS st ON api.student_id=st.id AND
+		JOIN students
+		AS st ON api.student_id=st.id AND
 		api.student_id=#{inStudent.id}
 		JOIN subjects AS sb ON
 		api.subject_id=sb.id AND api.subject_id=#{inSubject.id};

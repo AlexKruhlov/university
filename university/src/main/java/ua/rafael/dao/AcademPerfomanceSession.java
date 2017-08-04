@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import ua.rafael.model.AcademPerfomance;
+import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
 
@@ -39,7 +40,7 @@ public class AcademPerfomanceSession {
 		}
 	}
 
-	public void delete(final int id) {
+	public void delete(final long id) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			session.insert("AcademPerfomance.delete", id);
@@ -68,6 +69,17 @@ public class AcademPerfomanceSession {
 			session.close();
 		}
 		return resultList;
+	}
+	
+	public AcademPerfomance selectById(final long id) {
+		AcademPerfomance result = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			result = session.selectOne("AcademPerfomance.selectById", id);
+		} finally {
+			session.close();
+		}
+		return result;
 	}
 
 	public List<AcademPerfomance> selectByStudentAndSubject(final Student student,
