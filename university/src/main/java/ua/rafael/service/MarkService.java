@@ -4,6 +4,7 @@ import java.util.List;
 
 import ua.rafael.dao.MarkSession;
 import ua.rafael.model.Mark;
+import ua.rafael.model.Student;
 import validator.MarkValidator;
 
 public class MarkService {
@@ -22,7 +23,7 @@ public class MarkService {
 		markSession.insert(mark);
 	}
 
-	public void delete(final int id) {
+	public void delete(final long id) {
 		markSession.delete(id);
 	}
 
@@ -31,8 +32,12 @@ public class MarkService {
 		markSession.update(mark);
 	}
 
-	public List<Mark> selectAll() {
+	public List<Mark> findAll() {
 		return markSession.selectAll();
+	}
+
+	public Mark findById(final long id) {
+		return markSession.selectById(id);
 	}
 
 	public void dropTable() {

@@ -25,8 +25,8 @@ public class StudentServiceTest {
 
 	@Before
 	public final void startUp() {
-		StudentSession session
-				= new StudentSession(MyBatisConnectionFactory.getSqlSessionFactory());
+		StudentSession session = new StudentSession(
+				MyBatisConnectionFactory.getSqlSessionFactory());
 		studentService = new StudentService(session);
 		studentService.createTable();
 		expected = new ArrayList<>();
@@ -54,6 +54,15 @@ public class StudentServiceTest {
 		studentService.insert(studentWithNullId2);
 		actual = studentService.findAll();
 		assertEquals("Lists of students should be equal", expected, actual);
+	}
+
+	@Test
+	public void testSelectById() {
+		final Student expected = studentWithNotNullId2;
+		studentService.insert(studentWithNullId1);
+		studentService.insert(studentWithNullId2);
+		final Student actual = studentService.findById(2);
+		assertEquals(expected, actual);
 	}
 
 	@Test
