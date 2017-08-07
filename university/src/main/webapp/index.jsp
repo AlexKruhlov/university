@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
 	pageEncoding="US-ASCII"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<!DOCTYPE html>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -25,18 +27,19 @@
 									<h3 class="modal-title">Add subject</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addSubject">
-										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" placeholder="Input name subject"
+									<div class="form-group">
+										<form id="addSubject" method="post">
+											<label for="inputSubject">Name Subject</label> <input name="inputSubject"
+												  id="inputSubject" placeholder="Input name subject"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
-										</div>
-									</form>
+											<button formaction="/university/subjects/add">Add</button>
+										</form>
+									</div>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="addSubject" formaction="######"
-										formmethod="post">Add</button>
+									<button class="btn btn-default" type="submit"
+										data-dismiss="modal" form="addSubject"
+										formaction="/university/subjects" formmethod="get">Add</button>
 								</div>
 							</div>
 						</div>
@@ -108,30 +111,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="text-center">1</td>
-							<td class="text-center">history</td>
-						</tr>
-						<tr>
-							<td class="text-center">2</td>
-							<td class="text-center">fjjdnfkj djfn</td>
-						</tr>
-						<tr>
-							<td class="text-center">2</td>
-							<td class="text-center">history</td>
-						</tr>
-						<tr>
-							<td class="text-center">3</td>
-							<td class="text-center">fjjdnfkj djfn</td>
-						</tr>
-						<tr>
-							<td class="text-center">4</td>
-							<td class="text-center">history</td>
-						</tr>
-						<tr>
-							<td class="text-center">5</td>
-							<td class="text-center">fjjdnfkj djfn</td>
-						</tr>
+						<c:forEach var="subject" items="${subjects}">
+							<tr>
+								<th>${subject.id}</th>
+								<th>${subject.name}</th>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
