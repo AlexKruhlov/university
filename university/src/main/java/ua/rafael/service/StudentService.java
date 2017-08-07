@@ -4,7 +4,6 @@ import java.util.List;
 
 import ua.rafael.dao.StudentSession;
 import ua.rafael.model.Student;
-import ua.rafael.model.Student;
 import validator.StudentValidator;
 
 public class StudentService {

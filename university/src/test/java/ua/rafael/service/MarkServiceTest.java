@@ -47,7 +47,7 @@ public class MarkServiceTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testFindAll() {
 		expected.add(markWithNotNullId1);
 		expected.add(markWithNotNullId2);
 		markService.insert(markWithNullId1);
@@ -57,7 +57,7 @@ public class MarkServiceTest {
 	}
 
 	@Test
-	public void testSelectById() {
+	public void testFindById() {
 		final Mark expected = markWithNotNullId2;
 		markService.insert(markWithNullId1);
 		markService.insert(markWithNullId2);
@@ -81,9 +81,10 @@ public class MarkServiceTest {
 
 	@Test
 	public final void testUpdate() {
+		markWithNotNullId2.setId(1);
 		expected.add(markWithNotNullId2);
 		markService.insert(markWithNullId1);
-		markService.update(1, markWithNotNullId2);
+		markService.update(1, markWithNullId2);
 		actual = markService.findAll();
 		assertEquals(expected, actual);
 	}

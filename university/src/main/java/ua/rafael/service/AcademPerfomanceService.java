@@ -5,6 +5,7 @@ import java.util.List;
 
 import ua.rafael.dao.AcademPerfomanceSession;
 import ua.rafael.model.AcademPerfomance;
+import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
 import validator.AcademPerfomanceValidator;
@@ -25,25 +26,32 @@ public class AcademPerfomanceService {
 		academPerfomanceSession.insert(academPerfomance);
 	}
 
-	public void delete(final int id) {
+	public void delete(final long id) {
 		academPerfomanceSession.delete(id);
 	}
 
-	public void update(final AcademPerfomance academPerfomance) {
-		new AcademPerfomanceValidator().validate(academPerfomance);
-		academPerfomanceSession.update(academPerfomance);
+	public void update(final long id, final AcademPerfomance academPerfomance) {
+		final AcademPerfomance academPerfomanceFromDB = findById(id);
+		if (academPerfomanceFromDB != null) {
+			academPerfomance.setId(id);
+			academPerfomanceSession.update(academPerfomance);
+		}
 	}
 
-	public List<AcademPerfomance> selectAll() {
+	public List<AcademPerfomance> findAll() {
 		return academPerfomanceSession.selectAll();
 	}
+	
+	public AcademPerfomance findById(final long id) {
+		return academPerfomanceSession.selectById(id);
+	}
 
-	public List<AcademPerfomance> selectBy(final Student student,
+	public List<AcademPerfomance> findBy(final Student student,
 			final Subject subject) {
 		return academPerfomanceSession.selectByStudentAndSubject(student, subject);
 	}
 
-	public List<AcademPerfomance> selectBy(final Student student,
+	public List<AcademPerfomance> findBy(final Student student,
 			final LocalDate date) {
 		return academPerfomanceSession.selectByStudentAndDate(student, date);
 	}

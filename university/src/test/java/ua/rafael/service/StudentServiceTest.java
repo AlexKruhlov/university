@@ -47,7 +47,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testFindAll() {
 		expected.add(studentWithNotNullId1);
 		expected.add(studentWithNotNullId2);
 		studentService.insert(studentWithNullId1);
@@ -57,7 +57,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void testSelectById() {
+	public void testFindById() {
 		final Student expected = studentWithNotNullId2;
 		studentService.insert(studentWithNullId1);
 		studentService.insert(studentWithNullId2);
@@ -81,9 +81,10 @@ public class StudentServiceTest {
 
 	@Test
 	public final void testUpdate() {
+		studentWithNotNullId2.setId(1);
 		expected.add(studentWithNotNullId2);
 		studentService.insert(studentWithNullId1);
-		studentService.update(1, studentWithNotNullId2);
+		studentService.update(1, studentWithNullId2);
 		actual = studentService.findAll();
 		assertEquals(expected, actual);
 	}

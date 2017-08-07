@@ -2,9 +2,6 @@ package ua.rafael.service;
 
 import java.util.List;
 
-import javax.naming.ServiceUnavailableException;
-import javax.swing.text.html.FormSubmitEvent;
-
 import ua.rafael.dao.SubjectSession;
 import ua.rafael.model.Subject;
 import validator.SubjectValidator;
