@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+	pageEncoding="US-ASCII"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="utf-8">
@@ -10,13 +12,9 @@
 </head>
 <body>
 	<div class="head"></div>
-
-
 	<div class="container-fluid">
-
 		<div class="row">
 			<div class="size col-xs-7 col-xs-offset-1">
-
 				<div class="buttons">
 					<button class="btn btn-primary" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add subject</button>
@@ -43,8 +41,6 @@
 							</div>
 						</div>
 					</div>
-
-
 					<button data-toggle="modal" data-target="#myModalUpDate"
 						type="button" class="btn btn-primary">Update subject</button>
 					<div id="myModalUpDate" class="modal fade">
@@ -74,9 +70,6 @@
 							</div>
 						</div>
 					</div>
-
-
-
 					<button data-toggle="modal" data-target="#myModalDelete"
 						type="button" class="btn btn-danger">Delete subject</button>
 					<div id="myModalDelete" class="modal fade">
@@ -101,16 +94,13 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<hr>
 				<table class="table table-bordered table-hover table-striped">
 					<caption>
 						subjects
 						<hr>
 					</caption>
-
 					<thead>
 						<tr>
 							<th class="text-center">id</th>
