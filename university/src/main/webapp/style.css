@@ -1,0 +1,106 @@
+body {
+	background-image: url(bg.png);
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: cover;
+	overflow: auto;
+}
+
+.size {
+	min-height: 100vh;
+}
+
+.head {
+	background-color: rgba(104, 130, 196, 0.7);
+	background-image: url("architecture.png");
+	background-repeat: repeat-x;
+	background-size: contain;
+	height: 100px;
+}
+
+[class*="col-xs-7"] {
+	background-color: rgba(176, 196, 222, 0.3);
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 2rem;
+	min-height: 100%;
+}
+
+[class*="btn"] {
+	margin-right: 16px;
+}
+
+.modal-content {
+	background-color: rgba(176, 196, 222, 0.9);
+}
+
+input:invalid {
+	background: #fdd;
+}
+
+input:valid {
+	background: #dfd;
+}
+
+.btn-primary, .btn-danger {
+	margin-bottom: 25px;
+	margin-top: 20px;
+	height: 45px;
+	width: 130px;
+}
+
+caption {
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(0, 0, 205);
+	text-shadow: 1px 1px 2px black;
+	font-size: 1.4em;
+	margin-bottom: 10px;
+}
+
+th, td::first-letter {
+	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+}
+
+.row {
+	position: relative;
+}
+
+[class*="col-xs-3"] {
+	background-color: rgba(176, 196, 222, 0.3);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 2rem;
+	border: 4px solid;
+	border-color: rgba(176, 196, 222, 0.3);
+	border-radius: 20px;
+	position: fixed;
+	top: 260px;
+	right: 50px;
+	height: 240px;
+	box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+h3 {
+	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+	color: rgb(37, 59, 115);
+	text-shadow: 1px 1px 2px blue;
+}
+
+a {
+	display: block;
+	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+}
+
+a:HOVER {
+		text-decoration: none;
+}
+
+.link{
+	margin-top: 30px;
+}
