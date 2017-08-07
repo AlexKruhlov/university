@@ -6,6 +6,16 @@ body {
 	overflow: auto;
 }
 
+.head img {
+	image-rendering: pixelated;
+	height: 130px;
+	width: 130px;
+	position: relative;
+	right: -20px;
+	top: 6px;
+	z-index: 1;
+}
+
 .size {
 	min-height: 100vh;
 }
@@ -16,6 +26,14 @@ body {
 	background-repeat: repeat-x;
 	background-size: contain;
 	height: 100px;
+	position: fixed;
+	width: 100%;
+	z-index: 99;
+}
+
+.row{
+	margin-top: 100px;
+	z-index: 1;
 }
 
 [class*="col-xs-7"] {
@@ -25,6 +43,39 @@ body {
 	padding-bottom: 15px;
 	font-size: 2rem;
 	min-height: 100%;
+}
+
+.
+[class*="col-xs-3"] {
+	position: relative;
+}
+
+[class*="col-xs-3"] .search {
+	background-color: rgba(176, 196, 222, 0.3);
+	border: 4px solid;
+	border-color: rgba(176, 196, 222, 0.3);
+	border-radius: 20px;
+	position: fixed !important;
+	top: 318px;
+	right: 50px;
+	width: 26%;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	padding-bottom: 5px;
+	font-size: 11px;
+}
+
+[class*="col-xs-3"] .navigator {
+	background-color: rgba(176, 196, 222, 0.3);
+	border: 4px solid;
+	border-color: rgba(176, 196, 222, 0.3);
+	border-radius: 20px;
+	position: fixed !important;
+	top: 112px;
+	right: 50px;
+	width: 26%;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	font-size: 2rem;
+	padding-bottom: 5px;
 }
 
 [class*="btn"] {
@@ -43,9 +94,16 @@ input:valid {
 	background: #dfd;
 }
 
+.btn-default {
+	height: 35px;
+	width: 70px;
+}
+
+.buttons{	margin-bottom: 25px;
+	margin-top: 120px;}
+
 .btn-primary, .btn-danger {
-	margin-bottom: 25px;
-	margin-top: 20px;
+
 	height: 45px;
 	width: 130px;
 }
@@ -64,25 +122,6 @@ th, td::first-letter {
 	font-family: "Times New Roman", Times, serif;
 }
 
-.row {
-	position: relative;
-}
-
-[class*="col-xs-3"] {
-	background-color: rgba(176, 196, 222, 0.3);
-	padding-top: 15px;
-	padding-bottom: 15px;
-	font-size: 2rem;
-	border: 4px solid;
-	border-color: rgba(176, 196, 222, 0.3);
-	border-radius: 20px;
-	position: fixed;
-	top: 260px;
-	right: 50px;
-	height: 240px;
-	box-shadow: 0 0 3px rgba(0,0,0,0.5);
-}
-
 h3 {
 	text-transform: uppercase;
 	font-family: "Times New Roman", Times, serif;
@@ -95,12 +134,21 @@ a {
 	display: block;
 	text-transform: uppercase;
 	font-family: "Times New Roman", Times, serif;
+	padding-left: 20px;
 }
 
 a:HOVER {
-		text-decoration: none;
+	text-decoration: none;
 }
 
-.link{
-	margin-top: 30px;
+.link {
+	margin-top: 16px;
+}
+
+.visited {
+	color: blue;
+}
+
+[class*="col-xs-3"] label {
+	text-transform: uppercase;
 }

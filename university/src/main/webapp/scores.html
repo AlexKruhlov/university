@@ -1,15 +1,11 @@
-<%@ page import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>Register|Subjects</title>
+<title>Register|Marks</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="favicon.png" type="image/png">
 <link href="css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="css/bootstrap-theme.min.css">
 <link href="style.css" rel="stylesheet">
 <script src="evaluation_log.js"></script>
 </head>
@@ -18,6 +14,7 @@
 		<img alt="" src="logot.png">
 	</div>
 
+
 	<div class="container-fluid">
 
 		<div class="row-fluid">
@@ -25,25 +22,25 @@
 
 				<div class="buttons">
 					<button class="btn btn-primary" type="button" data-toggle="modal"
-						data-target="#myModalAdd">Add subject</button>
+						data-target="#myModalAdd">Add mark</button>
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Add subject</h3>
+									<h3 class="modal-title">Add mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addSubject">
+									<form id="addMark">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" placeholder="Input name subject"
+											<label for="inputMark">Name Marks</label> <input
+												id="inputMark" placeholder="Input name mark"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="addSubject" formaction="######"
+									<button class="btn btn-default" type="submit" value="Submit"
+										data-dismiss="modal" form="addMark" formaction="/university/marks"
 										formmethod="post">Add</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
@@ -52,18 +49,18 @@
 						</div>
 					</div>
 					<button data-toggle="modal" data-target="#myModalUpDate"
-						type="button" class="btn btn-primary">Update subject</button>
+						type="button" class="btn btn-primary">Update mark</button>
 					<div id="myModalUpDate" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Update subject</h3>
+									<h3 class="modal-title">Update mark</h3>
 								</div>
 								<div class="modal-body">
 									<form id="Update">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" placeholder="Input name subject"
+											<label for="inputSubject">Name mark</label> <input
+												id="inputMark" placeholder="Input name mark"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 										</div>
 										<div class="form-group">
@@ -82,16 +79,19 @@
 							</div>
 						</div>
 					</div>
+
+
+
 					<button data-toggle="modal" data-target="#myModalDelete"
-						type="button" class="btn btn-danger">Delete subject</button>
+						type="button" class="btn btn-danger">Delete mark</button>
 					<div id="myModalDelete" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Delete subject</h3>
+									<h3 class="modal-title">Delete mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="deleteSubject">
+									<form id="deleteMark">
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
 												placeholder="Input Id" class="form-control" type="number">
@@ -100,7 +100,7 @@
 								</div>
 								<div class="modal-footer">
 									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="deleteSubject" formaction="######"
+										data-dismiss="modal" form="deleteMark" formaction="######"
 										formmethod="post">Delete</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
@@ -108,31 +108,53 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
+
 				<hr>
 				<table class="table table-bordered table-hover table-striped">
 					<caption>
-						<i class="glyphicon glyphicon-book"></i> subjects
+						<i class="glyphicon glyphicon-piggy-bank"></i> marks
 						<hr>
 					</caption>
 
 					<thead>
 						<tr>
 							<th class="text-center">id</th>
-							<th class="text-center">subject name</th>
+							<th class="text-center">marks</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="subject" items="${subjects}">
-							<tr>
-								<td>${subject.id}</td>
-								<td>${subject.name}</td>
-							</tr>
-						</c:forEach>
+						<tr>
+							<td class="text-center">1</td>
+							<td class="text-center">1</td>
+						</tr>
+						<tr>
+							<td class="text-center">2</td>
+							<td class="text-center">2</td>
+						</tr>
+						<tr>
+							<td class="text-center">2</td>
+							<td class="text-center">3</td>
+						</tr>
+						<tr>
+							<td class="text-center">3</td>
+							<td class="text-center">4</td>
+						</tr>
+						<tr>
+							<td class="text-center">4</td>
+							<td class="text-center">5</td>
+						</tr>
+						<tr>
+							<td class="text-center">5</td>
+							<td class="text-center">10</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="col-xs-3 col-xs-offset-1  col-md-3 hidden-xs hidden-sm">
+
+
+			<div class="col-xs-3 col-xs-offset-1 col-md-3 hidden-xs hidden-sm">
 				<div class="search">
 					<h3>
 						<img alt="" src="logMarker.png"> Search
@@ -165,22 +187,26 @@
 							</div>
 						</fieldset>
 					</form>
+
 				</div>
 				<div class="navigator">
 					<h3>
 						<img alt="" src="logMarker.png"> Navigation
 					</h3>
+
 					<a class="link" href="students.html"><i
 						class="glyphicon glyphicon-user"></i> students</a> <a
-						href="evaluation_log.html" class="visited"><i
-						class="glyphicon glyphicon-book"></i> subjects</a> <a
-						href="scores.html"><i class="glyphicon glyphicon-piggy-bank"></i>
-						marks</a> <a href=""><i class="glyphicon glyphicon-education"></i>
-						progress</a>
+						href="evaluation_log.html"><i class="glyphicon glyphicon-book"></i>
+						subjects</a> <a href="scores.html" class="visited"><i
+						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a href=""><i
+						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
-
 			</div>
 		</div>
+
+
+
+
 
 
 	</div>
