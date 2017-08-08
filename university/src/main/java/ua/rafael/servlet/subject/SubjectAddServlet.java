@@ -1,5 +1,7 @@
 package ua.rafael.servlet.subject;
 
+import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -19,10 +21,10 @@ public class SubjectAddServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		SqlSessionFactory sessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
-		SubjectSession subjectSession = new SubjectSession(sessionFactory);
-		SubjectService subjectService = new SubjectService(subjectSession);
-		String subjectName = req.getParameter("addSubject");
+		final SqlSessionFactory sessionFactory = getSqlSessionFactory();
+		final SubjectSession subjectSession = new SubjectSession(sessionFactory);
+		final SubjectService subjectService = new SubjectService(subjectSession);
+		final String subjectName = req.getParameter("addSubjectName");
 		subjectService.insert(new Subject(subjectName));
 		resp.sendRedirect("/university/subjects");
 	}

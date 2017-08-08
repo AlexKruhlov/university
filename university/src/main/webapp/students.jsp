@@ -5,12 +5,10 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Register|Subjects</title>
+<title>Register|Students</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="favicon.png" type="image/png">
 <link href="css/bootstrap.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="css/bootstrap-theme.min.css">
 <link href="style.css" rel="stylesheet">
 <script src="evaluation_log.js"></script>
 </head>
@@ -26,20 +24,26 @@
 
 				<div class="buttons">
 					<button class="btn btn-primary" type="button" data-toggle="modal"
-						data-target="#myModalAdd">Add subject</button>
+						data-target="#myModalAdd">Add student</button>
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Add subject</h3>
+									<h3 class="modal-title">Add student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addSubject" name="addSubject"
-										action="/university/subjects/add" method="post">
+									<form id="addStudent" action="/university/students/add"
+										method="post">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" name="addSubject"
-												placeholder="Input name subject" class="form-control"
+											<label for="inputFirstName">first name</label> <input
+												id="inputSubject" name="addStudentFirstName"
+												placeholder="Input first name" class="form-control"
+												type="text" pattern="^[a-zA-Z-]+$">
+										</div>
+										<div class="form-group">
+											<label for="inputFirstName">last name</label> <input
+												id="inputFirstName" name="addStudentLastName"
+												placeholder="Input last name" class="form-control"
 												type="text" pattern="^[a-zA-Z-]+$"> <input
 												class="inputButton btn btn-default" type="submit"
 												value="Add">
@@ -55,25 +59,29 @@
 					</div>
 
 					<button data-toggle="modal" data-target="#myModalUpDate"
-						type="button" class="btn btn-primary">Update subject</button>
+						type="button" class="btn btn-primary">Update student</button>
 					<div id="myModalUpDate" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Update subject</h3>
+									<h3 class="modal-title">Update student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="Update" action="/university/subjects/update"
-										method="post">
+									<form id="Update" action="###" method="post">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" name="updateSubjectName"
-												placeholder="Input name subject" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$">
+											<label for="inputId">ID</label> <input id="inputId"
+												placeholder="Input Id" class="form-control" type="number">
 										</div>
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId" name="updateSubjectId"
-												placeholder="Input Id" class="form-control" type="number">
+											<label for="inputFirstName">first name</label> <input
+												id="inputSubject" placeholder="Input first name"
+												class="form-control" type="text" pattern="^[a-zA-Z-\s]+$">
+										</div>
+
+										<div class="form-group">
+											<label for="inputFirstName">last name</label> <input
+												id="inputFirstName" placeholder="Input last name"
+												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 											<input class="inputButton btn btn-default" type="submit"
 												value="Update">
 										</div>
@@ -88,56 +96,62 @@
 					</div>
 
 					<button data-toggle="modal" data-target="#myModalDelete"
-						type="button" class="btn btn-danger">Delete subject</button>
+						type="button" class="btn btn-danger">Delete student</button>
 					<div id="myModalDelete" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h3 class="modal-title">Delete subject</h3>
+									<h3 class="modal-title">Delete student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="deleteSubject" action="/university/subjects/delete"
-										method="post">
+									<form id="deleteSubject">
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
-												name="deleteSubject" placeholder="Input Id"
-												class="form-control" type="number"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Delete">
+												placeholder="Input Id" class="form-control" type="number">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
+									<button class="btn btn-default" type="button"
+										data-dismiss="modal" form="deleteSubject" formaction="######"
+										formmethod="post">Delete</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
 					</div>
+
 				</div>
+
 				<hr>
-				<table class="table table-bordered table-hover table-striped">
+				<table
+					class="table table-condensed table-bordered table-hover table-striped">
 					<caption>
-						<i class="glyphicon glyphicon-book"></i> subjects
+						<i class="glyphicon glyphicon-user"></i> students
 						<hr>
 					</caption>
+
 					<thead>
 						<tr>
 							<th class="text-center">id</th>
-							<th class="text-center">subject name</th>
+							<th class="text-center">first name</th>
+							<th class="text-center">last name</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="subject" items="${subjects}">
+						<c:forEach var="student" items="${students}">
 							<tr>
-								<td class="text-center">${subject.id}</td>
-								<td class="text-center">${subject.name}</td>
+								<td class="text-center">${student.id}</td>
+								<td class="text-center">${student.firstName}</td>
+								<td class="text-center">${student.lastName}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
-			<div class="col-xs-3 col-xs-offset-1  col-md-3 hidden-xs hidden-sm">
+
+			<div class="col-xs-3 col-xs-offset-1 col-md-3 hidden-xs hidden-sm">
 				<div class="search">
 					<h3>
 						<img alt="" src="logMarker.png"> Search
@@ -176,15 +190,13 @@
 					<h3>
 						<img alt="" src="logMarker.png"> Navigation
 					</h3>
-					<a class="link" href="students.html"><i
+					<a class="link visited" href="students.html"><i
 						class="glyphicon glyphicon-user"></i> students</a> <a
-						href="evaluation_log.html" class="visited"><i
-						class="glyphicon glyphicon-book"></i> subjects</a> <a
-						href="scores.html"><i class="glyphicon glyphicon-piggy-bank"></i>
-						marks</a> <a href=""><i class="glyphicon glyphicon-education"></i>
-						progress</a>
+						href="evaluation_log.html"><i class="glyphicon glyphicon-book"></i>
+						subjects</a> <a href="scores.html"><i
+						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a href=""><i
+						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
-
 			</div>
 		</div>
 	</div>
