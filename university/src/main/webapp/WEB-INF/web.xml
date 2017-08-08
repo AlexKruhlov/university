@@ -11,7 +11,6 @@
 		<servlet-name>subject</servlet-name>
 		<servlet-class>ua.rafael.servlet.subject.SubjectServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>subject</servlet-name>
 		<url-pattern>/subjects</url-pattern>
@@ -25,7 +24,7 @@
 		<servlet-name>subject-add</servlet-name>
 		<url-pattern>/subjects/add</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>subject-delete</servlet-name>
 		<servlet-class>ua.rafael.servlet.subject.SubjectDeleteServlet</servlet-class>
@@ -43,4 +42,43 @@
 		<servlet-name>subject-update</servlet-name>
 		<url-pattern>/subjects/update</url-pattern>
 	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>student</servlet-name>
+		<servlet-class>ua.rafael.servlet.student.StudentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>student</servlet-name>
+		<url-pattern>/students</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>student-add</servlet-name>
+		<servlet-class>ua.rafael.servlet.student.StudentAddServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>student-add</servlet-name>
+		<url-pattern>/students/add</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>student-delete</servlet-name>
+		<servlet-class>ua.rafael.servlet.student.StudentDeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>student-delete</servlet-name>
+		<url-pattern>/students/delete</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>student-update</servlet-name>
+		<servlet-class>ua.rafael.servlet.student.StudentUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>student-update</servlet-name>
+		<url-pattern>/students/update</url-pattern>
+	</servlet-mapping>
+
+
 </web-app>

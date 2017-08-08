@@ -27,7 +27,7 @@ public class SubjectServlet extends HttpServlet {
 		SubjectService subjectService = new SubjectService(subjectSession);
 		List<Subject> subjects = subjectService.findAll();
 		req.setAttribute("subjects", subjects);
-		RequestDispatcher view = req.getRequestDispatcher("index.jsp");
+		RequestDispatcher view = req.getRequestDispatcher("subjects.jsp");
 		view.forward(req, resp);
 	}	
 }
