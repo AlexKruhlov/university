@@ -1,6 +1,6 @@
-package validator;
+package validation;
 
-import static validator.ValidatorUtil.checkForSymbols;
+import static validation.ValidatorUtil.checkForSymbols;
 
 import ua.rafael.model.Student;
 

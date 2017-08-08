@@ -1,10 +1,12 @@
-package validator;
+package validation;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import ua.rafael.model.Subject;
+import validation.SubjectValidator;
+import validation.Validator;
 
 public class SubjectValidatorTest {
 
@@ -20,9 +22,9 @@ public class SubjectValidatorTest {
 	}
 	
 	@Test
-	public final void testValidateSubjectNameHasUnderscore() {
+	public final void testValidateSubjectNameHasWhitespace() {
 		final Validator<Subject> validator = new SubjectValidator();
-		final Subject subject = new Subject("Phisical_training");
+		final Subject subject = new Subject("Phisical training");
 		try {
 			validator.validate(subject);
 		} catch (Exception e) {
@@ -34,13 +36,6 @@ public class SubjectValidatorTest {
 	public final void testValidateWithNumberInSubjectName() {
 		final Validator<Subject> validator = new SubjectValidator();
 		final Subject subject = new Subject("Biology210");
-		validator.validate(subject);
-	}
-
-	@Test(expected = RuntimeException.class)
-	public final void testValidateWithSpaceInSubjectName() {
-		final Validator<Subject> validator = new SubjectValidator();
-		final Subject subject = new Subject("Phisical training");
 		validator.validate(subject);
 	}
 }

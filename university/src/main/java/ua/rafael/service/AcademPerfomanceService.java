@@ -8,7 +8,7 @@ import ua.rafael.model.AcademPerfomance;
 import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
-import validator.AcademPerfomanceValidator;
+import validation.AcademPerfomanceValidator;
 
 public class AcademPerfomanceService {
 	private AcademPerfomanceSession academPerfomanceSession;

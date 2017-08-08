@@ -1,4 +1,4 @@
-package validator;
+package validation;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import ua.rafael.model.Student;
 import ua.rafael.util.JsonConverter;
+import validation.StudentValidator;
+import validation.Validator;
 
 public class StudentValidatorTest {
 

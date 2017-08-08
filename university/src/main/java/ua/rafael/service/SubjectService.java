@@ -4,7 +4,7 @@ import java.util.List;
 
 import ua.rafael.dao.SubjectSession;
 import ua.rafael.model.Subject;
-import validator.SubjectValidator;
+import validation.SubjectValidator;
 
 public class SubjectService {
 	SubjectSession subjectSession;
@@ -40,6 +40,10 @@ public class SubjectService {
 
 	public Subject findById(final long id) {
 		return subjectSession.selectById(id);
+	}
+	
+	public Subject findByName(final String name) {
+		return subjectSession.selectByName(name);
 	}
 
 	public void dropTable() {

@@ -4,7 +4,7 @@ import java.util.List;
 
 import ua.rafael.dao.MarkSession;
 import ua.rafael.model.Mark;
-import validator.MarkValidator;
+import validation.MarkValidator;
 
 public class MarkService {
 	MarkSession markSession;
