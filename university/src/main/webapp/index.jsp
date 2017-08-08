@@ -33,18 +33,15 @@
 									<h3 class="modal-title">Add subject</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addSubject">
-										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" placeholder="Input name subject"
-												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
-										</div>
+									<form id="addSubject" action="/university/subjects/add"
+										method="post">
+										<input id="inputSubject" name="inputSubject"
+											placeholder="Input name subject" class="form-control"
+											type="text" pattern="^[a-zA-Z-]+$">
+										<input type="submit" value="Add">
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="addSubject" formaction="######"
-										formmethod="post">Add</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -125,8 +122,8 @@
 					<tbody>
 						<c:forEach var="subject" items="${subjects}">
 							<tr>
-								<td>${subject.id}</td>
-								<td>${subject.name}</td>
+								<td class="text-center">${subject.id}</td>
+								<td class="text-center">${subject.name}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

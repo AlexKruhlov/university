@@ -1,16 +1,11 @@
 package ua.rafael.servlet.subject;
 
 import java.io.IOException;
-import java.io.Writer;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Response;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -20,9 +15,10 @@ import ua.rafael.model.Subject;
 import ua.rafael.service.SubjectService;
 
 public class SubjectAddServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SqlSessionFactory sessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
 		SubjectSession subjectSession = new SubjectSession(sessionFactory);
 		SubjectService subjectService = new SubjectService(subjectSession);
