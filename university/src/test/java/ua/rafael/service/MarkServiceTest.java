@@ -64,6 +64,15 @@ public class MarkServiceTest {
 		final Mark actual = markService.findById(2);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testFindByValue() {
+		final Mark expected = markWithNotNullId2;
+		markService.insert(markWithNullId1);
+		markService.insert(markWithNullId2);
+		final Mark actual = markService.findByValue(markWithNotNullId2.getValue());
+		assertEquals(expected, actual);
+	}
 
 	@Test
 	public void testDelete() {

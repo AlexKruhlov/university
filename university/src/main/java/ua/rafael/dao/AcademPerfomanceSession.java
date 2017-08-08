@@ -70,7 +70,7 @@ public class AcademPerfomanceSession {
 		}
 		return resultList;
 	}
-	
+
 	public AcademPerfomance selectById(final long id) {
 		AcademPerfomance result = null;
 		SqlSession session = sqlSessionFactory.openSession();
@@ -112,6 +112,23 @@ public class AcademPerfomanceSession {
 			session.close();
 		}
 		return resultList;
+	}
+
+	public AcademPerfomance selectByStudentAndSubjectAndDate(final Student student,
+			final Subject subject, final LocalDate date) {
+		AcademPerfomance resultAcademPerfomance = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		final Map<String, Object> parameters = new HashMap<>();
+		parameters.put("inStudent", student);
+		parameters.put("inDate", date);
+		parameters.put("inSubject", subject);
+		try {
+			resultAcademPerfomance = session.selectOne(
+					"AcademPerfomance.selectByStudentAndSubjectAndDate", parameters);
+		} finally {
+			session.close();
+		}
+		return resultAcademPerfomance;
 	}
 
 	public double countAverageMarkByStudentAndSubject(final Student student,

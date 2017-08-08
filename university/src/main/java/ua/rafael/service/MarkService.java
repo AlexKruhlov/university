@@ -41,6 +41,10 @@ public class MarkService {
 	public Mark findById(final long id) {
 		return markSession.selectById(id);
 	}
+	
+	public Mark findByValue(final long value) {
+		return markSession.selectByValue(value);
+	}
 
 	public void dropTable() {
 		markSession.dropTable();

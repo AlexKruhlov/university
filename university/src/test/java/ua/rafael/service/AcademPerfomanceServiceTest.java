@@ -28,8 +28,8 @@ import ua.rafael.service.SubjectService;
 
 public class AcademPerfomanceServiceTest {
 	private SqlSessionFactory sessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
-	private AcademPerfomanceService academPerfomanceService
-			= new AcademPerfomanceService(new AcademPerfomanceSession(sessionFactory));
+	private AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(
+			new AcademPerfomanceSession(sessionFactory));
 	private List<AcademPerfomance> expected;
 	private List<AcademPerfomance> actual;
 	private StudentService studentService = new StudentService(new StudentSession(sessionFactory));
@@ -62,117 +62,125 @@ public class AcademPerfomanceServiceTest {
 				"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
 		academPerfomanceWithNotNullId1 = createAcadPerfomanceWithNotNullId(1, 1, "Dave", "Joro", 1,
 				"Mathematics", LocalDate.of(2017, 07, 29), 1, 1);
-		academPerfomanceWithNotNullId2
-				= createAcadPerfomanceWithNotNullId(2, 2, "Mike", "Franch", 2,
-						"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
-		academPerfomanceService.insert(academPerfomanceWithNullId1);
-		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceWithNotNullId2 = createAcadPerfomanceWithNotNullId(2, 2, "Mike", "Franch",
+				2,
+				"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
 	}
 
 	@Test
-	public void test() {
-		
+	public void testInsert() {
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		actual = academPerfomanceService.findAll();
+		expected.add(academPerfomanceWithNotNullId1);
+		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
 	}
-//	@Test
-//	public void testInsert() {
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		actual = academPerfomanceService.findAll();
-//		expected.add(academPerfomanceWithNotNullId1);
-//		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
-//	}
-//
-//	@Test
-//	public void testFindAll() {
-//		expected.add(academPerfomanceWithNotNullId1);
-//		expected.add(academPerfomanceWithNotNullId2);
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId2);
-//		actual = academPerfomanceService.findAll();
-//		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
-//	}
-//	
-//	@Test
-//	public void testFindById() {
-//		final AcademPerfomance expected = academPerfomanceWithNotNullId2;
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId2);
-//		final AcademPerfomance actual = academPerfomanceService.findById(2);
-//		assertEquals(expected, actual);
-//	}
-//
-//	@Test
-//	public final void testFindByStudentAndSubject() {
-//		expected.add(academPerfomanceWithNotNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId2);
-//		final Student student = new Student("Dave", "Joro");
-//		student.setId(1);
-//		final Subject subject = new Subject("Mathematics");
-//		subject.setId(1);
-//		actual = academPerfomanceService.findBy(student, subject);
-//		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
-//	}
-//
-//	@Test
-//	public final void testFindByStudentAndDate() {
-//		expected.add(academPerfomanceWithNotNullId2);
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId2);
-//		final Student student = new Student("Mike", "Franch");
-//		student.setId(2);
-//		actual = academPerfomanceService.findBy(student, of(2017, 7, 30));
-//		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
-//	}
-//
-//	@Test
-//	public final void testCountAverageMarkByStudentAndSubject() {
-//		final double expected = 1.5;
-//		final AcademPerfomance academPerfomanceWithNullId3
-//				= createAcadPerfomanceWithNullId(1, "Dave", "Joro", 1,
-//						"Mathematics", LocalDate.of(2017, 07, 30), 2, 2);
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId2);
-//		academPerfomanceService.insert(academPerfomanceWithNullId3);
-//		final Student student = new Student("Dave", "Joro");
-//		student.setId(1);
-//		final Subject subject = new Subject("Mathematics");
-//		subject.setId(1);
-//		final double actual = academPerfomanceService.countAverageBy(student, subject);
-//		assertEquals("Nubers should have equal values",expected, actual, 0.01);
-//	}
-//
-//	@Test
-//	public void testDelete() {
-//		expected.add(academPerfomanceWithNotNullId1);
-//		expected.add(academPerfomanceWithNotNullId2);
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.insert(academPerfomanceWithNullId2);
-//		actual = academPerfomanceService.findAll();
-//		assertEquals(expected, actual);
-//		expected.remove(0);
-//		academPerfomanceService.delete(1);
-//		actual = academPerfomanceService.findAll();
-//		assertEquals("Lists of academic perfomance items must be equls",expected, actual);
-//	}
-//
-//	@Test
-//	public final void testUpdate() {	
-//		academPerfomanceWithNotNullId2.setId(1);
-//		expected.add(academPerfomanceWithNotNullId2);
-//		academPerfomanceService.insert(academPerfomanceWithNullId1);
-//		academPerfomanceService.update(1, academPerfomanceWithNullId2);
-//		actual = academPerfomanceService.findAll();
-//		assertEquals(expected, actual);
-//	}
-//
-//	@After
-//	public final void finish() {
-//		academPerfomanceService.dropTable();
-//		studentService.dropTable();
-//		subjectS ervice.dropTable();
-//		markService.dropTable();
-//	}
-//
+
+	@Test
+	public void testFindAll() {
+		expected.add(academPerfomanceWithNotNullId1);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		actual = academPerfomanceService.findAll();
+		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
+	}
+
+	@Test
+	public void testFindById() {
+		final AcademPerfomance expected = academPerfomanceWithNotNullId2;
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		final AcademPerfomance actual = academPerfomanceService.findById(2);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public final void testFindByStudentAndSubject() {
+		expected.add(academPerfomanceWithNotNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		final Student student = new Student("Dave", "Joro");
+		student.setId(1);
+		final Subject subject = new Subject("Mathematics");
+		subject.setId(1);
+		actual = academPerfomanceService.findBy(student, subject);
+		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
+	}
+
+	@Test
+	public final void testFindByStudentAndDate() {
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		final Student student = new Student("Mike", "Franch");
+		student.setId(2);
+		actual = academPerfomanceService.findBy(student, of(2017, 7, 30));
+		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
+	}
+
+	@Test
+	public final void testFindByStudentAndSubjectAndDate() {
+		final AcademPerfomance expected = academPerfomanceWithNotNullId2;
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		final Student student = new Student("Mike", "Franch");
+		student.setId(2);
+		final Subject subject = new Subject("Chemistry");
+		subject.setId(2);
+		final LocalDate date = LocalDate.of(2017, 7, 30);
+		final AcademPerfomance actual = academPerfomanceService.findBy(student, subject, date);
+		assertEquals("Academic perfomance items must be equal", expected, actual);
+	}
+
+	@Test
+	public final void testCountAverageMarkByStudentAndSubject() {
+		final double expected = 1.5;
+		final AcademPerfomance academPerfomanceWithNullId3 = createAcadPerfomanceWithNullId(1,
+				"Dave", "Joro", 1,
+				"Mathematics", LocalDate.of(2017, 07, 30), 2, 2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId3);
+		final Student student = new Student("Dave", "Joro");
+		student.setId(1);
+		final Subject subject = new Subject("Mathematics");
+		subject.setId(1);
+		final double actual = academPerfomanceService.countAverageBy(student, subject);
+		assertEquals("Nubers should have equal values", expected, actual, 0.01);
+	}
+
+	@Test
+	public void testDelete() {
+		expected.add(academPerfomanceWithNotNullId1);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.insert(academPerfomanceWithNullId2);
+		actual = academPerfomanceService.findAll();
+		assertEquals(expected, actual);
+		expected.remove(0);
+		academPerfomanceService.delete(1);
+		actual = academPerfomanceService.findAll();
+		assertEquals("Lists of academic perfomance items must be equls", expected, actual);
+	}
+
+	@Test
+	public final void testUpdate() {
+		academPerfomanceWithNotNullId2.setId(1);
+		expected.add(academPerfomanceWithNotNullId2);
+		academPerfomanceService.insert(academPerfomanceWithNullId1);
+		academPerfomanceService.update(1, academPerfomanceWithNullId2);
+		actual = academPerfomanceService.findAll();
+		assertEquals(expected, actual);
+	}
+
+	@After
+	public final void finish() {
+		academPerfomanceService.dropTable();
+		studentService.dropTable();
+		subjectService.dropTable();
+		markService.dropTable();
+	}
+
 	private AcademPerfomance createAcadPerfomanceWithNullId(final long studentId,
 			final String firstName, final String lastName, final long subjectId,
 			final String subjectName, final LocalDate date, final long markId,
@@ -195,5 +203,4 @@ public class AcademPerfomanceServiceTest {
 		academPerfomance.setId(id);
 		return academPerfomance;
 	}
-
 }

@@ -5,7 +5,6 @@ import java.util.List;
 
 import ua.rafael.dao.AcademPerfomanceSession;
 import ua.rafael.model.AcademPerfomance;
-import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
 import validation.AcademPerfomanceValidator;
@@ -41,7 +40,7 @@ public class AcademPerfomanceService {
 	public List<AcademPerfomance> findAll() {
 		return academPerfomanceSession.selectAll();
 	}
-	
+
 	public AcademPerfomance findById(final long id) {
 		return academPerfomanceSession.selectById(id);
 	}
@@ -54,6 +53,11 @@ public class AcademPerfomanceService {
 	public List<AcademPerfomance> findBy(final Student student,
 			final LocalDate date) {
 		return academPerfomanceSession.selectByStudentAndDate(student, date);
+	}
+
+	public AcademPerfomance findBy(final Student student, final Subject subject,
+			final LocalDate date) {
+		return academPerfomanceSession.selectByStudentAndSubjectAndDate(student, subject, date);
 	}
 
 	public double countAverageBy(final Student student,
