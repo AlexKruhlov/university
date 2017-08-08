@@ -35,7 +35,6 @@
 			</dataSource>
 		</environment>
 	</environments>
-
 	<mappers>
 		<mapper resource="ua/rafael/data/Subject.xml" />
 		<mapper resource="ua/rafael/data/Mark.xml" />
