@@ -1,5 +1,6 @@
 <%@ page import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,12 +34,16 @@
 									<h3 class="modal-title">Add subject</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addSubject" action="/university/subjects/add"
-										method="post">
-										<input id="inputSubject" name="inputSubject"
-											placeholder="Input name subject" class="form-control"
-											type="text" pattern="^[a-zA-Z-]+$">
-										<input type="submit" value="Add">
+									<form id="addSubject" name="addSubject"
+										action="/university/subjects/add" method="post">
+										<div class="form-group">
+											<label for="inputSubject">Name Subject</label> <input
+												id="inputSubject" name="addSubject"
+												placeholder="Input name subject" class="form-control"
+												type="text" pattern="^[a-zA-Z-]+$"> <input
+												class="inputButton btn btn-default" type="submit"
+												value="Add">
+										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
@@ -48,6 +53,7 @@
 							</div>
 						</div>
 					</div>
+
 					<button data-toggle="modal" data-target="#myModalUpDate"
 						type="button" class="btn btn-primary">Update subject</button>
 					<div id="myModalUpDate" class="modal fade">
@@ -57,7 +63,8 @@
 									<h3 class="modal-title">Update subject</h3>
 								</div>
 								<div class="modal-body">
-									<form id="Update">
+									<form id="Update" action="/university/subjects/add"
+										method="post">
 										<div class="form-group">
 											<label for="inputSubject">Name Subject</label> <input
 												id="inputSubject" placeholder="Input name subject"
@@ -66,19 +73,19 @@
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
 												placeholder="Input Id" class="form-control" type="number">
+											<input class="inputButton btn btn-default" type="submit"
+												value="Update">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="Update" formaction="######"
-										formmethod="post">Update</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<button data-toggle="modal" data-target="#myModalDelete"
 						type="button" class="btn btn-danger">Delete subject</button>
 					<div id="myModalDelete" class="modal fade">
@@ -88,17 +95,18 @@
 									<h3 class="modal-title">Delete subject</h3>
 								</div>
 								<div class="modal-body">
-									<form id="deleteSubject">
+									<form id="deleteSubject" action="/university/subjects/delete"
+										method="post">
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
-												placeholder="Input Id" class="form-control" type="number">
+												name="deleteSubject" placeholder="Input Id"
+												class="form-control" type="number"> <input
+												class="inputButton btn btn-default" type="submit"
+												value="Delete">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="deleteSubject" formaction="######"
-										formmethod="post">Delete</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -112,7 +120,6 @@
 						<i class="glyphicon glyphicon-book"></i> subjects
 						<hr>
 					</caption>
-
 					<thead>
 						<tr>
 							<th class="text-center">id</th>
@@ -134,7 +141,7 @@
 					<h3>
 						<img alt="" src="logMarker.png"> Search
 					</h3>
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="####" method="post">
 						<fieldset>
 							<p>
 								<label for="selectRegister" class="control-label">select
@@ -157,8 +164,9 @@
 									pattern="^[a-zA-Z-]+$">
 							</p>
 
-							<div class="col-sm-10 col-sm-offset-2">
-								<button type="submit" class="btn btn-default">search</button>
+							<div class="col-sm-12 col-sm-offset-4">
+								<input class="inputButton btn btn-default" type="submit"
+									value="Search">
 							</div>
 						</fieldset>
 					</form>
@@ -178,8 +186,6 @@
 
 			</div>
 		</div>
-
-
 	</div>
 	<script src="jquery-3.2.1.js"></script>
 	<script src="js/bootstrap.js"></script>

@@ -4,6 +4,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: auto;
+	height: 100%;
 }
 
 .head img {
@@ -16,12 +17,12 @@ body {
 	z-index: 1;
 }
 
-.size {
+.row-fluid {
 	min-height: 100vh;
 }
 
 .head {
-	background-color: rgba(104, 130, 196, 0.7);
+	background-color: rgba(104, 130, 196, 0.97);
 	background-image: url("architecture.png");
 	background-repeat: repeat-x;
 	background-size: contain;
@@ -31,18 +32,14 @@ body {
 	z-index: 99;
 }
 
-.row{
-	margin-top: 100px;
-	z-index: 1;
-}
-
 [class*="col-xs-7"] {
 	background-color: rgba(176, 196, 222, 0.3);
 	text-align: center;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	font-size: 2rem;
-	min-height: 100%;
+	min-height: 100vh;
+	box-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
 }
 
 .
@@ -99,13 +96,20 @@ input:valid {
 	width: 70px;
 }
 
-.buttons{	margin-bottom: 25px;
-	margin-top: 120px;}
+.buttons {
+	margin-bottom: 25px;
+	margin-top: 120px;
+}
 
 .btn-primary, .btn-danger {
-
 	height: 45px;
 	width: 130px;
+}
+
+.inputButton {
+	margin-top: 15px;
+	color: blue;
+	font-weight: bold;
 }
 
 caption {
@@ -119,6 +123,10 @@ caption {
 
 th, td::first-letter {
 	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+}
+
+td {
 	font-family: "Times New Roman", Times, serif;
 }
 
@@ -151,4 +159,227 @@ a:HOVER {
 
 [class*="col-xs-3"] label {
 	text-transform: uppercase;
+}
+
+.head img {
+	image-rendering: pixelated;
+	height: 130px;
+	width: 130px;
+	position: relative;
+	right: -20px;
+	top: 6px;
+	z-index: 1;
+}
+
+.row-fluid {
+	min-height: 100vh;
+}
+
+.head {
+	background-color: rgba(104, 130, 196, 0.97);
+	background-image: url("architecture.png");
+	background-repeat: repeat-x;
+	background-size: contain;
+	height: 100px;
+	position: fixed;
+	width: 100%;
+	z-index: 99;
+}
+
+[class*="col-xs-7"] {
+	background-color: rgba(176, 196, 222, 0.3);
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 2rem;
+	min-height: 100vh;
+	box-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
+}
+
+[class*="col-xs-3"] {
+	position: relative;
+}
+
+[class*="col-xs-3"] .search {
+	background-color: rgba(176, 196, 222, 0.3);
+	border: 4px solid;
+	border-color: rgba(176, 196, 222, 0.3);
+	border-radius: 20px;
+	position: fixed !important;
+	top: 318px;
+	right: 50px;
+	width: 26%;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	padding-bottom: 5px;
+	font-size: 11px;
+}
+
+[class*="col-xs-3"] .navigator {
+	background-color: rgba(176, 196, 222, 0.3);
+	border: 4px solid;
+	border-color: rgba(176, 196, 222, 0.3);
+	border-radius: 20px;
+	position: fixed !important;
+	top: 112px;
+	right: 50px;
+	width: 26%;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+	font-size: 2rem;
+	padding-bottom: 5px;
+}
+
+[class*="btn"] {
+	margin-right: 16px;
+}
+
+.modal-content {
+	background-color: rgba(176, 196, 222, 0.9);
+}
+
+input:invalid {
+	background: #fdd;
+}
+
+input:valid {
+	background: #dfd;
+}
+
+.btn-default {
+	height: 35px;
+	width: 70px;
+}
+
+.buttons {
+	margin-bottom: 25px;
+	margin-top: 120px;
+}
+
+.btn-primary, .btn-danger {
+	height: 45px;
+	width: 130px;
+}
+
+.inputButton {
+	margin-top: 15px;
+	color: blue;
+	font-weight: bold;
+}
+
+caption {
+	text-align: center;
+	text-transform: uppercase;
+	color: rgb(0, 0, 205);
+	text-shadow: 1px 1px 2px black;
+	font-size: 1.4em;
+	margin-bottom: 10px;
+}
+
+th, td::first-letter {
+	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+}
+
+td {
+	font-family: "Times New Roman", Times, serif;
+}
+
+h3 {
+	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+	text-align: center;
+	color: rgb(37, 59, 115);
+	text-shadow: 1px 1px 2px blue;
+}
+
+a {
+	display: block;
+	text-transform: uppercase;
+	font-family: "Times New Roman", Times, serif;
+	padding-left: 20px;
+}
+
+a:HOVER {
+	text-decoration: none;
+}
+
+.link {
+	margin-top: 16px;
+}
+
+.visited {
+	color: blue;
+}
+
+[class*="col-xs-3"] label {
+	text-transform: uppercase;
+}
+
+@media ( max-width : 1400px)and (min-width: 1300px){
+	[class*="col-xs-3"] .search {
+	top: 309px;
+}
+
+[class*="col-xs-3"] .navigator {
+	top: 107px;
+}
+	
+}
+
+@media ( max-width : 397px) and (min-width: 50px) {
+	[class*="col-xs-7"] {
+		background-color: rgba(176, 196, 222, 0);
+		box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+	}
+
+}
+
+@media ( max-width : 1921px) and (min-width: 1400px) {
+	[class*="col-xs-3"] .search {
+		top: 510px;
+		right: 55px;
+		width: 26%;
+		padding: 18px;
+		font-size: 14px;
+	}
+	[class*="col-xs-3"] .navigator {
+		top: 180px;
+		right: 55px;
+		width: 26%;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+		font-size: 2.5rem;
+		padding-top: 18px;
+		padding-bottom: 35px;
+	}
+	[class*="col-xs-3"] h3 {
+		font-size: 2.5rem;
+		padding-bottom: 15px;
+	}
+	.buttons {
+		margin-bottom: 45px;
+		margin-top: 125px;
+	}
+	[class*="col-xs-3"] .search {
+		top: 510px;
+		right: 55px;
+		width: 26%;
+		padding: 18px;
+		font-size: 14px;
+	}
+	[class*="col-xs-3"] .navigator {
+		top: 180px;
+		right: 55px;
+		width: 26%;
+		box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+		font-size: 2.5rem;
+		padding-top: 18px;
+		padding-bottom: 35px;
+	}
+	[class*="col-xs-3"] h3 {
+		font-size: 2.5rem;
+		padding-bottom: 15px;
+	}
+	.buttons {
+		margin-bottom: 45px;
+		margin-top: 125px;
+	}
 }

@@ -30,7 +30,7 @@
 									<h3 class="modal-title">Add student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addStudent">
+									<form id="addStudent" action="###"  method="post">
 										<div class="form-group">
 											<label for="inputFirstName">first name</label> <input
 												id="inputSubject" placeholder="Input first name"
@@ -41,13 +41,11 @@
 											<label for="inputFirstName">last name</label> <input
 												id="inputFirstName" placeholder="Input last name"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+												<input class="inputButton btn btn-default" type="submit" value="Add">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="addStudent" formaction="######"
-										formmethod="post">Add</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -65,7 +63,7 @@
 									<h3 class="modal-title">Update student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="Update">
+									<form id="Update" action="###"  method="post">
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
 												placeholder="Input Id" class="form-control" type="number">
@@ -73,20 +71,18 @@
 										<div class="form-group">
 											<label for="inputFirstName">first name</label> <input
 												id="inputSubject" placeholder="Input first name"
-												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+												class="form-control" type="text" pattern="^[a-zA-Z-\s]+$">
 										</div>
 
 										<div class="form-group">
 											<label for="inputFirstName">last name</label> <input
 												id="inputFirstName" placeholder="Input last name"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+												<input class="inputButton btn btn-default" type="submit" value="Update">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="Update" formaction="######"
-										formmethod="post">Update</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -219,7 +215,7 @@
 					<h3>
 						<img alt="" src="logMarker.png"> Search
 					</h3>
-					<form class="form-horizontal">
+					<form class="form-horizontal" action="####" method="post">
 						<fieldset>
 							<p>
 								<label for="selectRegister" class="control-label">select
@@ -242,8 +238,8 @@
 									pattern="^[a-zA-Z-]+$">
 							</p>
 
-							<div class="col-sm-10 col-sm-offset-2">
-								<button type="submit" class="btn btn-default">search</button>
+							<div class="col-sm-12 col-sm-offset-4">
+								<input class="inputButton btn btn-default" type="submit" value="Search">
 							</div>
 						</fieldset>
 					</form>

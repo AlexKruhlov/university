@@ -25,4 +25,14 @@
 		<servlet-name>subject-add</servlet-name>
 		<url-pattern>/subjects/add</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>subject-delete</servlet-name>
+		<servlet-class>ua.rafael.servlet.subject.SubjectDeleteServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>subject-delete</servlet-name>
+		<url-pattern>/subjects/delete</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

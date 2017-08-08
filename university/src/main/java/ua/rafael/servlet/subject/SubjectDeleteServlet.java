@@ -11,19 +11,19 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import ua.rafael.dao.SubjectSession;
 import ua.rafael.data.MyBatisConnectionFactory;
-import ua.rafael.model.Subject;
 import ua.rafael.service.SubjectService;
 
-public class SubjectAddServlet extends HttpServlet {
+public class SubjectDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		SqlSessionFactory sessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
 		SubjectSession subjectSession = new SubjectSession(sessionFactory);
 		SubjectService subjectService = new SubjectService(subjectSession);
-		String subjectName = req.getParameter("addSubject");
-		subjectService.insert(new Subject(subjectName));
+		final long id = Long.valueOf(req.getParameter("deleteSubject"));
+		subjectService.delete(id);
 		resp.sendRedirect("/university/subjects");
 	}
 }
