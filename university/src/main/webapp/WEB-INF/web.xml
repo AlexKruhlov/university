@@ -35,4 +35,12 @@
 		<url-pattern>/subjects/delete</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>subject-update</servlet-name>
+		<servlet-class>ua.rafael.servlet.subject.SubjectUpdateServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>subject-update</servlet-name>
+		<url-pattern>/subjects/update</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -63,15 +63,16 @@
 									<h3 class="modal-title">Update subject</h3>
 								</div>
 								<div class="modal-body">
-									<form id="Update" action="/university/subjects/add"
+									<form id="Update" action="/university/subjects/update"
 										method="post">
 										<div class="form-group">
 											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" placeholder="Input name subject"
-												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+												id="inputSubject" name="updateSubjectName"
+												placeholder="Input name subject" class="form-control"
+												type="text" pattern="^[a-zA-Z-]+$">
 										</div>
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
+											<label for="inputId">ID</label> <input id="inputId" name="updateSubjectId"
 												placeholder="Input Id" class="form-control" type="number">
 											<input class="inputButton btn btn-default" type="submit"
 												value="Update">
