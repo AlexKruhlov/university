@@ -57,6 +57,17 @@ public class SubjectSession {
 		}
 		return result;
 	}
+	
+	public Subject selectByName(final String name) {
+		Subject result = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			result = session.selectOne("Subject.selectByName", name);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
 
 	public void update(final Subject subject) {
 		SqlSession session = sqlSessionFactory.openSession();

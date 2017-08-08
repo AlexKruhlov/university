@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import ua.rafael.model.Mark;
+import ua.rafael.model.Subject;
 
 public class MarkSession {
 	private SqlSessionFactory sqlSessionFactory = null;
@@ -70,6 +71,17 @@ public class MarkSession {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			result = session.selectOne("Mark.selectById", id);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+	
+	public Mark selectByValue(final long value) {
+		Mark result = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			result = session.selectOne("Mark.selectByValue", value);
 		} finally {
 			session.close();
 		}

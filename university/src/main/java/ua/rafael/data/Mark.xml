@@ -41,6 +41,12 @@
 		FROM public.marks WHERE
 		id=#{id};
 	</select>
+	
+	<select id="selectByValue" parameterType="long" resultMap="markResult">
+		SELECT *
+		FROM public.marks WHERE
+		value=#{value};
+	</select>
 
 	<update id="dropTable">
 		DROP TABLE public.marks;

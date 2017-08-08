@@ -47,6 +47,12 @@
 		FROM public.students WHERE
 		id=#{id};
 	</select>
+	
+	<select id="selectByName" parameterType="map" resultMap="result">
+	SELECT *
+		FROM public.students WHERE
+		first_name=#{firstName} AND last_name=#{lastName};
+	</select>
 
 	<update id="dropTable">
 		DROP TABLE public.students;

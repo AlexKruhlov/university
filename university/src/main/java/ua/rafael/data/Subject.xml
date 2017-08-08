@@ -43,6 +43,12 @@
 		FROM public.subjects WHERE
 		id=#{id};
 	</select>
+	
+	<select id="selectByName" parameterType="String" resultMap="result">
+		SELECT *
+		FROM public.subjects WHERE
+		name=#{name};
+	</select>
 
 	<update id="dropTable">
 		DROP TABLE public.subjects;

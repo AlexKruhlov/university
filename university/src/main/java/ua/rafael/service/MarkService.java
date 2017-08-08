@@ -4,7 +4,7 @@ import java.util.List;
 
 import ua.rafael.dao.MarkSession;
 import ua.rafael.model.Mark;
-import validator.MarkValidator;
+import validation.MarkValidator;
 
 public class MarkService {
 	MarkSession markSession;
@@ -40,6 +40,10 @@ public class MarkService {
 
 	public Mark findById(final long id) {
 		return markSession.selectById(id);
+	}
+	
+	public Mark findByValue(final long value) {
+		return markSession.selectByValue(value);
 	}
 
 	public void dropTable() {

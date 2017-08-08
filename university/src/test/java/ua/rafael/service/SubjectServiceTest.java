@@ -66,6 +66,15 @@ public class SubjectServiceTest {
 	}
 
 	@Test
+	public final void testFindByName() {
+		final Subject expected = subjectWithNotNullId2;
+		subjectService.insert(subjectWithNullId1);
+		subjectService.insert(subjectWithNullId2);
+		final Subject actual = subjectService.findByName(subjectWithNotNullId2.getName());
+		assertEquals(expected, actual);
+	}
+
+	@Test
 	public void testDelete() {
 		expected.add(subjectWithNotNullId1);
 		expected.add(subjectWithNotNullId2);

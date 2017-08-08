@@ -83,10 +83,12 @@
 
 	<select id="selectById" parameterType="long" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api 
+		public.academ_perfom_items AS api
 		JOIN marks AS m ON api.mark_id=m.id AND api.id=#{id}
-		JOIN students AS st ON api.student_id=st.id
-		JOIN subjects AS sb ON api.subject_id=sb.id
+		JOIN students
+		AS st ON api.student_id=st.id
+		JOIN
+		subjects AS sb ON api.subject_id=sb.id
 		WHERE api.id=#{id}
 		ORDER BY
 		api.id;
@@ -117,6 +119,17 @@
 		sb ON
 		api.subject_id=sb.id
 		ORDER BY sb.name;
+	</select>
+
+	<select id="selectByStudentAndSubjectAndDate" parameterType="map" resultMap="result">
+		SELECT * FROM
+		public.academ_perfom_items AS api JOIN marks AS
+		m ON api.mark_id=m.id
+		JOIN students AS st ON
+		api.student_id=st.id AND
+		api.student_id=#{inStudent.id} AND api.date=#{inDate}
+		JOIN subjects AS sb
+		ON api.subject_id=sb.id AND api.subject_id=#{inSubject.id}
 	</select>
 
 	<select id="countAverageMarkByStudentAndSubject" parameterType="map" resultType="double">

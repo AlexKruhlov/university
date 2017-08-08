@@ -4,7 +4,7 @@ import java.util.List;
 
 import ua.rafael.dao.StudentSession;
 import ua.rafael.model.Student;
-import validator.StudentValidator;
+import validation.StudentValidator;
 
 public class StudentService {
 	StudentSession studentSession;
@@ -40,6 +40,10 @@ public class StudentService {
 	
 	public Student findById(final long id) {
 		return studentSession.selectById(id);
+	}
+	
+	public Student findByName(final String firstName,final String lastName) {
+		return studentSession.selectByName(firstName, lastName);
 	}
 	
 	public void dropTable() {
