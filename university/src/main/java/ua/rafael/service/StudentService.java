@@ -42,6 +42,10 @@ public class StudentService {
 		return studentSession.selectById(id);
 	}
 	
+	public Student findByName(final String firstName,final String lastName) {
+		return studentSession.selectByName(firstName, lastName);
+	}
+	
 	public void dropTable() {
 		studentSession.dropTable();
 	}

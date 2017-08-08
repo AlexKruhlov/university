@@ -1,6 +1,10 @@
 package ua.rafael.dao;
 
+import java.awt.MenuComponent;
+import java.awt.Stroke;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -64,7 +68,7 @@ public class StudentSession {
 		}
 		return resultList;
 	}
-	
+
 	public Student selectById(final long id) {
 		Student result = null;
 		SqlSession session = sqlSessionFactory.openSession();
@@ -75,7 +79,21 @@ public class StudentSession {
 		}
 		return result;
 	}
-	
+
+	public Student selectByName(final String firstName, final String lastName) {
+		Student result = null;
+		SqlSession session = sqlSessionFactory.openSession();
+		Map<String, String> map = new HashMap<>();
+		map.put("firstName", firstName);
+		map.put("lastName", lastName);
+		try {
+			result = session.selectOne("Student.selectByName", map);
+		} finally {
+			session.close();
+		}
+		return result;
+	}
+
 	public void dropTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {

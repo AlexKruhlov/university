@@ -61,8 +61,14 @@ public class StudentServiceTest {
 		final Student expected = studentWithNotNullId2;
 		studentService.insert(studentWithNullId1);
 		studentService.insert(studentWithNullId2);
-		final Student actual = studentService.findById(2);
+		final Student actual = studentService.findByName(studentWithNotNullId2.getFirstName(),
+				studentWithNotNullId2.getLastName());
 		assertEquals(expected, actual);
+	}
+
+	@Test
+	public final void testFindByName() {
+
 	}
 
 	@Test
