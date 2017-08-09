@@ -36,7 +36,7 @@
 										method="post">
 										<div class="form-group">
 											<label for="inputFirstName">first name</label> <input
-												id="inputSubject" name="addStudentFirstName"
+												id="inputFirstName" name="addStudentFirstName"
 												placeholder="Input first name" class="form-control"
 												type="text" pattern="^[a-zA-Z-]+$">
 										</div>
@@ -69,18 +69,19 @@
 								<div class="modal-body">
 									<form id="Update" action="###" method="post">
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
-												placeholder="Input Id" class="form-control" type="number">
+											<label for="inputIdDeleteStudent">ID</label> <input
+												id="inputIdDeleteStudent" placeholder="Input Id"
+												class="form-control" type="number">
 										</div>
 										<div class="form-group">
-											<label for="inputFirstName">first name</label> <input
-												id="inputSubject" placeholder="Input first name"
+											<label for="inputFirstNameForUpdate">first name</label> <input
+												id="inputFirstNameForUpdate" placeholder="Input first name"
 												class="form-control" type="text" pattern="^[a-zA-Z-\s]+$">
 										</div>
 
 										<div class="form-group">
-											<label for="inputFirstName">last name</label> <input
-												id="inputFirstName" placeholder="Input last name"
+											<label for="inputLastNameForUpdate">last name</label> <input
+												id="inputLastNameForUpdate" placeholder="Input last name"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 											<input class="inputButton btn btn-default" type="submit"
 												value="Update">
@@ -104,17 +105,18 @@
 									<h3 class="modal-title">Delete student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="deleteSubject">
+									<form id="deleteStudent" action="/university/students/delete"
+										method="post">
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
+											<label for="inputIdForDelete">ID</label> <input
+												id="inputIdForDelete" name="inputIdForDelete"
 												placeholder="Input Id" class="form-control" type="number">
+											<input class="inputButton btn btn-default" type="submit"
+												value="Delete">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="deleteSubject" formaction="######"
-										formmethod="post">Delete</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -169,14 +171,14 @@
 								</select>
 							</p>
 							<p>
-								<label for="inputId" class="control-label">id</label> <input
-									id="inputId" placeholder="Input Id" class="form-control"
-									type="number">
+								<label for="inputIdForSearch" class="control-label">id</label> <input
+									id="inputIdForSearch" placeholder="Input Id"
+									class="form-control" type="number">
 							</p>
 							<p>
-								<label for="inputName">Name</label> <input id="inputName"
-									placeholder="Input name" class="form-control" type="text"
-									pattern="^[a-zA-Z-]+$">
+								<label for="inputNameForSearch">Name</label> <input
+									id="inputNameForSearch" placeholder="Input name"
+									class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 							</p>
 
 							<div class="col-sm-12 col-sm-offset-4">

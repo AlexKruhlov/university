@@ -30,18 +30,17 @@
 									<h3 class="modal-title">Add mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addMark">
+									<form id="addMark" action="####" method="post">
 										<div class="form-group">
 											<label for="inputMark">Name Marks</label> <input
 												id="inputMark" placeholder="Input name mark"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+											<input class="inputButton btn btn-default" type="submit"
+												value="Add">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="submit" value="Submit"
-										data-dismiss="modal" form="addMark" formaction="/university/marks"
-										formmethod="post">Add</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -57,22 +56,22 @@
 									<h3 class="modal-title">Update mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="Update">
+									<form id="Update" action="####" method="post">
 										<div class="form-group">
-											<label for="inputSubject">Name mark</label> <input
-												id="inputMark" placeholder="Input name mark"
+											<label for="inputNameMark">Name mark</label> <input
+												id="inputNameMark" placeholder="Input name mark"
 												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 										</div>
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
-												placeholder="Input Id" class="form-control" type="number">
+											<label for="inputIdForUpdate">ID</label> <input
+												id="inputIdForUpdate" placeholder="Input Id"
+												class="form-control" type="number"> <input
+												class="inputButton btn btn-default" type="submit"
+												value="Update">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="Update" formaction="######"
-										formmethod="post">Update</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -91,17 +90,18 @@
 									<h3 class="modal-title">Delete mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="deleteMark">
+									<form id="deleteMark" action="####" method="post">
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
-												placeholder="Input Id" class="form-control" type="number">
+											<label for="inputIdForDeleteMark">ID</label> <input
+												id="inputIdForDeleteMark" placeholder="Input Id"
+												class="form-control" type="number">
+												<input
+												class="inputButton btn btn-default" type="submit"
+												value="Delete">
 										</div>
 									</form>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal" form="deleteMark" formaction="######"
-										formmethod="post">Delete</button>
 									<button class="btn btn-default" type="button"
 										data-dismiss="modal">Close</button>
 								</div>
@@ -183,7 +183,8 @@
 							</p>
 
 							<div class="col-sm-12 col-sm-offset-4">
-								<input class="inputButton btn btn-default" type="submit" value="Search">
+								<input class="inputButton btn btn-default" type="submit"
+									value="Search">
 							</div>
 						</fieldset>
 					</form>
