@@ -35,16 +35,20 @@
 									<form id="addStudent" action="/university/students/add"
 										method="post">
 										<div class="form-group">
-											<label for="inputFirstName">first name</label> <input
+											<label for="inputFirstName">First name</label> <input
 												id="inputFirstName" name="addStudentFirstName"
 												placeholder="Input first name" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$">
+												type="text" pattern="^[a-zA-Z-]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')">
 										</div>
 										<div class="form-group">
-											<label for="inputFirstName">last name</label> <input
+											<label for="inputFirstName">Last name</label> <input
 												id="inputFirstName" name="addStudentLastName"
 												placeholder="Input last name" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$"> <input
+												type="text" pattern="^[a-zA-Z-]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')"> <input
 												class="inputButton btn btn-default" type="submit"
 												value="Add">
 										</div>
@@ -67,23 +71,27 @@
 									<h3 class="modal-title">Update student</h3>
 								</div>
 								<div class="modal-body">
-									<form id="Update" action="###" method="post">
+									<form id="Update" action="/university/students/update" method="post">
 										<div class="form-group">
 											<label for="inputIdDeleteStudent">ID</label> <input
-												id="inputIdDeleteStudent" placeholder="Input Id"
+												id="inputIdDeleteStudent" name="updateStudentId" placeholder="Input student Id"
 												class="form-control" type="number">
 										</div>
 										<div class="form-group">
-											<label for="inputFirstNameForUpdate">first name</label> <input
-												id="inputFirstNameForUpdate" placeholder="Input first name"
-												class="form-control" type="text" pattern="^[a-zA-Z-\s]+$">
+											<label for="inputFirstNameForUpdate">New first name</label> <input
+												id="inputFirstNameForUpdate" name="updateStudentFirstName" placeholder="Input new first name"
+												class="form-control" type="text" pattern="^[a-zA-Z-\s]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')">
 										</div>
 
 										<div class="form-group">
-											<label for="inputLastNameForUpdate">last name</label> <input
-												id="inputLastNameForUpdate" placeholder="Input last name"
-												class="form-control" type="text" pattern="^[a-zA-Z-]+$">
-											<input class="inputButton btn btn-default" type="submit"
+											<label for="inputLastNameForUpdate">New last name</label> <input
+												id="inputLastNameForUpdate" name="updateStudentLastName" placeholder="Input new last name"
+												class="form-control" type="text" pattern="^[a-zA-Z-]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')"> <input
+												class="inputButton btn btn-default" type="submit"
 												value="Update">
 										</div>
 									</form>
@@ -123,9 +131,7 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<hr>
 				<table
 					class="table table-condensed table-bordered table-hover table-striped">

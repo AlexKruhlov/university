@@ -18,12 +18,9 @@
 	<div class="head">
 		<img alt="" src="logot.png">
 	</div>
-
 	<div class="container-fluid">
-
 		<div class="row-fluid">
 			<div class="size col-xs-7 col-xs-offset-1">
-
 				<div class="buttons">
 					<button class="btn btn-primary" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add subject</button>
@@ -55,70 +52,6 @@
 							</div>
 						</div>
 					</div>
-
-					<button data-toggle="modal" data-target="#myModalUpDate"
-						type="button" class="btn btn-primary">Update subject</button>
-					<div id="myModalUpDate" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3 class="modal-title">Update subject</h3>
-								</div>
-								<div class="modal-body">
-									<form id="Update" action="/university/subjects/update"
-										method="post">
-										<div class="form-group">
-											<label for="inputSubject">New Subject Name</label> <input
-												id="inputSubject" name="updateSubjectName"
-												placeholder="Input new subject name" class="form-control"
-												type="text" pattern="^[a-zA-Z- ]+$"
-												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
-												oninput="this.setCustomValidity('')">
-										</div>
-										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
-												name="updateSubjectId" placeholder="Input Id"
-												class="form-control" type="number"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Update">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<button data-toggle="modal" data-target="#myModalDelete"
-						type="button" class="btn btn-danger">Delete subject</button>
-					<div id="myModalDelete" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3 class="modal-title">Delete subject</h3>
-								</div>
-								<div class="modal-body">
-									<form id="deleteSubject" action="/university/subjects/delete"
-										method="post">
-										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
-												name="deleteSubject" placeholder="Input Subject Id"
-												class="form-control" type="number"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Delete">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<hr>
 				<table class="table table-bordered table-hover table-striped">
@@ -133,12 +66,78 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="subject" items="${subjects}">
+						<c:forEach var="subject" items="${subjects}" varStatus="loop">
 							<tr>
-								<td class="text-center">${subject.id}</td>
+								<td class="text-center">${loop.index+1}</td>
 								<td class="text-center">${subject.name}</td>
+								<td><button data-toggle="modal"
+										data-target="#myModalUpDate${subject.id}" type="button"
+										class="btn btn-primary">Edit</button>
+									<button data-toggle="modal"
+										data-target="#myModalDelete${subject.id}" type="button"
+										class="btn btn-danger">Delete</button></td>
 							</tr>
+							<div id="myModalUpDate${subject.id}" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Edit subject</h3>
+										</div>
+										<div class="modal-body">
+											<form id="Update" action="/university/subjects/update"
+												method="post">
+												<div class="form-group">
+													<label for="inputSubject">Rename ${subject.name} to</label>
+													<input id="inputSubject" name="updateSubjectName"
+														class="form-control" type="text" pattern="^[a-zA-Z- ]+$"
+														oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+														oninput="this.setCustomValidity('')">
+												</div>
+												<input name="updateSubjectId" class="form-control"
+													type="hidden" value="${subject.id}">
+												<div class="form-group">
+													<input class="inputButton btn btn-default" type="submit"
+														value="Save">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-default" type="button"
+												data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div id="myModalDelete${subject.id}" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Delete subject</h3>
+										</div>
+										<div class="modal-body">
+											<form id="deleteSubject" action="/university/subjects/delete"
+												method="post">
+												<div class="form-group">
+													<h1>Do you really want to delete the
+														"${subject.name}"?</h1>
+													<input class="inputButton btn btn-default"
+														name="deleteSubject" type="hidden" value="${subject.id}">
+													<input class="inputButton btn btn-default" type="submit"
+														value="Delete">
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button class="btn btn-default" type="button"
+												data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</c:forEach>
+
 					</tbody>
 				</table>
 			</div>
