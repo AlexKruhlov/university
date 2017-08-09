@@ -37,13 +37,13 @@
 									<form id="addSubject" name="addSubject"
 										action="/university/subjects/add" method="post">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
+											<label for="inputSubject">Subject Name</label> <input
 												id="inputSubject" name="addSubjectName"
-												placeholder="Input name subject" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$"
-												oninvalid="this.setCustomValidity('The subject name must consist of letters, 
-												whitespaces and - only')">
-											<input class="inputButton btn btn-default" type="submit"
+												placeholder="Input subject name" class="form-control"
+												type="text" pattern="^[a-zA-Z- ]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')"> <input
+												class="inputButton btn btn-default" type="submit"
 												value="Add">
 										</div>
 									</form>
@@ -68,10 +68,12 @@
 									<form id="Update" action="/university/subjects/update"
 										method="post">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
+											<label for="inputSubject">New Subject Name</label> <input
 												id="inputSubject" name="updateSubjectName"
-												placeholder="Input name subject" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$">
+												placeholder="Input new subject name" class="form-control"
+												type="text" pattern="^[a-zA-Z- ]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')">
 										</div>
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
@@ -103,7 +105,7 @@
 										method="post">
 										<div class="form-group">
 											<label for="inputId">ID</label> <input id="inputId"
-												name="deleteSubject" placeholder="Input Id"
+												name="deleteSubject" placeholder="Input Subject Id"
 												class="form-control" type="number"> <input
 												class="inputButton btn btn-default" type="submit"
 												value="Delete">
