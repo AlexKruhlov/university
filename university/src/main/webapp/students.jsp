@@ -192,11 +192,13 @@
 					<h3>
 						<img alt="" src="logMarker.png"> Navigation
 					</h3>
-					<a class="link visited" href="students.html"><i
+					<a class="link" href="/university/students"><i
 						class="glyphicon glyphicon-user"></i> students</a> <a
-						href="evaluation_log.html"><i class="glyphicon glyphicon-book"></i>
-						subjects</a> <a href="scores.html"><i
-						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a href=""><i
+						href="/university/subjects" class="visited"><i
+						class="glyphicon glyphicon-book"></i> subjects</a> <a
+						href="/university/marks"><i
+						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
+						href="/university/progres"><i
 						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
 			</div>
