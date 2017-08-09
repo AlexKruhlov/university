@@ -40,8 +40,10 @@
 											<label for="inputSubject">Name Subject</label> <input
 												id="inputSubject" name="addSubjectName"
 												placeholder="Input name subject" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$"> <input
-												class="inputButton btn btn-default" type="submit"
+												type="text" pattern="^[a-zA-Z-]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, 
+												whitespaces and - only')">
+											<input class="inputButton btn btn-default" type="submit"
 												value="Add">
 										</div>
 									</form>
@@ -72,9 +74,10 @@
 												type="text" pattern="^[a-zA-Z-]+$">
 										</div>
 										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId" name="updateSubjectId"
-												placeholder="Input Id" class="form-control" type="number">
-											<input class="inputButton btn btn-default" type="submit"
+											<label for="inputId">ID</label> <input id="inputId"
+												name="updateSubjectId" placeholder="Input Id"
+												class="form-control" type="number"> <input
+												class="inputButton btn btn-default" type="submit"
 												value="Update">
 										</div>
 									</form>
@@ -180,11 +183,11 @@
 						class="glyphicon glyphicon-user"></i> students</a> <a
 						href="/university/subjects" class="visited"><i
 						class="glyphicon glyphicon-book"></i> subjects</a> <a
-						href="/university/marks"><i class="glyphicon glyphicon-piggy-bank"></i>
-						marks</a> <a href="/university/progres"><i class="glyphicon glyphicon-education"></i>
-						progress</a>
+						href="/university/marks"><i
+						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
+						href="/university/progres"><i
+						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
-
 			</div>
 		</div>
 	</div>

@@ -314,15 +314,13 @@ a:HOVER {
 	text-transform: uppercase;
 }
 
-@media ( max-width : 1400px)and (min-width: 1300px){
+@media ( max-width : 1400px)and (min-width: 1300px) {
 	[class*="col-xs-3"] .search {
-	top: 309px;
-}
-
-[class*="col-xs-3"] .navigator {
-	top: 107px;
-}
-	
+		top: 309px;
+	}
+	[class*="col-xs-3"] .navigator {
+		top: 107px;
+	}
 }
 
 @media ( max-width : 397px) and (min-width: 50px) {
@@ -330,7 +328,6 @@ a:HOVER {
 		background-color: rgba(176, 196, 222, 0);
 		box-shadow: 0 0 0px rgba(0, 0, 0, 0);
 	}
-
 }
 
 @media ( max-width : 1921px) and (min-width: 1400px) {
