@@ -6,17 +6,19 @@
 <head>
 <meta charset="utf-8">
 <title>Register|Subjects</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="favicon.png" type="image/png">
-<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="shortcut icon" href="<c:url value="/favicon.png"/>"
+	type="image/png">
+<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="css/bootstrap-theme.min.css">
-<link href="style.css" rel="stylesheet">
-<script src="evaluation_log.js"></script>
+	href="<c:url value="/css/bootstrap-theme.min.css"/>">
+<link href="<c:url value="/style.css"/>" rel="stylesheet">
+<script src="<c:url value="/evaluation_log.js"/>"></script>
 </head>
 <body>
 	<div class="head">
-		<img alt="" src="logot.png">
+		<img alt="" src="<c:url value="/logot.png"/>">
 	</div>
 	<div class="container-fluid">
 		<div class="row-fluid">
@@ -43,10 +45,19 @@
 										</div>
 										<hr>
 										<div class="form-group">
-											<input class="inputButton btn btn-default" type="submit"
-												value="Add"> <input
-												class="inputButton btn btn-default exsit" type="button"
-												data-dismiss="modal" value="Close"></input>
+											<c:catch var="catchException">
+												<input class="inputButton btn btn-default" type="submit"
+													value="Add">
+											</c:catch>
+											<c:if test="${catchException != null}">
+												<p>
+													The exception is : ${catchException} <br /> There is an
+													exception: ${catchException.message}
+												</p>
+											</c:if>
+
+											<input class="inputButton btn btn-default exsit"
+												type="button" data-dismiss="modal" value="Close"></input>
 										</div>
 									</form>
 								</div>
@@ -134,7 +145,6 @@
 														class="inputButton btn btn-default exsit" type="button"
 														data-dismiss="modal" value="Close"></input>
 												</div>
-
 											</form>
 										</div>
 									</div>
@@ -155,7 +165,7 @@
 			<div class="col-xs-3 col-xs-offset-1  col-md-3 hidden-xs hidden-sm">
 				<div class="search">
 					<h3>
-						<img alt="" src="logMarker.png"> Search
+						<img alt="" src="<c:url value="/logMarker.png"/>"> Search
 					</h3>
 					<form class="form-horizontal" action="####" method="post">
 						<fieldset>
@@ -203,7 +213,13 @@
 			</div>
 		</div>
 	</div>
-	<script src="jquery-3.2.1.js"></script>
-	<script src="js/bootstrap.js"></script>
+	<script src="<c:url value="/jquery-3.2.1.js"/>"></script>
+	<script src="<c:url value="/js/bootstrap.js"/>"></script>
+	<c:if test="${exception!=null}">
+		<script type="text/javascript">
+		
+		</script>
+	</c:if>
+
 </body>
 </html>

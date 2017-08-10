@@ -20,6 +20,7 @@ import ua.rafael.service.SubjectService;
 @WebServlet(urlPatterns = "/subjects")
 public class SubjectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Throwable exception;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -31,5 +32,5 @@ public class SubjectServlet extends HttpServlet {
 		req.setAttribute("subjects", subjects);
 		RequestDispatcher view = req.getRequestDispatcher("subjects.jsp");
 		view.forward(req, resp);
-	}	
+	}
 }
