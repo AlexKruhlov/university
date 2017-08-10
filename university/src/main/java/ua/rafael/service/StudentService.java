@@ -26,11 +26,13 @@ public class StudentService {
 		studentSession.delete(id);
 	}
 	
-	public void update(final long id, final Student student) {
+	public void update(final long id, final String firstName, final String lastName) {
 		final Student studentFromDB = findById(id);
 		if (studentFromDB != null) {
-			student.setId(id);
-			studentSession.update(student);
+			final Student newStudent = new Student(firstName,lastName);
+			newStudent.setId(id);
+			new StudentValidator().validate(newStudent);
+			studentSession.update(newStudent);
 		}
 	}
 	

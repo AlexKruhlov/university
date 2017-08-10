@@ -5,6 +5,7 @@ import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,14 +23,20 @@ public class SubjectUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		SqlSessionFactory sessionFactory = getSqlSessionFactory();
 		SubjectSession subjectSession = new SubjectSession(sessionFactory);
 		SubjectService subjectService = new SubjectService(subjectSession);
 		final long id = valueOf(req.getParameter("updateSubjectId"));
-		final String subjectName = req.getParameter("updateSubjectName");
-		subjectService.update(id, new Subject(subjectName));
-		resp.sendRedirect("/university/subjects");
+		final String newSubjectName = req.getParameter("updateSubjectName");
+		RequestDispatcher view = req.getRequestDispatcher("/subjects.jsp");
+		try {
+			subjectService.update(id, newSubjectName);
+			resp.sendRedirect("/university/subjects");
+		} catch (RuntimeException e) {
+			req.setAttribute("subjects", subjectService.findAll());
+			req.setAttribute("exception", e.getMessage());
+			view.forward(req, resp);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package ua.rafael.servlet.student;
 
+import static java.lang.Long.valueOf;
 import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
 
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class StudentDeleteServlet extends HttpServlet {
 		SqlSessionFactory sessionFactory = getSqlSessionFactory();
 		StudentSession studentSession = new StudentSession(sessionFactory);
 		StudentService studentService = new StudentService(studentSession);
-		final long id = Long.valueOf(req.getParameter("studentIdToDelete"));
+		final long id = valueOf(req.getParameter("studentIdToDelete"));
 		studentService.delete(id);
 		resp.sendRedirect("/university/students");
 	}
