@@ -5,6 +5,7 @@ import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import ua.rafael.dao.SubjectSession;
 import ua.rafael.service.SubjectService;
 
+@WebServlet(urlPatterns = "/subjects/delete")
 public class SubjectDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
