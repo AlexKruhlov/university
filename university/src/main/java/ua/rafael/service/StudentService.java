@@ -22,7 +22,7 @@ public class StudentService {
 		studentSession.insert(student);
 	}
 	
-	public void delete(final int id){
+	public void delete(final long id){
 		studentSession.delete(id);
 	}
 	

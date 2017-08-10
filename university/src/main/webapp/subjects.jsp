@@ -6,26 +6,25 @@
 <head>
 <meta charset="utf-8">
 <title>Register|Subjects</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="favicon.png" type="image/png">
-<link href="css/bootstrap.css" rel="stylesheet">
+<link rel="shortcut icon" href="<c:url value="/favicon.png"/>"
+	type="image/png">
+<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="css/bootstrap-theme.min.css">
-<link href="style.css" rel="stylesheet">
-<script src="evaluation_log.js"></script>
+	href="<c:url value="/css/bootstrap-theme.min.css"/>">
+<link href="<c:url value="/style.css"/>" rel="stylesheet">
+<script src="<c:url value="/evaluation_log.js"/>"></script>
 </head>
 <body>
 	<div class="head">
-		<img alt="" src="logot.png">
+		<img alt="" src="<c:url value="/logot.png"/>">
 	</div>
-
 	<div class="container-fluid">
-
 		<div class="row-fluid">
 			<div class="size col-xs-7 col-xs-offset-1">
-
 				<div class="buttons">
-					<button class="btn btn-primary" type="button" data-toggle="modal"
+					<button class="green btn" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add subject</button>
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
@@ -37,102 +36,122 @@
 									<form id="addSubject" name="addSubject"
 										action="/university/subjects/add" method="post">
 										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" name="addSubjectName"
-												placeholder="Input name subject" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Add">
+											<label for="inputSubject">Subject Name</label> <input
+												id="inputSubject" required
+												title="The subject name must consist of letters, whitespaces and - only"
+												name="addSubjectName" placeholder="Input subject name"
+												class="form-control" type="text" pattern="^[a-zA-Z- ]+$"
+												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+												oninput="this.setCustomValidity('')">
+										</div>
+										<hr>
+										<div class="form-group">
+											<c:catch var="catchException">
+												<input class="inputButton btn btn-default" type="submit"
+													value="Add">
+											</c:catch>
+											<c:if test="${catchException != null}">
+												<p>
+													The exception is : ${catchException} <br /> There is an
+													exception: ${catchException.message}
+												</p>
+											</c:if>
+											<input class="inputButton btn btn-default" type="button"
+												data-dismiss="modal" value="Close"></input>
 										</div>
 									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<button data-toggle="modal" data-target="#myModalUpDate"
-						type="button" class="btn btn-primary">Update subject</button>
-					<div id="myModalUpDate" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3 class="modal-title">Update subject</h3>
-								</div>
-								<div class="modal-body">
-									<form id="Update" action="/university/subjects/update"
-										method="post">
-										<div class="form-group">
-											<label for="inputSubject">Name Subject</label> <input
-												id="inputSubject" name="updateSubjectName"
-												placeholder="Input name subject" class="form-control"
-												type="text" pattern="^[a-zA-Z-]+$">
-										</div>
-										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId" name="updateSubjectId"
-												placeholder="Input Id" class="form-control" type="number">
-											<input class="inputButton btn btn-default" type="submit"
-												value="Update">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<button data-toggle="modal" data-target="#myModalDelete"
-						type="button" class="btn btn-danger">Delete subject</button>
-					<div id="myModalDelete" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3 class="modal-title">Delete subject</h3>
-								</div>
-								<div class="modal-body">
-									<form id="deleteSubject" action="/university/subjects/delete"
-										method="post">
-										<div class="form-group">
-											<label for="inputId">ID</label> <input id="inputId"
-												name="deleteSubject" placeholder="Input Id"
-												class="form-control" type="number"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Delete">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<hr>
-				<table class="table table-bordered table-hover table-striped">
+				<table class="table table-bordered table-hover">
 					<caption>
 						<i class="glyphicon glyphicon-book"></i> subjects
 						<hr>
 					</caption>
 					<thead>
 						<tr>
-							<th class="text-center">id</th>
-							<th class="text-center">subject name</th>
+							<th class="text-center" style="width: 7%"></th>
+							<th class="text-center" style="width: 58%">subject name</th>
+							<th class="text-center" style="width: 35%"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="subject" items="${subjects}">
+						<c:forEach var="subject" items="${subjects}" varStatus="loop">
 							<tr>
-								<td class="text-center">${subject.id}</td>
+								<td class="text-center">${loop.index+1}</td>
 								<td class="text-center">${subject.name}</td>
+								<td><button data-toggle="modal"
+										data-target="#myModalUpDate${subject.id}" type="button"
+										class="btn btn-primary">Edit</button>
+									<button data-toggle="modal"
+										data-target="#myModalDelete${subject.id}" type="button"
+										class="btn btn-danger">Delete</button></td>
 							</tr>
+							<div id="myModalUpDate${subject.id}" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Edit subject</h3>
+										</div>
+										<div class="modal-body">
+											<form id="Update" action="/university/subjects/update"
+												method="post">
+												<div class="form-group">
+													<label class="sizeLabel" for="inputSubject">Rename
+														${subject.name} to</label> <input id="inputSubject"
+														name="updateSubjectName" class="form-control" required
+														title="The subject name must consist of letters, whitespaces and - only"
+														type="text" pattern="^[a-zA-Z- ]+$"
+														oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+														oninput="this.setCustomValidity('')">
+												</div>
+												<input name="updateSubjectId" class="form-control"
+													type="hidden" value="${subject.id}">
+												<div class="form-group"></div>
+												<hr>
+												<div class="form-group">
+													<input class="inputButton btn btn-default" type="submit"
+														value="Save"> <input
+														class="inputButton btn btn-default" type="button"
+														data-dismiss="modal" value="Close"></input>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div id="myModalDelete${subject.id}" class="modal fade">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Delete subject</h3>
+										</div>
+										<div class="modal-body">
+											<form id="deleteSubject" action="/university/subjects/delete"
+												method="post">
+												<div class="form-group">
+													<label class="sizeLabel">Do you really want to
+														delete the "${subject.name}"?</label> <input name="deleteSubject"
+														class="inputButton btn btn-default" type="hidden"
+														value="${subject.id}">
+												</div>
+												<hr>
+												<div class="form-group">
+													<input class="inputButton btn btn-default" type="submit"
+														value="Delete"> <input
+														class="inputButton btn btn-default" type="button"
+														data-dismiss="modal" value="Close"></input>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
 						</c:forEach>
 					</tbody>
 				</table>
@@ -140,7 +159,7 @@
 			<div class="col-xs-3 col-xs-offset-1  col-md-3 hidden-xs hidden-sm">
 				<div class="search">
 					<h3>
-						<img alt="" src="logMarker.png"> Search
+						<img alt="" src="<c:url value="/logMarker.png"/>"> Search
 					</h3>
 					<form class="form-horizontal" action="####" method="post">
 						<fieldset>
@@ -180,15 +199,41 @@
 						class="glyphicon glyphicon-user"></i> students</a> <a
 						href="/university/subjects" class="visited"><i
 						class="glyphicon glyphicon-book"></i> subjects</a> <a
-						href="/university/marks"><i class="glyphicon glyphicon-piggy-bank"></i>
-						marks</a> <a href="/university/progres"><i class="glyphicon glyphicon-education"></i>
-						progress</a>
+						href="/university/marks"><i
+						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
+						href="/university/progres"><i
+						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
-
 			</div>
 		</div>
 	</div>
-	<script src="jquery-3.2.1.js"></script>
-	<script src="js/bootstrap.js"></script>
+	<script src="<c:url value="/jquery-3.2.1.js"/>"></script>
+	<script src="<c:url value="/js/bootstrap.js"/>"></script>
+	<c:if test="${exception!=null}">
+		<div id="exceptionModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<br>
+						<h3 class="modal-title">Attention</h3>
+					</div>
+					<div class="modBody modal-bod">
+						<br>
+						<h4 class="text-center">${exception}</h4>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group">
+							<input class="inputButton btn btn-default" type="button"
+								data-dismiss="modal" value="Close"></input>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#exceptionModal').modal('show');
+		</script>
+	</c:if>
 </body>
 </html>

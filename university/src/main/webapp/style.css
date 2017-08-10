@@ -94,6 +94,7 @@ input:valid {
 .btn-default {
 	height: 35px;
 	width: 70px;
+	font-size: 12px;
 }
 
 .buttons {
@@ -101,16 +102,36 @@ input:valid {
 	margin-top: 120px;
 }
 
-.btn-primary, .btn-danger {
-	height: 45px;
-	width: 130px;
-}
-
 .inputButton {
 	margin-top: 15px;
 	color: blue;
 	font-weight: bold;
 }
+
+.green {
+	background-color: green;
+	color: white !important;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+}
+
+.green:hover {
+	background-color: darkgreen;
+	color: white;
+}
+
+.green, .btn-primary, .btn-danger {
+	height: 45px;
+	width: 130px;
+}
+
+.sizeModBod {font-size: 20px;}
+
+.sizeLabel {
+	font-size: 16px;
+}
+
+.modBody {margin-bottom: 15px; margin-top: 15px;}
 
 caption {
 	text-align: center;
@@ -124,6 +145,19 @@ caption {
 th, td::first-letter {
 	text-transform: uppercase;
 	font-family: "Times New Roman", Times, serif;
+}
+
+.table>tbody>tr>td {
+	vertical-align: middle;
+}
+
+thead tr th {
+	text-align: center;
+	background-color: rgba(69, 139, 116, 0.5);
+}
+
+.table>tbody>tr:hover {
+	background-color: rgba(69, 139, 116, 0.2);
 }
 
 td {
@@ -244,27 +278,6 @@ input:valid {
 	background: #dfd;
 }
 
-.btn-default {
-	height: 35px;
-	width: 70px;
-}
-
-.buttons {
-	margin-bottom: 25px;
-	margin-top: 120px;
-}
-
-.btn-primary, .btn-danger {
-	height: 45px;
-	width: 130px;
-}
-
-.inputButton {
-	margin-top: 15px;
-	color: blue;
-	font-weight: bold;
-}
-
 caption {
 	text-align: center;
 	text-transform: uppercase;
@@ -314,15 +327,13 @@ a:HOVER {
 	text-transform: uppercase;
 }
 
-@media ( max-width : 1400px)and (min-width: 1300px){
+@media ( max-width : 1400px)and (min-width: 1300px) {
 	[class*="col-xs-3"] .search {
-	top: 309px;
-}
-
-[class*="col-xs-3"] .navigator {
-	top: 107px;
-}
-	
+		top: 309px;
+	}
+	[class*="col-xs-3"] .navigator {
+		top: 107px;
+	}
 }
 
 @media ( max-width : 397px) and (min-width: 50px) {
@@ -330,7 +341,6 @@ a:HOVER {
 		background-color: rgba(176, 196, 222, 0);
 		box-shadow: 0 0 0px rgba(0, 0, 0, 0);
 	}
-
 }
 
 @media ( max-width : 1921px) and (min-width: 1400px) {

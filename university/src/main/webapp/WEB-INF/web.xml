@@ -8,43 +8,6 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>subject</servlet-name>
-		<servlet-class>ua.rafael.servlet.subject.SubjectServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>subject</servlet-name>
-		<url-pattern>/subjects</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>subject-add</servlet-name>
-		<servlet-class>ua.rafael.servlet.subject.SubjectAddServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>subject-add</servlet-name>
-		<url-pattern>/subjects/add</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>subject-delete</servlet-name>
-		<servlet-class>ua.rafael.servlet.subject.SubjectDeleteServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>subject-delete</servlet-name>
-		<url-pattern>/subjects/delete</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>subject-update</servlet-name>
-		<servlet-class>ua.rafael.servlet.subject.SubjectUpdateServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>subject-update</servlet-name>
-		<url-pattern>/subjects/update</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
 		<servlet-name>student</servlet-name>
 		<servlet-class>ua.rafael.servlet.student.StudentServlet</servlet-class>
 	</servlet>
