@@ -33,7 +33,6 @@ public class SubjectAddServlet extends HttpServlet {
 		final Subject subject = new Subject(subjectName);
 		RequestDispatcher view  = req.getRequestDispatcher("/subjects.jsp");
 		try {
-			new SubjectValidator().validate(subject);
 			subjectService.insert(subject);
 			resp.sendRedirect("/university/subjects");
 		} catch (RuntimeException e) {

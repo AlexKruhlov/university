@@ -93,7 +93,7 @@ public class SubjectServiceTest {
 		subjectWithNotNullId2.setId(1);
 		expected.add(subjectWithNotNullId2);
 		subjectService.insert(subjectWithNullId1);
-		subjectService.update(1, subjectWithNullId2);
+		subjectService.update(1, subjectWithNullId2.getName());
 		actual = subjectService.findAll();
 		assertEquals(expected, actual);
 	}

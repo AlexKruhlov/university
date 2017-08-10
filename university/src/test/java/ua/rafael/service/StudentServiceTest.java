@@ -25,8 +25,7 @@ public class StudentServiceTest {
 
 	@Before
 	public final void startUp() {
-		StudentSession session = new StudentSession(
-				MyBatisConnectionFactory.getSqlSessionFactory());
+		StudentSession session = new StudentSession(MyBatisConnectionFactory.getSqlSessionFactory());
 		studentService = new StudentService(session);
 		studentService.createTable();
 		expected = new ArrayList<>();
@@ -90,7 +89,7 @@ public class StudentServiceTest {
 		studentWithNotNullId2.setId(1);
 		expected.add(studentWithNotNullId2);
 		studentService.insert(studentWithNullId1);
-		studentService.update(1, studentWithNullId2);
+		studentService.update(1, studentWithNullId2.getFirstName(), studentWithNullId2.getLastName());
 		actual = studentService.findAll();
 		assertEquals(expected, actual);
 	}

@@ -26,11 +26,13 @@ public class SubjectService {
 		subjectSession.delete(id);
 	}
 
-	public void update(final long id, final Subject subject) {
+	public void update(final long id, final String newSubjectName) {
 		final Subject subjectFromDB = findById(id);
 		if (subjectFromDB != null) {
-			subject.setId(id);
-			subjectSession.update(subject);
+			final Subject newSubject = new Subject(newSubjectName);
+			newSubject.setId(id);
+			new SubjectValidator().validate(newSubject);
+			subjectSession.update(newSubject);
 		}
 	}
 

@@ -13,11 +13,11 @@ public class SubjectValidator implements Validator<Subject> {
 
 	@Override
 	public void validate(final Subject subject) {
-		checkForInvalideSymbols(subject);
+		checkForInvalideSymbolName(subject);
 		checkForSimilarSubject(subject);
 	}
 
-	private void checkForInvalideSymbols(final Subject subject) {
+	private void checkForInvalideSymbolName(final Subject subject) {
 		final String regexpPattern = "[a-zA-Z ]*+";
 		if (!checkForSymbols(regexpPattern, subject.getName())) {
 			throw new RuntimeException(
