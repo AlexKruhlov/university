@@ -101,15 +101,49 @@ input:valid {
 	margin-top: 120px;
 }
 
-.btn-primary, .btn-danger {
-	height: 45px;
-	width: 130px;
-}
-
 .inputButton {
 	margin-top: 15px;
 	color: blue;
 	font-weight: bold;
+}
+
+.btn-default {
+	height: 35px;
+	width: 70px;
+	font-size: 12px;
+}
+
+.green {
+	background-color: green;
+	color: white !important;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 16px;
+}
+
+.green:hover {
+	background-color: darkgreen;
+	color: white;
+}
+
+.green, .btn-primary, .btn-danger {
+	height: 45px;
+	width: 130px;
+}
+
+.exsit {
+	background-color: firebrick;
+	color: white;
+	font-weight: normal;
+}
+
+.exsit:hover {
+	background-color: maroon;
+	color: white;
+	font-weight: normal;
+}
+
+.sizeLabel {
+	font-size: 16px;
 }
 
 caption {
@@ -124,6 +158,19 @@ caption {
 th, td::first-letter {
 	text-transform: uppercase;
 	font-family: "Times New Roman", Times, serif;
+}
+
+.table > tbody > tr > td {
+	vertical-align: middle;
+}
+
+thead tr th {
+	text-align: center;
+	background-color: rgba(69,139,116, 0.5);
+}
+
+.table > tbody > tr:hover {
+		background-color: rgba(69,139,116, 0.2);
 }
 
 td {
@@ -242,27 +289,6 @@ input:invalid {
 
 input:valid {
 	background: #dfd;
-}
-
-.btn-default {
-	height: 35px;
-	width: 70px;
-}
-
-.buttons {
-	margin-bottom: 25px;
-	margin-top: 120px;
-}
-
-.btn-primary, .btn-danger {
-	height: 45px;
-	width: 130px;
-}
-
-.inputButton {
-	margin-top: 15px;
-	color: blue;
-	font-weight: bold;
 }
 
 caption {

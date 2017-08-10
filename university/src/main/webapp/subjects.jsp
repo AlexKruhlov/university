@@ -22,7 +22,7 @@
 		<div class="row-fluid">
 			<div class="size col-xs-7 col-xs-offset-1">
 				<div class="buttons">
-					<button class="btn btn-primary" type="button" data-toggle="modal"
+					<button class="green btn" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add subject</button>
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
@@ -39,30 +39,32 @@
 												placeholder="Input subject name" class="form-control"
 												type="text" pattern="^[a-zA-Z- ]+$"
 												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
-												oninput="this.setCustomValidity('')"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Add">
+												oninput="this.setCustomValidity('')">
+										</div>
+										<hr>
+										<div class="form-group">
+											<input class="inputButton btn btn-default" type="submit"
+												value="Add"> <input
+												class="inputButton btn btn-default exsit" type="button"
+												data-dismiss="modal" value="Close"></input>
 										</div>
 									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<hr>
-				<table class="table table-bordered table-hover table-striped">
+				<table class="table table-bordered table-hover">
 					<caption>
 						<i class="glyphicon glyphicon-book"></i> subjects
 						<hr>
 					</caption>
 					<thead>
 						<tr>
-							<th class="text-center">id</th>
-							<th class="text-center">subject name</th>
+							<th class="text-center" style="width: 7%"></th>
+							<th class="text-center" style="width: 58%">subject name</th>
+							<th class="text-center" style="width: 35%"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -87,23 +89,24 @@
 											<form id="Update" action="/university/subjects/update"
 												method="post">
 												<div class="form-group">
-													<label for="inputSubject">Rename ${subject.name} to</label>
-													<input id="inputSubject" name="updateSubjectName"
-														class="form-control" type="text" pattern="^[a-zA-Z- ]+$"
+													<label class="sizeLabel" for="inputSubject">Rename
+														${subject.name} to</label> <input id="inputSubject"
+														name="updateSubjectName" class="form-control" type="text"
+														pattern="^[a-zA-Z- ]+$"
 														oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
 														oninput="this.setCustomValidity('')">
 												</div>
 												<input name="updateSubjectId" class="form-control"
 													type="hidden" value="${subject.id}">
+												<div class="form-group"></div>
+												<hr>
 												<div class="form-group">
 													<input class="inputButton btn btn-default" type="submit"
-														value="Save">
+														value="Save"> <input
+														class="inputButton btn btn-default exsit" type="button"
+														data-dismiss="modal" value="Close"></input>
 												</div>
 											</form>
-										</div>
-										<div class="modal-footer">
-											<button class="btn btn-default" type="button"
-												data-dismiss="modal">Close</button>
 										</div>
 									</div>
 								</div>
@@ -119,27 +122,35 @@
 											<form id="deleteSubject" action="/university/subjects/delete"
 												method="post">
 												<div class="form-group">
-													<h1>Do you really want to delete the
-														"${subject.name}"?</h1>
-													<input class="inputButton btn btn-default"
-														name="deleteSubject" type="hidden" value="${subject.id}">
-													<input class="inputButton btn btn-default" type="submit"
-														value="Delete">
+													<label class="sizeLabel">Do you really want to
+														delete the "${subject.name}"?</label> <input
+														class="inputButton btn btn-default" name="deleteSubject"
+														type="hidden" value="${subject.id}">
 												</div>
+												<hr>
+												<div class="form-group">
+													<input class="inputButton btn btn-default" type="submit"
+														value="Delete"> <input
+														class="inputButton btn btn-default exsit" type="button"
+														data-dismiss="modal" value="Close"></input>
+												</div>
+
 											</form>
-										</div>
-										<div class="modal-footer">
-											<button class="btn btn-default" type="button"
-												data-dismiss="modal">Close</button>
 										</div>
 									</div>
 								</div>
 							</div>
 
 						</c:forEach>
-
 					</tbody>
 				</table>
+				<ul class="pagination">
+					<li class="active"><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+				</ul>
 			</div>
 			<div class="col-xs-3 col-xs-offset-1  col-md-3 hidden-xs hidden-sm">
 				<div class="search">
