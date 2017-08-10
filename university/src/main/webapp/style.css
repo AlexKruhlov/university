@@ -94,6 +94,7 @@ input:valid {
 .btn-default {
 	height: 35px;
 	width: 70px;
+	font-size: 12px;
 }
 
 .buttons {
@@ -105,12 +106,6 @@ input:valid {
 	margin-top: 15px;
 	color: blue;
 	font-weight: bold;
-}
-
-.btn-default {
-	height: 35px;
-	width: 70px;
-	font-size: 12px;
 }
 
 .green {
@@ -130,21 +125,13 @@ input:valid {
 	width: 130px;
 }
 
-.exsit {
-	background-color: firebrick;
-	color: white;
-	font-weight: normal;
-}
-
-.exsit:hover {
-	background-color: maroon;
-	color: white;
-	font-weight: normal;
-}
+.sizeModBod {font-size: 20px;}
 
 .sizeLabel {
 	font-size: 16px;
 }
+
+.modBody {margin-bottom: 15px; margin-top: 15px;}
 
 caption {
 	text-align: center;
@@ -160,17 +147,17 @@ th, td::first-letter {
 	font-family: "Times New Roman", Times, serif;
 }
 
-.table > tbody > tr > td {
+.table>tbody>tr>td {
 	vertical-align: middle;
 }
 
 thead tr th {
 	text-align: center;
-	background-color: rgba(69,139,116, 0.5);
+	background-color: rgba(69, 139, 116, 0.5);
 }
 
-.table > tbody > tr:hover {
-		background-color: rgba(69,139,116, 0.2);
+.table>tbody>tr:hover {
+	background-color: rgba(69, 139, 116, 0.2);
 }
 
 td {

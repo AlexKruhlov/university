@@ -37,9 +37,10 @@
 										action="/university/subjects/add" method="post">
 										<div class="form-group">
 											<label for="inputSubject">Subject Name</label> <input
-												id="inputSubject" name="addSubjectName"
-												placeholder="Input subject name" class="form-control"
-												type="text" pattern="^[a-zA-Z- ]+$"
+												id="inputSubject" required
+												title="The subject name must consist of letters, whitespaces and - only"
+												name="addSubjectName" placeholder="Input subject name"
+												class="form-control" type="text" pattern="^[a-zA-Z- ]+$"
 												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
 												oninput="this.setCustomValidity('')">
 										</div>
@@ -55,9 +56,8 @@
 													exception: ${catchException.message}
 												</p>
 											</c:if>
-
-											<input class="inputButton btn btn-default exsit"
-												type="button" data-dismiss="modal" value="Close"></input>
+											<input class="inputButton btn btn-default" type="button"
+												data-dismiss="modal" value="Close"></input>
 										</div>
 									</form>
 								</div>
@@ -102,8 +102,9 @@
 												<div class="form-group">
 													<label class="sizeLabel" for="inputSubject">Rename
 														${subject.name} to</label> <input id="inputSubject"
-														name="updateSubjectName" class="form-control" type="text"
-														pattern="^[a-zA-Z- ]+$"
+														name="updateSubjectName" class="form-control" required
+														title="The subject name must consist of letters, whitespaces and - only"
+														type="text" pattern="^[a-zA-Z- ]+$"
 														oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
 														oninput="this.setCustomValidity('')">
 												</div>
@@ -114,7 +115,7 @@
 												<div class="form-group">
 													<input class="inputButton btn btn-default" type="submit"
 														value="Save"> <input
-														class="inputButton btn btn-default exsit" type="button"
+														class="inputButton btn btn-default" type="button"
 														data-dismiss="modal" value="Close"></input>
 												</div>
 											</form>
@@ -134,15 +135,15 @@
 												method="post">
 												<div class="form-group">
 													<label class="sizeLabel">Do you really want to
-														delete the "${subject.name}"?</label> <input
-														class="inputButton btn btn-default" name="deleteSubject"
-														type="hidden" value="${subject.id}">
+														delete the "${subject.name}"?</label> <input name="deleteSubject"
+														class="inputButton btn btn-default" type="hidden"
+														value="${subject.id}">
 												</div>
 												<hr>
 												<div class="form-group">
 													<input class="inputButton btn btn-default" type="submit"
 														value="Delete"> <input
-														class="inputButton btn btn-default exsit" type="button"
+														class="inputButton btn btn-default" type="button"
 														data-dismiss="modal" value="Close"></input>
 												</div>
 											</form>
@@ -154,13 +155,6 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<ul class="pagination">
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-				</ul>
 			</div>
 			<div class="col-xs-3 col-xs-offset-1  col-md-3 hidden-xs hidden-sm">
 				<div class="search">
@@ -216,10 +210,30 @@
 	<script src="<c:url value="/jquery-3.2.1.js"/>"></script>
 	<script src="<c:url value="/js/bootstrap.js"/>"></script>
 	<c:if test="${exception!=null}">
+		<div id="exceptionModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<br>
+						<h3 class="modal-title">Attention</h3>
+					</div>
+					<div class="modBody modal-bod">
+						<br>
+						<h4 class="text-center">${exception}</h4>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group">
+							<input class="inputButton btn btn-default" type="button"
+								data-dismiss="modal" value="Close"></input>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script type="text/javascript">
-		
+			$('#exceptionModal').modal('show');
 		</script>
 	</c:if>
-
 </body>
 </html>

@@ -23,7 +23,7 @@
 			<div class="size col-xs-7 col-xs-offset-1">
 
 				<div class="buttons">
-					<button class="btn btn-primary" type="button" data-toggle="modal"
+					<button class="green btn" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add student</button>
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
@@ -36,7 +36,8 @@
 										method="post">
 										<div class="form-group">
 											<label for="inputFirstName">First name</label> <input
-												id="inputFirstName" name="addStudentFirstName"
+												id="inputFirstName" name="addStudentFirstName" required
+												title="The subject name must consist of letters, whitespaces and - only"
 												placeholder="Input first name" class="form-control"
 												type="text" pattern="^[a-zA-Z-]+$"
 												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
@@ -44,97 +45,29 @@
 										</div>
 										<div class="form-group">
 											<label for="inputFirstName">Last name</label> <input
-												id="inputFirstName" name="addStudentLastName"
+												id="inputFirstName" name="addStudentLastName" required
+												title="The subject name must consist of letters, whitespaces and - only"
 												placeholder="Input last name" class="form-control"
 												type="text" pattern="^[a-zA-Z-]+$"
 												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
-												oninput="this.setCustomValidity('')"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Add">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<button data-toggle="modal" data-target="#myModalUpDate"
-						type="button" class="btn btn-primary">Update student</button>
-					<div id="myModalUpDate" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3 class="modal-title">Update student</h3>
-								</div>
-								<div class="modal-body">
-									<form id="Update" action="/university/students/update" method="post">
-										<div class="form-group">
-											<label for="inputIdDeleteStudent">ID</label> <input
-												id="inputIdDeleteStudent" name="updateStudentId" placeholder="Input student Id"
-												class="form-control" type="number">
-										</div>
-										<div class="form-group">
-											<label for="inputFirstNameForUpdate">New first name</label> <input
-												id="inputFirstNameForUpdate" name="updateStudentFirstName" placeholder="Input new first name"
-												class="form-control" type="text" pattern="^[a-zA-Z-\s]+$"
-												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
 												oninput="this.setCustomValidity('')">
 										</div>
-
 										<div class="form-group">
-											<label for="inputLastNameForUpdate">New last name</label> <input
-												id="inputLastNameForUpdate" name="updateStudentLastName" placeholder="Input new last name"
-												class="form-control" type="text" pattern="^[a-zA-Z-]+$"
-												oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
-												oninput="this.setCustomValidity('')"> <input
-												class="inputButton btn btn-default" type="submit"
-												value="Update">
-										</div>
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<button data-toggle="modal" data-target="#myModalDelete"
-						type="button" class="btn btn-danger">Delete student</button>
-					<div id="myModalDelete" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h3 class="modal-title">Delete student</h3>
-								</div>
-								<div class="modal-body">
-									<form id="deleteStudent" action="/university/students/delete"
-										method="post">
-										<div class="form-group">
-											<label for="inputIdForDelete">ID</label> <input
-												id="inputIdForDelete" name="inputIdForDelete"
-												placeholder="Input Id" class="form-control" type="number">
 											<input class="inputButton btn btn-default" type="submit"
-												value="Delete">
+												value="Add"> <input
+												class="inputButton btn btn-default" type="button"
+												data-dismiss="modal" value="Close"></input>
 										</div>
 									</form>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-default" type="button"
-										data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
 				<hr>
-				<table
-					class="table table-condensed table-bordered table-hover table-striped">
+				<table class="table table-bordered table-hover">
 					<caption>
 						<i class="glyphicon glyphicon-user"></i> students
 						<hr>
@@ -142,17 +75,104 @@
 
 					<thead>
 						<tr>
-							<th class="text-center">id</th>
-							<th class="text-center">first name</th>
-							<th class="text-center">last name</th>
+							<th class="text-center" style="width: 7%"></th>
+							<th class="text-center" style="width: 30%">first name</th>
+							<th class="text-center" style="width: 30%">first name</th>
+							<th class="text-center" style="width: 33%"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="student" items="${students}">
+						<c:forEach var="student" items="${students}" varStatus="loop">
 							<tr>
-								<td class="text-center">${student.id}</td>
+								<td class="text-center">${loop.index+1}</td>
 								<td class="text-center">${student.firstName}</td>
 								<td class="text-center">${student.lastName}</td>
+								<td>
+								
+								<button data-toggle="modal" data-target="#myModalUpDate"
+										type="button" class="btn btn-primary btTable">Update name</button>
+									<div id="myModalUpDate" class="modal fade">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h3 class="modal-title">Update student</h3>
+												</div>
+												<div class="modal-body">
+													<form id="Update" action="/university/students/update"
+														method="post">
+														<div class="form-group">
+															<label for="inputIdDeleteStudent">ID</label> <input
+																id="inputIdDeleteStudent" name="updateStudentId"
+																placeholder="Input student Id" class="form-control"
+																type="number">
+														</div>
+														<div class="form-group">
+															<label for="inputFirstNameForUpdate">New first
+																name</label> <input id="inputFirstNameForUpdate"
+																name="updateStudentFirstName"
+																placeholder="Input new first name" class="form-control"
+																type="text" pattern="^[a-zA-Z-\s]+$"
+																oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+																oninput="this.setCustomValidity('')">
+														</div>
+
+														<div class="form-group">
+															<label for="inputLastNameForUpdate">New last name</label>
+															<input id="inputLastNameForUpdate"
+																name="updateStudentLastName"
+																placeholder="Input new last name" class="form-control"
+																type="text" pattern="^[a-zA-Z-]+$"
+																oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
+																oninput="this.setCustomValidity('')"> <input
+																class="inputButton btn btn-default" type="submit"
+																value="Update">
+														</div>
+													</form>
+												</div>
+												<div class="modal-footer">
+													<button class="btn btn-default" type="button"
+														data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+
+								
+								
+								
+								
+								
+								<button data-toggle="modal"
+										data-target="#myModalDelete" type="button"
+										class="btn btn-danger">Delete student</button>
+									<div id="myModalDelete" class="modal fade">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h3 class="modal-title">Delete student</h3>
+												</div>
+												<div class="modal-body">
+													<form id="deleteStudent"
+														action="/university/students/delete" method="post">
+														<div class="form-group">
+															<label for="inputIdForDelete">Do you really want
+																to delete the "${student.firstName}
+																${student.lastName}"?</label> <input
+																class="inputButton btn btn-default" type="hidden"
+																value="${student.id}">
+														</div>
+														<hr>
+														<div class="form-group">
+															<input class="inputButton btn btn-default" type="submit"
+																value="Delete"> <input
+																class="inputButton btn btn-default" type="button"
+																data-dismiss="modal" value="Close"></input>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div></td>
 							</tr>
 						</c:forEach>
 					</tbody>
