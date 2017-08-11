@@ -7,14 +7,17 @@
 <meta charset="utf-8">
 <title>Register|Progress</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="favicon.png" type="image/png">
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
-<script src="evaluation_log.js"></script>
+<link rel="shortcut icon" href="<c:url value="/favicon.png"/>"
+	type="image/png">
+<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/bootstrap-theme.min.css"/>">
+<link href="<c:url value="/style.css"/>" rel="stylesheet">
+<script src="<c:url value="/evaluation_log.js"/>"></script>
 </head>
 <body>
 	<div class="head">
-		<img alt="" src="logot.png">
+		<img alt="" src="<c:url value="/logot.png"/>">
 	</div>
 	<div class="container-fluid">
 
@@ -31,7 +34,7 @@
 									<h3 class="modal-title">Add mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addMark" action="/university/acad-perfomance"
+									<form id="addMark" action="/university/acad-perfomance/add"
 										method="post">
 										<div class="form-group">
 											<p>
@@ -66,12 +69,11 @@
 												</select>
 											</p>
 										</div>
-										<form>
-											<div class="form-group">
-												<label for="inputDate">Select date:</label> <input
-													name="addDate" type="date" class="form-control">
-											</div>
-										</form>
+
+										<div class="form-group">
+											<label for="inputDate">Select date:</label> <input
+												name="addDate" type="date" class="form-control">
+										</div>
 										<hr>
 										<div class="form-group">
 											<input class="inputButton btn btn-default" type="submit"
@@ -139,19 +141,10 @@
 										</form>
 									</div>
 								</div>
-
 								<button type="submit" class="btn btn-success">Search</button>
 							</div>
-
-
-
-
 						</form>
 					</div>
-
-
-
-
 					<table class="table table-bordered table-hover">
 						<caption>Mark Barton</caption>
 
@@ -322,7 +315,7 @@
 			<div class="col-xs-3 col-xs-offset-1 col-md-3 hidden-xs hidden-sm">
 				<div class="search">
 					<h3>
-						<img alt="" src="logMarker.png"> Search
+						<img alt="" src="<c:url value="/logMarker.png"/>"> Search
 					</h3>
 					<form class="form-horizontal" action="####" method="post">
 						<fieldset>
@@ -356,7 +349,7 @@
 				</div>
 				<div class="navigator">
 					<h3>
-						<img alt="" src="logMarker.png"> Navigation
+						<img alt="" src="<c:url value="/logMarker.png"/>"> Navigation
 					</h3>
 					<a class="link" href="/university/students"><i
 						class="glyphicon glyphicon-user"></i> students</a> <a
@@ -370,7 +363,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="jquery-3.2.1.js"></script>
-	<script src="js/bootstrap.js"></script>
+	<script src="<c:url value="/jquery-3.2.1.js"/>"></script>
+	<script src="<c:url value="/js/bootstrap.js"/>"></script>
 </body>
 </html>

@@ -31,29 +31,31 @@ public class AcademPerfomanceAddServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		final SqlSessionFactory sessionFactory = getSqlSessionFactory();
-		final AcademPerfomanceSession academPerfomanceSession = new AcademPerfomanceSession(sessionFactory);
-		final AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(academPerfomanceSession);
+		final AcademPerfomanceSession academPerfomanceSession = new AcademPerfomanceSession(
+				sessionFactory);
+		final AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(
+				academPerfomanceSession);
 		final String firstName = req.getParameter("addFirstName");
 		final String lastName = req.getParameter("addLastName");
-		final Student student = new Student(firstName,lastName);
-		final int markValue =Integer.valueOf(req.getParameter("addMarkValue"));
+		final Student student = new Student(firstName, lastName);
+		final int markValue = Integer.valueOf(req.getParameter("addMarkValue"));
 		final Mark mark = new Mark(markValue);
 		final String subjectName = req.getParameter("addSubject");
 		final Subject subject = new Subject(subjectName);
 		final LocalDate date = LocalDate.parse(req.getParameter("addDate"));
-		final AcademPerfomance academPerfomance = new AcademPerfomance(student,subject,date,mark);
+		final AcademPerfomance academPerfomance = new AcademPerfomance(student, subject, date,
+				mark);
 		
-		RequestDispatcher view  = req.getRequestDispatcher("/acad-perfomance.jsp");
+
+		RequestDispatcher view = req.getRequestDispatcher("/acad-perfomance.jsp");
 		try {
 			academPerfomanceService.insert(academPerfomance);
-			resp.sendRedirect("/university/acad-perfomance");
 		} catch (RuntimeException e) {
 			final SubjectSession subjectSession = new SubjectSession(sessionFactory);
 			final SubjectService subjectService = new SubjectService(subjectSession);
-			req.setAttribute("subjects", subjectService.findAll());			
+			req.setAttribute("subjects", subjectService.findAll());
 			req.setAttribute("exception", e.getMessage());
 			view.forward(req, resp);
 		}
 	}
 }
-	

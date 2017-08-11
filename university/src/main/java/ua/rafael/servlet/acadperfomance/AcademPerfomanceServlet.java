@@ -21,10 +21,13 @@ public class AcademPerfomanceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+			throws ServletException, IOException {
 		SqlSessionFactory sessionFactory = getSqlSessionFactory();
-		AcademPerfomanceSession academPerfomanceSession = new AcademPerfomanceSession(sessionFactory);
-		AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(academPerfomanceSession);
+		AcademPerfomanceSession academPerfomanceSession = new AcademPerfomanceSession(
+				sessionFactory);
+		AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(
+				academPerfomanceSession);
 		RequestDispatcher view = req.getRequestDispatcher("/acad-perfomance.jsp");
 		view.forward(req, resp);
 	}

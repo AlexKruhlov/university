@@ -3,7 +3,13 @@ package ua.rafael.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import ua.rafael.dao.AcademPerfomanceSession;
+import ua.rafael.dao.MarkSession;
+import ua.rafael.dao.StudentSession;
+import ua.rafael.dao.SubjectSession;
+import ua.rafael.data.MyBatisConnectionFactory;
 import ua.rafael.model.AcademPerfomance;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
@@ -11,6 +17,10 @@ import validation.AcademPerfomanceValidator;
 
 public class AcademPerfomanceService {
 	private AcademPerfomanceSession academPerfomanceSession;
+	SqlSessionFactory sessionFactory = MyBatisConnectionFactory.getSqlSessionFactory();
+	StudentService studentService = new StudentService(new StudentSession(sessionFactory));
+	SubjectService subjectService = new SubjectService(new SubjectSession(sessionFactory));
+	MarkService markService = new MarkService(new MarkSession(sessionFactory));
 
 	public AcademPerfomanceService(AcademPerfomanceSession academPerfomanceSession) {
 		this.academPerfomanceSession = academPerfomanceSession;
@@ -21,6 +31,13 @@ public class AcademPerfomanceService {
 	}
 
 	public void insert(final AcademPerfomance academPerfomance) {
+		academPerfomance
+				.setStudent(studentService.findByName(academPerfomance.getStudent().getFirstName(),
+						academPerfomance.getStudent().getLastName()));
+		//TODO subject all
+		academPerfomance
+				.setSubject(subjectService.findByName(academPerfomance.getSubject().getName()));
+		academPerfomance.setMark(markService.findByValue(academPerfomance.getMark().getValue()));
 		new AcademPerfomanceValidator().validate(academPerfomance);
 		academPerfomanceSession.insert(academPerfomance);
 	}
