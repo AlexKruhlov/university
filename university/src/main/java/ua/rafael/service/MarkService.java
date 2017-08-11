@@ -30,6 +30,7 @@ public class MarkService {
 		final Mark markFromDB = findById(id);
 		if (markFromDB != null) {
 			mark.setId(id);
+			new MarkValidator().validate(mark);
 			markSession.update(mark);
 		}
 	}

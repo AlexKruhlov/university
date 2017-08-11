@@ -7,14 +7,17 @@
 <meta charset="utf-8">
 <title>Register|Students</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="favicon.png" type="image/png">
-<link href="css/bootstrap.css" rel="stylesheet">
-<link href="style.css" rel="stylesheet">
-<script src="evaluation_log.js"></script>
+<link rel="shortcut icon" href="<c:url value="/favicon.png"/>"
+	type="image/png">
+<link href="<c:url value="/css/bootstrap.css"/>" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/css/bootstrap-theme.min.css"/>">
+<link href="<c:url value="/style.css"/>" rel="stylesheet">
+<script src="<c:url value="/evaluation_log.js"/>"></script>
 </head>
 <body>
 	<div class="head">
-		<img alt="" src="logot.png">
+		<img alt="" src="<c:url value="/logot.png"/>">
 	</div>
 
 	<div class="container-fluid">
@@ -25,6 +28,7 @@
 				<div class="buttons">
 					<button class="green btn" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add student</button>
+
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -65,7 +69,6 @@
 					</div>
 				</div>
 
-
 				<hr>
 				<table class="table table-bordered table-hover">
 					<caption>
@@ -88,28 +91,24 @@
 								<td class="text-center">${student.firstName}</td>
 								<td class="text-center">${student.lastName}</td>
 								<td>
-								
-								<button data-toggle="modal" data-target="#myModalUpDate"
-										type="button" class="btn btn-primary btTable">Update name</button>
-									<div id="myModalUpDate" class="modal fade">
+									<button data-toggle="modal"
+										data-target="#myModalUpDate${student.id}" type="button"
+										class="btn btn-primary">Edit</button>
+									<div id="myModalUpDate${student.id}" class="modal fade">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h3 class="modal-title">Update student</h3>
+													<h3 class="modal-title">Edit student
+														"${student.firstName} ${student.lastName}"</h3>
 												</div>
 												<div class="modal-body">
 													<form id="Update" action="/university/students/update"
 														method="post">
 														<div class="form-group">
-															<label for="inputIdDeleteStudent">ID</label> <input
-																id="inputIdDeleteStudent" name="updateStudentId"
-																placeholder="Input student Id" class="form-control"
-																type="number">
-														</div>
-														<div class="form-group">
 															<label for="inputFirstNameForUpdate">New first
 																name</label> <input id="inputFirstNameForUpdate"
-																name="updateStudentFirstName"
+																name="updateStudentFirstName" required
+																title="The subject name must consist of letters, whitespaces and - only"
 																placeholder="Input new first name" class="form-control"
 																type="text" pattern="^[a-zA-Z-\s]+$"
 																oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
@@ -119,33 +118,32 @@
 														<div class="form-group">
 															<label for="inputLastNameForUpdate">New last name</label>
 															<input id="inputLastNameForUpdate"
-																name="updateStudentLastName"
+																name="updateStudentLastName" required
+																title="The subject name must consist of letters, whitespaces and - only"
 																placeholder="Input new last name" class="form-control"
 																type="text" pattern="^[a-zA-Z-]+$"
 																oninvalid="this.setCustomValidity('The subject name must consist of letters, whitespaces and - only')"
-																oninput="this.setCustomValidity('')"> <input
+																oninput="this.setCustomValidity('')">
+														</div>
+														<hr>
+														<div class="form-group">
+															<input name="updateStudentId" class="form-control"
+																type="hidden" value="${student.id}"> <input
 																class="inputButton btn btn-default" type="submit"
-																value="Update">
+																value="Update"> <input
+																class="inputButton btn btn-default" type="button"
+																data-dismiss="modal" value="Close"></input>
 														</div>
 													</form>
-												</div>
-												<div class="modal-footer">
-													<button class="btn btn-default" type="button"
-														data-dismiss="modal">Close</button>
 												</div>
 											</div>
 										</div>
 									</div>
 
-								
-								
-								
-								
-								
-								<button data-toggle="modal"
-										data-target="#myModalDelete" type="button"
-										class="btn btn-danger">Delete student</button>
-									<div id="myModalDelete" class="modal fade">
+									<button data-toggle="modal"
+										data-target="#myModalDelete${student.id}" type="button"
+										class="btn btn-danger">Delete</button>
+									<div id="myModalDelete${student.id}" class="modal fade">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -157,7 +155,7 @@
 														<div class="form-group">
 															<label for="inputIdForDelete">Do you really want
 																to delete the "${student.firstName}
-																${student.lastName}"?</label> <input
+																${student.lastName}"?</label> <input name="studentIdToDelete"
 																class="inputButton btn btn-default" type="hidden"
 																value="${student.id}">
 														</div>
@@ -172,7 +170,8 @@
 												</div>
 											</div>
 										</div>
-									</div></td>
+									</div>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -182,7 +181,7 @@
 			<div class="col-xs-3 col-xs-offset-1 col-md-3 hidden-xs hidden-sm">
 				<div class="search">
 					<h3>
-						<img alt="" src="logMarker.png"> Search
+						<img alt="" src="<c:url value="/logMarker.png"/>"> Search
 					</h3>
 					<form class="form-horizontal" action="####" method="post">
 						<fieldset>
@@ -218,9 +217,9 @@
 					<h3>
 						<img alt="" src="logMarker.png"> Navigation
 					</h3>
-					<a class="link" href="/university/students"><i
+					<a class="link visited" href="/university/students"><i
 						class="glyphicon glyphicon-user"></i> students</a> <a
-						href="/university/subjects" class="visited"><i
+						href="/university/subjects"><i
 						class="glyphicon glyphicon-book"></i> subjects</a> <a
 						href="/university/marks"><i
 						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
@@ -230,7 +229,33 @@
 			</div>
 		</div>
 	</div>
-	<script src="jquery-3.2.1.js"></script>
-	<script src="js/bootstrap.js"></script>
+	<script src="<c:url value="/jquery-3.2.1.js"/>"></script>
+	<script src="<c:url value="/js/bootstrap.js"/>"></script>
+	<c:if test="${exception!=null}">
+		<div id="exceptionModal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<br>
+						<h3 class="modal-title">Attention</h3>
+					</div>
+					<div class="modBody modal-bod">
+						<br>
+						<h4 class="text-center">${exception}</h4>
+						<br>
+					</div>
+					<div class="modal-footer">
+						<div class="form-group">
+							<input class="inputButton btn btn-default" type="button"
+								data-dismiss="modal" value="Close"></input>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$('#exceptionModal').modal('show');
+		</script>
+	</c:if>
 </body>
 </html>

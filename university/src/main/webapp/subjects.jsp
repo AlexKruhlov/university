@@ -24,8 +24,10 @@
 		<div class="row-fluid">
 			<div class="size col-xs-7 col-xs-offset-1">
 				<div class="buttons">
+				
 					<button class="green btn" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add subject</button>
+						
 					<div id="myModalAdd" class="modal fade">
 						<div class="modal-dialog">
 							<div class="modal-content">
@@ -46,16 +48,8 @@
 										</div>
 										<hr>
 										<div class="form-group">
-											<c:catch var="catchException">
 												<input class="inputButton btn btn-default" type="submit"
 													value="Add">
-											</c:catch>
-											<c:if test="${catchException != null}">
-												<p>
-													The exception is : ${catchException} <br /> There is an
-													exception: ${catchException.message}
-												</p>
-											</c:if>
 											<input class="inputButton btn btn-default" type="button"
 												data-dismiss="modal" value="Close"></input>
 										</div>
@@ -151,7 +145,6 @@
 									</div>
 								</div>
 							</div>
-
 						</c:forEach>
 					</tbody>
 				</table>
