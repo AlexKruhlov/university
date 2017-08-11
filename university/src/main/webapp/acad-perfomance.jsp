@@ -1,3 +1,6 @@
+<%@ page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,8 @@
 									<h3 class="modal-title">Add mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addMark" action="####" method="post">
+									<form id="addMark" action="/university/acad-perfomance"
+										method="post">
 										<div class="form-group">
 											<p>
 												<label for="inputFirstNameStud">First name student</label> <input
@@ -41,34 +45,31 @@
 											<p>
 												<label for="inputLastNameStud">Last name student</label> <input
 													id="inputLastNameStud"
-													placeholder="Input last name Student" name="addFirstName"
+													placeholder="Input last name Student" name="addLastName"
 													required
 													title="The subject name must consist of letters, whitespaces and - only"
 													class="form-control" type="text" pattern="^[a-zA-Z-]+$">
 											</p>
 											<p>
 												<label for="inputMark" class="control-label">Mark</label> <input
-													id="inputMark" placeholder="Input mark"
+													id="inputMark" placeholder="Input mark" name="addMarkValue"
 													class="form-control" type="number">
 											</p>
-
 											<p>
 												<label for="selectSubject" class="control-label">Select
-													subject</label> <select id="selectSubject" class="form-control">
+													subject</label> <select id="selectSubject" class="form-control"
+													name="addSubject">
 													<option>all</option>
-													<option>history</option>
-													<option>musick</option>
-													<option>chemestry</option>
-													<option>photo</option>
+													<c:forEach var="subject" items="${subjects}">
+														<option>${subject.name}</option>
+													</c:forEach>
 												</select>
 											</p>
-
-
 										</div>
 										<form>
 											<div class="form-group">
 												<label for="inputDate">Select date:</label> <input
-													type="date" class="form-control">
+													name="addDate" type="date" class="form-control">
 											</div>
 										</form>
 										<hr>
@@ -91,10 +92,8 @@
 						<hr>
 					</h1>
 
-
-
 					<div class="searchMarks">
-						<h3 class="succsses">Academic performance student</h3>
+						<h3 class="succsses">Academic Performance</h3>
 						<form role="form" class="form-inline">
 							<div class="form-group nameStud">
 								<label class="label" for="inputFirstNameStudent">First
@@ -213,8 +212,7 @@
 												<div class="modal-body">
 													<form id="deleteMarkTabOne" action="####" method="post">
 														<div class="form-group">
-															<label>Do you really
-																want to delete the?</label>
+															<label>Do you really want to delete the?</label>
 														</div>
 														<hr>
 														<div class="form-group">
@@ -296,8 +294,7 @@
 												<div class="modal-body">
 													<form id="deleteMark" action="####" method="post">
 														<div class="form-group">
-															<label>Do you really
-																want to delete the?</label>
+															<label>Do you really want to delete the?</label>
 														</div>
 														<hr>
 														<div class="form-group">
@@ -367,7 +364,7 @@
 						class="glyphicon glyphicon-book"></i> subjects</a> <a
 						href="/university/marks"><i
 						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
-						href="/university/progres" class="visited"><i
+						href="/university/acad-perfomance"><i
 						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
 			</div>
