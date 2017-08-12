@@ -38,25 +38,20 @@
 										method="post">
 										<div class="form-group">
 											<p>
-												<label for="inputFirstNameStud">First name student</label> <input
-													id="inputFirstNameStud"
-													placeholder="Input first name Student" name="addFirstName"
-													required
-													title="The subject name must consist of letters, whitespaces and - only"
-													class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+												<label for="inputFirstNameStud">Student's full name</label> <select
+													id="selectSubject" class="form-control" name="addSubject">
+													<c:forEach var="student" items="${students}">
+														<option>${student.firstName} ${student.lastName}</option>
+													</c:forEach>
+												</select>
 											</p>
 											<p>
-												<label for="inputLastNameStud">Last name student</label> <input
-													id="inputLastNameStud"
-													placeholder="Input last name Student" name="addLastName"
-													required
-													title="The subject name must consist of letters, whitespaces and - only"
-													class="form-control" type="text" pattern="^[a-zA-Z-]+$">
-											</p>
-											<p>
-												<label for="inputMark" class="control-label">Mark</label> <input
-													id="inputMark" placeholder="Input mark" name="addMarkValue"
-													class="form-control" type="number">
+												<label for="inputMark" class="control-label">Mark</label> <select
+													id="selectSubject" class="form-control" name="addSubject">
+													<c:forEach var="mark" items="${marks}">
+														<option>${mark.value}</option>
+													</c:forEach>
+												</select>
 											</p>
 											<p>
 												<label for="selectSubject" class="control-label">Select
@@ -93,27 +88,18 @@
 						<i class="glyphicon glyphicon-education"></i> progress
 						<hr>
 					</h1>
-
 					<div class="searchMarks">
 						<h3 class="succsses">Progress</h3>
 						<form role="form" class="form-inline">
 							<div class="form-group nameStud">
-								<label class="label" for="inputFirstNameStudent">First
-									name student</label> <input id="inputFirstNameStudent"
-									placeholder="Input first name Student" name="addFirstNameStud"
-									required
-									title="The subject name must consist of letters, whitespaces and - only"
-									class="form-control" type="text" pattern="^[a-zA-Z-]+$">
+								<label class="label" for="inputFirstNameStudent">Student's
+									full name</label> <select id="selectSubject" class="form-control"
+									name="addSubject">
+									<c:forEach var="student" items="${students}">
+										<option>${student.firstName} ${student.lastName}</option>
+									</c:forEach>
+								</select>
 							</div>
-							<div class="form-group nameStudLeft">
-								<label class="label" for="inputLastNameStudent">Last
-									name student</label> <input id="inputLastNameStudent"
-									placeholder="Input last name Student" name="addFirstNameStud"
-									required
-									title="The subject name must consist of letters, whitespaces and - only"
-									class="form-control" type="text" pattern="^[a-zA-Z-]+$">
-							</div>
-
 							<div class="block">
 								<div class="col-xs-6">
 									<div class="input-group">
@@ -121,10 +107,9 @@
 											type="radio" name="select">
 										</span> <select id="selectSubjectForSucsses" class="form-control">
 											<option>all</option>
-											<option>history</option>
-											<option>musick</option>
-											<option>chemestry</option>
-											<option>photo</option>
+											<c:forEach var="subject" items="${subjects}">
+												<option>${subject.name}</option>
+											</c:forEach>
 										</select>
 									</div>
 								</div>
@@ -349,7 +334,8 @@
 				</div>
 				<div class="navigator">
 					<h3>
-						<img alt="" src="<c:url value="/logMarker.png"/>"> Navigation
+						<img alt="" src="<c:url value="/logMarker.png"/>">
+						Navigation
 					</h3>
 					<a class="link" href="/university/students"><i
 						class="glyphicon glyphicon-user"></i> students</a> <a
