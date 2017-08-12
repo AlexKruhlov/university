@@ -34,7 +34,6 @@ public class ProgressService {
 		progress
 				.setStudent(studentService.findByName(progress.getStudent().getFirstName(),
 						progress.getStudent().getLastName()));
-		//TODO subject all
 		progress
 				.setSubject(subjectService.findByName(progress.getSubject().getName()));
 		progress.setMark(markService.findByValue(progress.getMark().getValue()));

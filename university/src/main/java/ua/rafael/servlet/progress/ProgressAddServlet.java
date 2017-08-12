@@ -5,7 +5,6 @@ import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
 import java.io.IOException;
 import java.time.LocalDate;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,23 +29,21 @@ public class ProgressAddServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		final SqlSessionFactory sessionFactory = getSqlSessionFactory();
-		final PogressSession progressSession = new PogressSession(
-				sessionFactory);
-		final ProgressService progressService = new ProgressService(
-				progressSession);
+		final String subjectName = req.getParameter("addSubject");
+		if (subjectName.equals("all")) {
+			throw new RuntimeException("Please, choose one subject");
+		}
+		final Subject subject = new Subject(subjectName);
 		final String firstName = req.getParameter("addFirstName");
 		final String lastName = req.getParameter("addLastName");
 		final Student student = new Student(firstName, lastName);
 		final int markValue = Integer.valueOf(req.getParameter("addMarkValue"));
 		final Mark mark = new Mark(markValue);
-		final String subjectName = req.getParameter("addSubject");
-		final Subject subject = new Subject(subjectName);
 		final LocalDate date = LocalDate.parse(req.getParameter("addDate"));
-		final Progress progress = new Progress(student, subject, date,
-				mark);
-	
-		RequestDispatcher view = req.getRequestDispatcher("/progress.jsp");
+		final Progress progress = new Progress(student, subject, date, mark);
+		final SqlSessionFactory sessionFactory = getSqlSessionFactory();
+		final PogressSession progressSession = new PogressSession(sessionFactory);
+		final ProgressService progressService = new ProgressService(progressSession);
 		try {
 			progressService.insert(progress);
 		} catch (RuntimeException e) {
@@ -54,7 +51,7 @@ public class ProgressAddServlet extends HttpServlet {
 			final SubjectService subjectService = new SubjectService(subjectSession);
 			req.setAttribute("subjects", subjectService.findAll());
 			req.setAttribute("exception", e.getMessage());
-			view.forward(req, resp);
+			req.getRequestDispatcher("/progress.jsp").forward(req, resp);
 		}
 	}
 }

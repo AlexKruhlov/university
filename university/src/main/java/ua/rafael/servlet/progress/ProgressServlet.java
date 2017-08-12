@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import ua.rafael.dao.PogressSession;
-import ua.rafael.service.ProgressService;
+import ua.rafael.dao.SubjectSession;
+import ua.rafael.service.SubjectService;
 
 @WebServlet(urlPatterns = "/progress")
 public class ProgressServlet extends HttpServlet {
@@ -24,10 +24,9 @@ public class ProgressServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		SqlSessionFactory sessionFactory = getSqlSessionFactory();
-		PogressSession progressSession = new PogressSession(
-				sessionFactory);
-		ProgressService progressService = new ProgressService(
-				progressSession);
+		SubjectSession subjectSession = new SubjectSession(sessionFactory);
+		SubjectService subjectService = new SubjectService(subjectSession);
+		req.setAttribute("subjects", subjectService.findAll());
 		RequestDispatcher view = req.getRequestDispatcher("/progress.jsp");
 		view.forward(req, resp);
 	}
