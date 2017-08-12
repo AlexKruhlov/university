@@ -56,13 +56,13 @@ public class ProgressServiceTest {
 		markService.insert(new Mark(2));
 		markService.insert(new Mark(3));
 		progressService.createTable();
-		progressWithNullId1 = createAcadPerfomanceWithNullId(1, "Dave", "Joro", 1,
+		progressWithNullId1 = createProgressWithNullId(1, "Dave", "Joro", 1,
 				"Mathematics", LocalDate.of(2017, 07, 29), 1, 1);
-		progressWithNullId2 = createAcadPerfomanceWithNullId(2, "Mike", "Franch", 2,
+		progressWithNullId2 = createProgressWithNullId(2, "Mike", "Franch", 2,
 				"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
-		progressWithNotNullId1 = createAcadPerfomanceWithNotNullId(1, 1, "Dave", "Joro", 1,
+		progressWithNotNullId1 = createProgressWithNotNullId(1, 1, "Dave", "Joro", 1,
 				"Mathematics", LocalDate.of(2017, 07, 29), 1, 1);
-		progressWithNotNullId2 = createAcadPerfomanceWithNotNullId(2, 2, "Mike", "Franch",
+		progressWithNotNullId2 = createProgressWithNotNullId(2, 2, "Mike", "Franch",
 				2,
 				"Chemistry", LocalDate.of(2017, 07, 30), 2, 2);
 	}
@@ -135,7 +135,7 @@ public class ProgressServiceTest {
 	@Test
 	public final void testCountAverageMarkByStudentAndSubject() {
 		final double expected = 1.5;
-		final Progress progressWithNullId3 = createAcadPerfomanceWithNullId(1,
+		final Progress progressWithNullId3 = createProgressWithNullId(1,
 				"Dave", "Joro", 1,
 				"Mathematics", LocalDate.of(2017, 07, 30), 2, 2);
 		progressService.insert(progressWithNullId1);
@@ -181,7 +181,7 @@ public class ProgressServiceTest {
 		markService.dropTable();
 	}
 
-	private Progress createAcadPerfomanceWithNullId(final long studentId,
+	private Progress createProgressWithNullId(final long studentId,
 			final String firstName, final String lastName, final long subjectId,
 			final String subjectName, final LocalDate date, final long markId,
 			final int markValue) {
@@ -194,11 +194,11 @@ public class ProgressServiceTest {
 		return new Progress(student, subject, date, mark);
 	}
 
-	private Progress createAcadPerfomanceWithNotNullId(final long id, final long studentId,
+	private Progress createProgressWithNotNullId(final long id, final long studentId,
 			final String firstName, final String lastName, final long subjectId,
 			final String subjectName, final LocalDate date, final long markId,
 			final int markValue) {
-		Progress progress = createAcadPerfomanceWithNullId(studentId, firstName,
+		Progress progress = createProgressWithNullId(studentId, firstName,
 				lastName, subjectId, subjectName, date, markId, markValue);
 		progress.setId(id);
 		return progress;

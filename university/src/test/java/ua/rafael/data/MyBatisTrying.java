@@ -17,7 +17,7 @@ public class MyBatisTrying {
 
 //	@Test
 //	public final void tryBayis() throws IOException {
-//		AcademPerfomanceSession subjectDao = new AcademPerfomanceSession(
+//		ProgressSession subjectDao = new ProgressSession(
 //				MyBatisConnectionFactory.getSqlSessionFactory());
 //		System.out.println(subjectDao.selectAll());
 //	}

@@ -95,7 +95,7 @@
 					</h1>
 
 					<div class="searchMarks">
-						<h3 class="succsses">Academic Performance</h3>
+						<h3 class="succsses">Progress</h3>
 						<form role="form" class="form-inline">
 							<div class="form-group nameStud">
 								<label class="label" for="inputFirstNameStudent">First

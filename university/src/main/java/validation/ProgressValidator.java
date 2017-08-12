@@ -22,10 +22,10 @@ public class ProgressValidator implements Validator<Progress> {
 		} else if (progress.getMark() == null) {
 			throw new RuntimeException("Cannot find this mark");
 		}
-		checkForSimilarAcademPerfomanceItem(progress);
+		checkForSimilarProgressItem(progress);
 	}
 
-	private void checkForSimilarAcademPerfomanceItem(final Progress progress) {
+	private void checkForSimilarProgressItem(final Progress progress) {
 		Progress progressFromDB = progressService.findBy(
 				progress.getStudent(), progress.getSubject(),
 				progress.getDate());

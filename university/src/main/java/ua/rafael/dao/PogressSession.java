@@ -23,7 +23,7 @@ public class PogressSession {
 	public void createTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("AcademPerfomance.createTable");
+			session.insert("Progress.createTable");
 		} finally {
 			session.commit();
 			session.close();
@@ -33,7 +33,7 @@ public class PogressSession {
 	public void insert(final Progress progress) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("AcademPerfomance.insert", progress);
+			session.insert("Progress.insert", progress);
 		} finally {
 			session.commit();
 			session.close();
@@ -43,7 +43,7 @@ public class PogressSession {
 	public void delete(final long id) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("AcademPerfomance.delete", id);
+			session.insert("Progress.delete", id);
 		} finally {
 			session.commit();
 			session.close();
@@ -53,7 +53,7 @@ public class PogressSession {
 	public void update(final Progress progress) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.update("AcademPerfomance.update", progress);
+			session.update("Progress.update", progress);
 		} finally {
 			session.commit();
 			session.close();
@@ -64,7 +64,7 @@ public class PogressSession {
 		SqlSession session = sqlSessionFactory.openSession();
 		List<Progress> resultList = null;
 		try {
-			resultList = session.selectList("AcademPerfomance.selectAll");
+			resultList = session.selectList("Progress.selectAll");
 		} finally {
 			session.close();
 		}
@@ -75,7 +75,7 @@ public class PogressSession {
 		Progress result = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			result = session.selectOne("AcademPerfomance.selectById", id);
+			result = session.selectOne("Progress.selectById", id);
 		} finally {
 			session.close();
 		}
@@ -90,7 +90,7 @@ public class PogressSession {
 		parameters.put("inStudent", student);
 		parameters.put("inSubject", subject);
 		try {
-			resultList = session.selectList("AcademPerfomance.selectByStudentAndSubject",
+			resultList = session.selectList("Progress.selectByStudentAndSubject",
 					parameters);
 		} finally {
 			session.close();
@@ -106,7 +106,7 @@ public class PogressSession {
 		parameters.put("inStudent", student);
 		parameters.put("inDate", date);
 		try {
-			resultList = session.selectList("AcademPerfomance.selectByStudentAndDate",
+			resultList = session.selectList("Progress.selectByStudentAndDate",
 					parameters);
 		} finally {
 			session.close();
@@ -116,19 +116,19 @@ public class PogressSession {
 
 	public Progress selectByStudentAndSubjectAndDate(final Student student,
 			final Subject subject, final LocalDate date) {
-		Progress resultAcademPerfomance = null;
+		Progress resultProgress = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		final Map<String, Object> parameters = new HashMap<>();
 		parameters.put("inStudent", student);
 		parameters.put("inDate", date);
 		parameters.put("inSubject", subject);
 		try {
-			resultAcademPerfomance = session.selectOne(
-					"AcademPerfomance.selectByStudentAndSubjectAndDate", parameters);
+			resultProgress = session.selectOne(
+					"Progress.selectByStudentAndSubjectAndDate", parameters);
 		} finally {
 			session.close();
 		}
-		return resultAcademPerfomance;
+		return resultProgress;
 	}
 
 	public double countAverageMarkByStudentAndSubject(final Student student,
@@ -140,7 +140,7 @@ public class PogressSession {
 		parameters.put("inSubject", subject);
 		try {
 			result = session.selectOne(
-					"AcademPerfomance.countAverageMarkByStudentAndSubject",
+					"Progress.countAverageMarkByStudentAndSubject",
 					parameters);
 		} finally {
 			session.close();
@@ -151,7 +151,7 @@ public class PogressSession {
 	public void dropTable() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.update("AcademPerfomance.dropTable");
+			session.update("Progress.dropTable");
 		} finally {
 			session.commit();
 			session.close();
