@@ -1,4 +1,4 @@
-package ua.rafael.servlet.acadperfomance;
+package ua.rafael.servlet.progress;
 
 import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
 
@@ -14,27 +14,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import ua.rafael.dao.AcademPerfomanceSession;
+import ua.rafael.dao.PogressSession;
 import ua.rafael.dao.SubjectSession;
-import ua.rafael.model.AcademPerfomance;
+import ua.rafael.model.Progress;
 import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
-import ua.rafael.service.AcademPerfomanceService;
+import ua.rafael.service.ProgressService;
 import ua.rafael.service.SubjectService;
 
-@WebServlet(urlPatterns = "/acad-perfomance/add")
-public class AcademPerfomanceAddServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/progress/add")
+public class ProgressAddServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		final SqlSessionFactory sessionFactory = getSqlSessionFactory();
-		final AcademPerfomanceSession academPerfomanceSession = new AcademPerfomanceSession(
+		final PogressSession progressSession = new PogressSession(
 				sessionFactory);
-		final AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(
-				academPerfomanceSession);
+		final ProgressService progressService = new ProgressService(
+				progressSession);
 		final String firstName = req.getParameter("addFirstName");
 		final String lastName = req.getParameter("addLastName");
 		final Student student = new Student(firstName, lastName);
@@ -43,13 +43,12 @@ public class AcademPerfomanceAddServlet extends HttpServlet {
 		final String subjectName = req.getParameter("addSubject");
 		final Subject subject = new Subject(subjectName);
 		final LocalDate date = LocalDate.parse(req.getParameter("addDate"));
-		final AcademPerfomance academPerfomance = new AcademPerfomance(student, subject, date,
+		final Progress progress = new Progress(student, subject, date,
 				mark);
-		
-
-		RequestDispatcher view = req.getRequestDispatcher("/acad-perfomance.jsp");
+	
+		RequestDispatcher view = req.getRequestDispatcher("/progress.jsp");
 		try {
-			academPerfomanceService.insert(academPerfomance);
+			progressService.insert(progress);
 		} catch (RuntimeException e) {
 			final SubjectSession subjectSession = new SubjectSession(sessionFactory);
 			final SubjectService subjectService = new SubjectService(subjectSession);

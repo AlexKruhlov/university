@@ -3,8 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="AcademPerfomance">
-	<resultMap id="result" type="ua.rafael.model.AcademPerfomance">
+<mapper namespace="Progress">
+	<resultMap id="result" type="ua.rafael.model.Progress">
 		<result property="id" column="id" />
 		<result property="date" column="date" />
 		<association property="mark" javaType="Mark">
@@ -24,7 +24,7 @@
 
 	<update id="createTable">
 		CREATE TABLE IF NOT EXISTS
-		public.academ_perfom_items(
+		public.progress(
 		id BIGSERIAL NOT NULL
 		PRIMARY KEY,
 		student_id
@@ -51,29 +51,29 @@
 		);
 	</update>
 
-	<insert id="insert" parameterType="AcademPerfomance" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="Progress" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
-		public.academ_perfom_items(student_id,subject_id,date,mark_id)
+		public.progress(student_id,subject_id,date,mark_id)
 		VALUES
 		(#{student.id},#{subject.id},#{date},#{mark.id});
 	</insert>
 
 	<delete id="delete" parameterType="long">
 		DELETE FROM
-		public.academ_perfom_items
+		public.progress
 		WHERE id=#{id};
 	</delete>
 
-	<update id="update" parameterType="AcademPerfomance">
+	<update id="update" parameterType="Progress">
 		UPDATE
-		public.academ_perfom_items SET
+		public.progress SET
 		student_id=#{student.id},subject_id=#{subject.id},date=#{date},mark_id=#{mark.id}
 		WHERE id=#{id};
 	</update>
 
 	<select id="selectAll" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api JOIN marks
+		public.progress AS api JOIN marks
 		AS m ON api.mark_id=m.id
 		JOIN students AS st ON api.student_id=st.id
 		JOIN subjects AS sb ON
@@ -83,7 +83,7 @@
 
 	<select id="selectById" parameterType="long" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api
+		public.progress AS api
 		JOIN marks AS m ON api.mark_id=m.id AND api.id=#{id}
 		JOIN students
 		AS st ON api.student_id=st.id
@@ -96,7 +96,7 @@
 
 	<select id="selectByStudentAndSubject" parameterType="map" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api JOIN marks AS
+		public.progress AS api JOIN marks AS
 		m ON api.mark_id=m.id
 		JOIN students AS st ON
 		api.student_id=st.id AND
@@ -110,7 +110,7 @@
 
 	<select id="selectByStudentAndDate" parameterType="map" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api JOIN marks AS
+		public.progress AS api JOIN marks AS
 		m ON api.mark_id=m.id
 		JOIN students AS st ON
 		api.student_id=st.id AND
@@ -123,7 +123,7 @@
 
 	<select id="selectByStudentAndSubjectAndDate" parameterType="map" resultMap="result">
 		SELECT * FROM
-		public.academ_perfom_items AS api JOIN marks AS
+		public.progress AS api JOIN marks AS
 		m ON api.mark_id=m.id
 		JOIN students AS st ON
 		api.student_id=st.id AND
@@ -135,7 +135,7 @@
 	<select id="countAverageMarkByStudentAndSubject" parameterType="map" resultType="double">
 		SELECT
 		avg(m.value) FROM
-		public.academ_perfom_items AS api JOIN marks AS
+		public.progress AS api JOIN marks AS
 		m ON api.mark_id=m.id
 		JOIN students
 		AS st ON api.student_id=st.id AND
@@ -145,6 +145,6 @@
 	</select>
 
 	<update id="dropTable">
-		DROP TABLE public.academ_perfom_items;
+		DROP TABLE public.progress;
 	</update>
 </mapper>

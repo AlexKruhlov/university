@@ -9,8 +9,8 @@ import java.sql.Statement;
 
 import org.junit.Test;
 
-import ua.rafael.dao.AcademPerfomanceSession;
-import ua.rafael.model.AcademPerfomance;
+import ua.rafael.dao.PogressSession;
+import ua.rafael.model.Progress;
 import ua.rafael.model.Subject;
 
 public class MyBatisTrying {

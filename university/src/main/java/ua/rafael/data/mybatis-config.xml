@@ -7,7 +7,7 @@
 		<typeAlias alias="Subject" type="ua.rafael.model.Subject" />
 		<typeAlias alias="Mark" type="ua.rafael.model.Mark" />
 		<typeAlias alias="Student" type="ua.rafael.model.Student" />
-		<typeAlias alias="AcademPerfomance" type="ua.rafael.model.AcademPerfomance"/>
+		<typeAlias alias="Progress" type="ua.rafael.model.Progress"/>
 	</typeAliases>
 
 	<typeHandlers>
@@ -39,6 +39,6 @@
 		<mapper resource="ua/rafael/data/Subject.xml" />
 		<mapper resource="ua/rafael/data/Mark.xml" />
 		<mapper resource="ua/rafael/data/Student.xml" />
-		<mapper resource="ua/rafael/data/AcademPerfomance.xml"/>
+		<mapper resource="ua/rafael/data/Progress.xml"/>
 	</mappers>
 </configuration>

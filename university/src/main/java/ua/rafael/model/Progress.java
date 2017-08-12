@@ -2,17 +2,17 @@ package ua.rafael.model;
 
 import java.time.LocalDate;
 
-public class AcademPerfomance {
+public class Progress {
 	private long id;
 	private Student student;
 	private Subject subject;
 	private LocalDate date;
 	private Mark mark;
 
-	public AcademPerfomance() {
+	public Progress() {
 	}
 
-	public AcademPerfomance(Student student, Subject subject, LocalDate date, Mark mark) {
+	public Progress(Student student, Subject subject, LocalDate date, Mark mark) {
 		this.student = student;
 		this.subject = subject;
 		this.date = date;
@@ -84,7 +84,7 @@ public class AcademPerfomance {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		AcademPerfomance other = (AcademPerfomance) obj;
+		Progress other = (Progress) obj;
 		if (id != other.id)
 			return false;
 		if (date == null) {

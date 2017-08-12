@@ -8,15 +8,15 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import ua.rafael.model.AcademPerfomance;
+import ua.rafael.model.Progress;
 import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
 
-public class AcademPerfomanceSession {
+public class PogressSession {
 	private SqlSessionFactory sqlSessionFactory = null;
 
-	public AcademPerfomanceSession(SqlSessionFactory sqlSessionFactory) {
+	public PogressSession(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
 
@@ -30,10 +30,10 @@ public class AcademPerfomanceSession {
 		}
 	}
 
-	public void insert(final AcademPerfomance academPerfomance) {
+	public void insert(final Progress progress) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("AcademPerfomance.insert", academPerfomance);
+			session.insert("AcademPerfomance.insert", progress);
 		} finally {
 			session.commit();
 			session.close();
@@ -50,19 +50,19 @@ public class AcademPerfomanceSession {
 		}
 	}
 
-	public void update(final AcademPerfomance academPerfomance) {
+	public void update(final Progress progress) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.update("AcademPerfomance.update", academPerfomance);
+			session.update("AcademPerfomance.update", progress);
 		} finally {
 			session.commit();
 			session.close();
 		}
 	}
 
-	public List<AcademPerfomance> selectAll() {
+	public List<Progress> selectAll() {
 		SqlSession session = sqlSessionFactory.openSession();
-		List<AcademPerfomance> resultList = null;
+		List<Progress> resultList = null;
 		try {
 			resultList = session.selectList("AcademPerfomance.selectAll");
 		} finally {
@@ -71,8 +71,8 @@ public class AcademPerfomanceSession {
 		return resultList;
 	}
 
-	public AcademPerfomance selectById(final long id) {
-		AcademPerfomance result = null;
+	public Progress selectById(final long id) {
+		Progress result = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			result = session.selectOne("AcademPerfomance.selectById", id);
@@ -82,10 +82,10 @@ public class AcademPerfomanceSession {
 		return result;
 	}
 
-	public List<AcademPerfomance> selectByStudentAndSubject(final Student student,
+	public List<Progress> selectByStudentAndSubject(final Student student,
 			final Subject subject) {
 		SqlSession session = sqlSessionFactory.openSession();
-		List<AcademPerfomance> resultList = null;
+		List<Progress> resultList = null;
 		final Map<String, Object> parameters = new HashMap<>();
 		parameters.put("inStudent", student);
 		parameters.put("inSubject", subject);
@@ -98,10 +98,10 @@ public class AcademPerfomanceSession {
 		return resultList;
 	}
 
-	public List<AcademPerfomance> selectByStudentAndDate(final Student student,
+	public List<Progress> selectByStudentAndDate(final Student student,
 			final LocalDate date) {
 		SqlSession session = sqlSessionFactory.openSession();
-		List<AcademPerfomance> resultList = null;
+		List<Progress> resultList = null;
 		final Map<String, Object> parameters = new HashMap<>();
 		parameters.put("inStudent", student);
 		parameters.put("inDate", date);
@@ -114,9 +114,9 @@ public class AcademPerfomanceSession {
 		return resultList;
 	}
 
-	public AcademPerfomance selectByStudentAndSubjectAndDate(final Student student,
+	public Progress selectByStudentAndSubjectAndDate(final Student student,
 			final Subject subject, final LocalDate date) {
-		AcademPerfomance resultAcademPerfomance = null;
+		Progress resultAcademPerfomance = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		final Map<String, Object> parameters = new HashMap<>();
 		parameters.put("inStudent", student);

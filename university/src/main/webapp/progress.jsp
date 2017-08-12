@@ -34,7 +34,7 @@
 									<h3 class="modal-title">Add mark</h3>
 								</div>
 								<div class="modal-body">
-									<form id="addMark" action="/university/acad-perfomance/add"
+									<form id="addMark" action="/university/progress/add"
 										method="post">
 										<div class="form-group">
 											<p>
@@ -357,7 +357,7 @@
 						class="glyphicon glyphicon-book"></i> subjects</a> <a
 						href="/university/marks"><i
 						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
-						href="/university/acad-perfomance"><i
+						href="/university/progress"><i
 						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
 			</div>

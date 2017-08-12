@@ -193,7 +193,7 @@
 						class="glyphicon glyphicon-book"></i> subjects</a> <a
 						href="/university/marks"><i
 						class="glyphicon glyphicon-piggy-bank"></i> marks</a> <a
-						href="/university/acad-perfomance"><i
+						href="/university/progress"><i
 						class="glyphicon glyphicon-education"></i> progress</a>
 				</div>
 			</div>

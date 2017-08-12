@@ -1,4 +1,4 @@
-package ua.rafael.servlet.acadperfomance;
+package ua.rafael.servlet.progress;
 
 import static ua.rafael.data.MyBatisConnectionFactory.getSqlSessionFactory;
 
@@ -13,22 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import ua.rafael.dao.AcademPerfomanceSession;
-import ua.rafael.service.AcademPerfomanceService;
+import ua.rafael.dao.PogressSession;
+import ua.rafael.service.ProgressService;
 
-@WebServlet(urlPatterns = "/acad-perfomance")
-public class AcademPerfomanceServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/progress")
+public class ProgressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		SqlSessionFactory sessionFactory = getSqlSessionFactory();
-		AcademPerfomanceSession academPerfomanceSession = new AcademPerfomanceSession(
+		PogressSession progressSession = new PogressSession(
 				sessionFactory);
-		AcademPerfomanceService academPerfomanceService = new AcademPerfomanceService(
-				academPerfomanceSession);
-		RequestDispatcher view = req.getRequestDispatcher("/acad-perfomance.jsp");
+		ProgressService progressService = new ProgressService(
+				progressSession);
+		RequestDispatcher view = req.getRequestDispatcher("/progress.jsp");
 		view.forward(req, resp);
 	}
 }
