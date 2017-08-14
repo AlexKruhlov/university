@@ -9,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import ua.rafael.model.Progress;
-import ua.rafael.model.Mark;
 import ua.rafael.model.Student;
 import ua.rafael.model.Subject;
 

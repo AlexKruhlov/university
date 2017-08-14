@@ -16,8 +16,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import ua.rafael.dao.StudentSession;
 import ua.rafael.model.Student;
 import ua.rafael.service.StudentService;
-import validation.StudentValidator;
-import validation.SubjectValidator;
 
 @WebServlet(urlPatterns = "/students/add")
 public class StudentAddServlet extends HttpServlet {

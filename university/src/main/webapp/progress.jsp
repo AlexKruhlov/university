@@ -23,7 +23,6 @@
 
 		<div class="row-fluid">
 			<div class="size col-xs-7 col-xs-offset-1">
-
 				<div class="buttons">
 					<button class="green btn" type="button" data-toggle="modal"
 						data-target="#myModalAdd">Add mark</button>
@@ -38,18 +37,19 @@
 										method="post">
 										<div class="form-group">
 											<p>
-												<label for="inputFirstNameStud">Student's full name</label> <select
-													id="selectSubject" class="form-control" name="addSubject">
+												<label for="inputFirstNameStud">Student's full name</label>
+												<select id="selectSubject" class="form-control"
+													name="addStudent">
 													<c:forEach var="student" items="${students}">
-														<option>${student.firstName} ${student.lastName}</option>
+														<option value="${student.id}">${student.firstName} ${student.lastName}</option>
 													</c:forEach>
 												</select>
 											</p>
 											<p>
 												<label for="inputMark" class="control-label">Mark</label> <select
-													id="selectSubject" class="form-control" name="addSubject">
+													id="selectSubject" class="form-control" name="addMark">
 													<c:forEach var="mark" items="${marks}">
-														<option>${mark.value}</option>
+														<option value="${mark.id}">${mark.value}</option>
 													</c:forEach>
 												</select>
 											</p>
@@ -57,14 +57,12 @@
 												<label for="selectSubject" class="control-label">Select
 													subject</label> <select id="selectSubject" class="form-control"
 													name="addSubject">
-													<option>all</option>
 													<c:forEach var="subject" items="${subjects}">
-														<option>${subject.name}</option>
+														<option value="${subject.id}">${subject.name}</option>
 													</c:forEach>
 												</select>
 											</p>
 										</div>
-
 										<div class="form-group">
 											<label for="inputDate">Select date:</label> <input
 												name="addDate" type="date" class="form-control">
@@ -81,9 +79,7 @@
 							</div>
 						</div>
 					</div>
-
 					<hr>
-
 					<h1 class="caption">
 						<i class="glyphicon glyphicon-education"></i> progress
 						<hr>
@@ -176,9 +172,6 @@
 											</div>
 										</div>
 									</div>
-
-
-
 									<button data-toggle="modal" data-target="#myModalDeleteTabOne"
 										type="button" class="btn btn-danger">Delete</button>
 									<div id="myModalDeleteTabOne" class="modal fade">
@@ -208,13 +201,8 @@
 							</tr>
 						</tbody>
 					</table>
-
-
-
-
 					<table class="table table-bordered table-hover">
 						<caption>Mark Barton</caption>
-
 						<thead>
 							<tr>
 								<th class="text-center" style="width: 7%"></th>
@@ -258,9 +246,6 @@
 											</div>
 										</div>
 									</div>
-
-
-
 									<button data-toggle="modal" data-target="#myModalDelete"
 										type="button" class="btn btn-danger">Delete</button>
 									<div id="myModalDelete" class="modal fade">
@@ -290,10 +275,6 @@
 							</tr>
 						</tbody>
 					</table>
-
-
-
-
 				</div>
 			</div>
 

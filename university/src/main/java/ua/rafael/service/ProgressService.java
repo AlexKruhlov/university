@@ -3,6 +3,8 @@ package ua.rafael.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import ua.rafael.dao.PogressSession;
@@ -31,14 +33,14 @@ public class ProgressService {
 	}
 
 	public void insert(final Progress progress) {
-		progress
-				.setStudent(studentService.findByName(progress.getStudent().getFirstName(),
-						progress.getStudent().getLastName()));
-		progress
-				.setSubject(subjectService.findByName(progress.getSubject().getName()));
-		progress.setMark(markService.findByValue(progress.getMark().getValue()));
-		new ProgressValidator().validate(progress);
-		progressSession.insert(progress);
+		try {
+			
+			new ProgressValidator().validate(progress);
+			progressSession.insert(progress);
+		} catch (RuntimeException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	public void delete(final long id) {
